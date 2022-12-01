@@ -1,7 +1,25 @@
-from openbabel import pybel
+from openbabel import openbabel, pybel
 
-mol = next(pybel.readfile("smi", "sample.smi"))
-mol.make3D()
-mol.OBMol.AddHydrogens()
+def read_file(format, inputfilename):
+    mol = next(pybel.readfile(format, inputfilename))
+    return (mol)
 
-mol.write("xyz", "sample_converted.xyz", overwrite=True)
+def convert(mol):
+    mol.make3D()
+    #mol.OBMol.AddHydrogens()
+    return(mol)
+
+def write_file(mol, format, outfilename):
+    return mol.write(format, outfilename, overwrite=True)
+
+if __name__ == "__main__":
+    format_in = "smi"
+    format_out = "xyz"
+    inputfilename = "sample.smi"
+    outfilename = "sample_conv.xyz"
+    mol = read_file(format_in, inputfilename)
+    mol = convert(mol)
+    write_file(mol, format_out, outfilename)
+
+
+
