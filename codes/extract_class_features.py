@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def read_file(format, filename):
+    pybel.ob.obErrorLog.SetOutputLevel(0)
     mols = list(pybel.readfile(format, filename))
     return (mols)
 
@@ -46,21 +47,23 @@ def arrange_dataframe_pivot(df):
 def clustering_and_statistics(df, group_type, stats=False):
     grouped = df.groupby(group_type)
     df_col = grouped[["N_at"]]
-    if stats is True:
-        #print("Number of groups found --> ", grouped.ngroups)
-        #print("Number of items per group --> ", grouped.size(), df_col.max())
-        print(type(grouped.ngroups))
-        print(type(grouped.size().to_frame()))
-        print(type(df_col.max()))
-        print(grouped.ngroups)
-        print(grouped.size().to_frame(name="N_comp"))
-        print(df_col.max())
+    
+    size_df = grouped.size().to_frame(name="N_item/grp")
+    max_at = df_col.max()
+    df_merge = size_df.merge(max_at, how='inner', on='Group_type')
+    df_merge.rename(columns = {'N_at':'Max_n_at'}, inplace = True)
+    max_at.rename(columns = {'N_at':'Max_n_at'}, inplace = True)
 
+    if stats is True:
+        print("Number of groups found --> ", grouped.ngroups)
+        print(grouped.size())
+        print(max_at)
+ 
     grp_list = []
     for group in grouped:
         grp_list.append(group)
     
-    return (grp_list)
+    return (grp_list, df_merge)
 
 
 def full_formated_infputfile(format, file, group_str):
@@ -71,15 +74,17 @@ def full_formated_infputfile(format, file, group_str):
 
 
 if __name__ == "__main__":
-    # file = "RECETOX_GC-EI-MS_20201028.sdf"
+    #file = "RECETOX_GC-EI-MS_20201028.sdf"
     file = "sample_test.sdf"
     format = "sdf"
     # group_str: Kingdom, Superclass, Class, Subclass, Parent Level 1, Parent Level 2, Parent Level 3
-    group_str = "Superclass"
+    group_str = "Class"
     my_df = full_formated_infputfile(format, file, group_str)
     # arrange_dataframe_pivot(my_df)  only works for default set of index  in formating_dataframe()
     # my_df = arrange_dataframe_pivot(my_df) 
-    grouped = clustering_and_statistics(my_df, group_type="Group_type", stats=True)
+    grp_list, grp_stat = clustering_and_statistics(my_df, group_type="Group_type", stats=False)
+    print(grp_stat)
+    #print(grp_list)
 
 
 
