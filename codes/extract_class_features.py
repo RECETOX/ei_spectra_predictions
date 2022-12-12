@@ -80,7 +80,7 @@ if __name__ == "__main__":
     # arrange_dataframe_pivot(my_df)  only works for default set of index  in formating_dataframe()
     # my_df = arrange_dataframe_pivot(my_df) 
     grouped = clustering_and_statistics(my_df, group_type="Group_type", stats=True)
-    #print(grouped)
+
 
 
 # df.plot.bar(y="n_at", use_index=True)
