@@ -9,12 +9,8 @@ def read_file(format, filename):
     return (mols)
 
 
-def extract_metadata(mol_list, group_str):
-    data = []
-    mol_name = []
-    smile = []
-    GROUP_TYPE = []
-    n_at = []
+def build_dataframe_of_extracted_metadata(mol_list, group_str):
+    data, mol_name, smile, GROUP_TYPE, n_at = [],[],[],[],[]
     for line in mol_list:
         data.append(line.data)
         mol_name.append(line.data["NAME"])
@@ -26,47 +22,42 @@ def extract_metadata(mol_list, group_str):
     return (df)
 
 
-def formating_dataframe(df, set_idx=False):
-    # False for default index
+def rearrange_dataframe(df):
     df = df.transpose()
-    df.columns = ["Name", "N_at", "GROUP_TYPE", "Smile"]
-    df = df.sort_values(by=['N_at'], ascending=False)
-    if set_idx is True:
-        df = df.set_index("GROUP_TYPE")
+    df.columns = ["NAME", "N_ATOMS", "GROUP_TYPE", "SMILE"] # df = df.sort_values(by=['N_at'], ascending=False)
+    df = df.set_index("GROUP_TYPE")
     return (df)
 
 
-# def arrange_dataframe_pivot(df):
-#     pivot = df.pivot(index="Name", columns="GROUP_TYPE", values="N_at")
-#     pivot.index.name = "Name"
-#     pivot.columns.name = "GROUP_TYPE"
-#     return (pivot)
+def inputdata_reformated(format, file, group_str):
+    mol_list = read_file(format, file)
+    df = build_dataframe_of_extracted_metadata(mol_list, group_str)
+    df = rearrange_dataframe(df) 
+    return (df)
 
 
-def clustering_and_statistics(df, GROUP_TYPE, stats=False):
+def grouped_by_item(df, GROUP_TYPE):
     grouped = df.groupby(GROUP_TYPE)
-    df_col = grouped[["N_at"]]
-    size_df = grouped.size().to_frame(name="N_item/grp")
+    return (grouped)
+
+def group_stats(df, GROUP_TYPE):
+    group_df = grouped_by_item(df, GROUP_TYPE)
+    df_col = group_df[["N_ATOMS"]]
+    size_df = group_df.size().to_frame(name="ITEMS/GRP")
     max_at = df_col.max()
     df_merge = size_df.merge(max_at, how='inner', on='GROUP_TYPE')
-    df_merge = df_merge.sort_values(by=['N_item/grp'], ascending=[False])
-    df_merge.rename(columns = {'N_at':'Max_n_at'}, inplace = True)
-    max_at.rename(columns = {'N_at':'Max_n_at'}, inplace = True)
-    print("Number of groups found --> ", grouped.ngroups)
-    if stats is True:
-        print(grouped.size())
-        print(max_at)
-    grp_list = []
-    for group in grouped:
-        grp_list.append(group)
-    return (grp_list, df_merge)
+    df_merge = df_merge.sort_values(by=['ITEMS/GRP'], ascending=[False])
+    df_merge.rename(columns = {'N_ATOMS':'MAX_N_ATOMS'}, inplace = True)
+    max_at.rename(columns = {'N_ATOMS':'MAX_N_ATOMS'}, inplace = True)
+    print("Number of groups found --> ", group_df.ngroups)
+    # print(grouped.size())
+    # print(max_at)  
+    return (df_merge)
 
-
-def full_formated_infputfile(format, file, group_str):
-    mol_list = read_file(format, file)
-    df = extract_metadata(mol_list, group_str)
-    df = formating_dataframe(df) 
-    return (df)
+def inside_group_stats(df, GROUP_TYPE):
+    group_df = grouped_by_item(df, GROUP_TYPE)
+    df_col = group_df[["N_ATOMS"]]
+    return (df_col)
 
 
 def plot_stats(df, plotname, col_name1, col_name2=None):
@@ -87,17 +78,25 @@ def plot_stats(df, plotname, col_name1, col_name2=None):
         
 
 if __name__ == "__main__":
-    file = "RECETOX_GC-EI-MS_20201028.sdf"
-    #file = "sample_test.sdf"
+    #file = "RECETOX_GC-EI-MS_20201028.sdf"
+    file = "sample_test.sdf"
     format = "sdf"
     # group_str: Kingdom, Superclass, Class, Subclass, Parent Level 1, Parent Level 2, Parent Level 3
-    group_str = "Subclass"
-    my_df = full_formated_infputfile(format, file, group_str)
-    grp_list, grp_stat = clustering_and_statistics(my_df, GROUP_TYPE="GROUP_TYPE", stats=False)
-    print(grp_stat)
-    #plot_stats(grp_stat, "plot1", "N_item/grp")
-    #plot_stats(grp_stat, "plot2", "Max_n_at")
-    plot_stats(grp_stat, "plot_Subclass", "N_item/grp", "Max_n_at")
+    group_str = "Superclass"
+    my_df = inputdata_reformated(format, file, group_str)
+    grp_stat = group_stats(my_df, GROUP_TYPE="GROUP_TYPE")
+    print(inside_group_stats(my_df, GROUP_TYPE="GROUP_TYPE"))
+    
+
+
+
+
+#  plot_stats(grp_stat, "plot_Subclass", "N_item/grp", "Max_n_at")
+#  def grouped_list(df):
+#     grp_list = []
+#     for group in df:
+#         grp_list.append(group)
+#     return (grp_list)
 
 
  
