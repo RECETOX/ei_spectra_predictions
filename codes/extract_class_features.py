@@ -2,6 +2,7 @@ from openbabel import pybel
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 
 def read_file(format, filename):
@@ -67,37 +68,44 @@ def plot_stats(df, plotname, col_name1, col_name2=None):
 
 
 if __name__ == "__main__":
-    file = "RECETOX_GC-EI-MS_20201028.sdf"
-    #file = "sample.sdf"
-    format = "sdf"
+    #file = Path("RECETOX_GC-EI-MS_20201028.sdf")
+    file = Path("sample.sdf")
+    format = file.suffix[1:]
     # group_str: Kingdom, Superclass, Class, Subclass, Parent Level 1, Parent Level 2, Parent Level 3
     group_str = "Class"
-    my_df = inputdata_reformatted(format, file, group_str)
+    my_df = inputdata_reformatted(format, file.name, group_str)
     grp_stat = group_stats(my_df, GROUP_TYPE="GROUP_TYPE")
-    print(grp_stat)
-
-    # Saves SMILES of every group in separate files 
-    my_df = my_df.set_index("SMILE")
     group_df = grouped_by_item(my_df, GROUP_TYPE="GROUP_TYPE")
     dic_g = group_df.groups
-    keys = list(dic_g.keys())
-    for k in keys:
-        dic_val = dic_g[k].values
-        outfile = open(group_str + '_' + k +'.smi', 'w+')
-        for x in range(len(dic_val)):
-            outfile.write(dic_val[x] + '\n')
-        outfile.close()
+    print(dic_g)
+    for name, group in group_df[["NAME", "SMILE"]]:
+        print(name)
+        print(group)
+
+
+
+    # # Saves SMILES of every group in separate files 
+    # my_df = my_df.set_index("SMILE")
+    # group_df = grouped_by_item(my_df, GROUP_TYPE="GROUP_TYPE")
+    # dic_g = group_df.groups
+    # keys = list(dic_g.keys())
+    # for k in keys:
+    #     dic_val = dic_g[k].values
+    #     outfile = open(group_str + '_' + k +'.smi', 'w+')
+    #     for x in range(len(dic_val)):
+    #         outfile.write(dic_val[x] + '\n')
+    #     outfile.close()
 
 
     # Reads SMILES files and convert to XYZ
-    for k in keys:
-        input_smi = group_str + '_' + k +'.smi'
-        outfilexyz = group_str + '_' + k +'.xyz'
-        mol_ls = read_file("smi", input_smi)
-        out = pybel.Outputfile("xyz", outfilexyz, overwrite=True)
-        for line in mol_ls:
-            line.make3D()
-            out.write(line)
+    # for k in keys:
+    #     input_smi = group_str + '_' + k +'.smi'
+    #     outfilexyz = group_str + '_' + k +'.xyz'
+    #     mol_ls = read_file("smi", input_smi)
+    #     out = pybel.Outputfile("xyz", outfilexyz, overwrite=True)
+    #     for line in mol_ls:
+    #         line.make3D()
+    #         out.write(line)
 
 
 
