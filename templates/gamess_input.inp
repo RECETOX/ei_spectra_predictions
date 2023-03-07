@@ -1,0 +1,5 @@
+ $CONTRL SCFTYP={{method}} MULT={{mult}} RUNTYP=OPTIMIZE $END
+ $STATPT OPTTOL={{tolerance}} NSTEP={{steps} $END
+ $BASIS  GBASIS={{gbasis}} NGAUSS=6 $END
+
+{{coords}}

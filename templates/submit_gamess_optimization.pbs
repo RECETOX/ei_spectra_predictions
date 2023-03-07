@@ -1,0 +1,22 @@
+#PBS  -q default                       
+##PBS -N work                         
+#PBS -l select=1:ncpus=4:mem=16gb:scratch_ssd=1gb                       
+#PBS -l walltime=02:30:00             
+#PBS -o %x_output.txt                 
+#PBS -e %x_error.txt                   
+#PBS -m ae
+#PBS -M wrojasv@recetox.muni.cz
+
+export OMP_NUM_THREADS=1
+module load gamess-sept2018
+
+cp -r $PBS_O_WORKDIR/coumarin.inp $SCRATCHDIR 
+
+echo PBS_O_WORKDIR:$PBS_O_WORKDIR
+echo SCRATCHDIR:$SCRATCHDIR
+cd $SCRATCHDIR 
+echo $(pwd)
+
+rungms coumarin.inp > coumarin.log 
+chmod +rw *
+cp -r $SCRATCHDIR/* $PBS_O_WORKDIR/

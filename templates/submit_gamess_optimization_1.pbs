@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#PBS -l select=1:ncpus=4:mem=16gb
+#PBS -l walltime=02:30:00  
+##PBS -N $molname                             
+#PBS -j oe
+#PBS -m e
+#PBS -M wrojasv@recetox.muni.cz
+
+molname=ch2
+
+export OMP_NUM_THREADS=1
+module load gamess-sept2018
+
+cp -r $PBS_O_WORKDIR/$molname.inp $SCRATCHDIR 
+
+cd $SCRATCHDIR 
+
+rungms $molname.inp 00 $((PBS_NCPUS/2)) $PBS_NCPUS >$molname.log >&1 $molname.err
+
+cp -r $SCRATCHDIR/$molname.log $PBS_O_WORKDIR/
