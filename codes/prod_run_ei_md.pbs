@@ -1,0 +1,35 @@
+#!/bin/sh
+
+#PBS -l select=1:ncpus=1:mem=16gb  
+#PBS -j oe
+#PBS -m e
+
+bin=$bin
+molname=$PBS_JOBNAME
+
+export OMP_NUM_THREADS=1
+
+DIR=$PBS_O_WORKDIR/TMPQCXMS
+cd $DIR
+
+for i in TMP.*; do
+    cd $i 
+    
+    rm -f ready 
+
+    local_path=$(pwd)
+
+    cp -r $local_path/qcxms.in $SCRATCHDIR
+    cp -r $local_path/start.xyz $SCRATCHDIR
+    cp -r $local_path/qcxms.start $SCRATCHDIR 
+
+    cd $SCRATCHDIR
+
+    $bin/qcxms_v.5.2.1 --prod >$molname'_prod_ei.out'
+    
+    cp -r * $local_path
+    cd $local_path
+    rm -rf $SCRATCHDIR/*
+
+    cd ..
+done

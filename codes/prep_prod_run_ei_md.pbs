@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#PBS -l select=1:ncpus=1:mem=16gb  
+#PBS -j oe
+#PBS -m e
+
+bin=$bin
+molname=$PBS_JOBNAME
+
+export OMP_NUM_THREADS=1
+
+cp -r $PBS_O_WORKDIR/$molname.xyz $SCRATCHDIR
+cp -r $PBS_O_WORKDIR/qcxms.in $SCRATCHDIR
+cp -r $PBS_O_WORKDIR/qcxms.gs $SCRATCHDIR
+
+cd $SCRATCHDIR
+
+$bin/qcxms_v.5.2.1 -i $molname.xyz  >$molname'_prep_ei.out'
+
+cp -r $SCRATCHDIR/* $PBS_O_WORKDIR
