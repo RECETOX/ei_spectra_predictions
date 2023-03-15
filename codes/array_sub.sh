@@ -1,15 +1,19 @@
 #!/bin/sh
-#molname=`basename $(pwd)`
-#n_atoms=$(head -n 1 $file)
+file_xyz=`basename $(ls *.xyz)`
+file_in=`basename $(ls *.in)`
 
-file=`basename $(ls *.xyz)`
+keyword_ntraj=`head -n 1 $file_in | awk '{ print $1 }'` 
 
-molname=`basename $file .xyz`
+if [[ "$keyword_ntraj" ]]; then
+    n_traj=`head -n 1 $file_in | awk '{ print $2 }'`
+else 
+    n_traj=$((`head -n 1 $file_xyz`*25))
+fi
+
+molname=`basename $file_xyz .xyz`
 walltime=02:00:00
 bin=/storage/brno2/home/wrojasv/MassSpec/QC_Spectra_Predictions/local_run_test/bin_test
 user_email=wrojasv@recetox.muni.cz
-
-n_traj=`find TMPQCXMS/ -mindepth 1 -maxdepth 1 -type d | wc -l`
 
 echo 'submitted neutral MD job'
 job1=$(qsub -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/neutral_run_md.pbs)

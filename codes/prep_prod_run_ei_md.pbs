@@ -9,6 +9,11 @@ molname=$PBS_JOBNAME
 
 export OMP_NUM_THREADS=1
 
+if [ -d "TMPQCXMS" ];then
+    echo 'TMPQCXMS exists'
+    exit
+fi
+
 cp -r $PBS_O_WORKDIR/$molname.xyz $SCRATCHDIR
 cp -r $PBS_O_WORKDIR/qcxms.in $SCRATCHDIR
 cp -r $PBS_O_WORKDIR/qcxms.gs $SCRATCHDIR

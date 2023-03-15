@@ -10,12 +10,19 @@ molname=$PBS_JOBNAME
 export OMP_NUM_THREADS=1
 
 DIR=$PBS_O_WORKDIR/TMPQCXMS
+
+echo "PBS Job Id PBS_JOBID is ${PBS_JOBID}"
+echo "PBS job array index PBS_ARRAY_INDEX value is ${PBS_ARRAY_INDEX}"
 cd $DIR
 
 for i in TMP.*; do
     cd $i 
-    
-    rm -f ready 
+
+    if [ -f "ready" ]; then
+        echo 'Succesfull run exists'
+        exit
+    fi
+
 
     local_path=$(pwd)
 
@@ -26,10 +33,10 @@ for i in TMP.*; do
     cd $SCRATCHDIR
 
     $bin/qcxms_v.5.2.1 --prod >$molname'_prod_ei.out'
-    
+
     cp -r * $local_path
     cd $local_path
-    rm -rf $SCRATCHDIR/*
+    #rm -rf $SCRATCHDIR/*
 
     cd ..
 done
