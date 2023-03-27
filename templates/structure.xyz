@@ -1,0 +1,5 @@
+{{ N_ATOMS }}
+{{ MOLNAME }}
+{% for i in COORDINATES -%}
+{{ i }}
+{% endfor %}

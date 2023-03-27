@@ -1,5 +1,10 @@
- $CONTRL SCFTYP={{method}} MULT={{mult}} RUNTYP=OPTIMIZE $END
- $STATPT OPTTOL={{tolerance}} NSTEP={{steps} $END
- $BASIS  GBASIS={{gbasis}} NGAUSS=6 $END
+ $CONTRL SCFTYP={{ SCFTYP }} MULT={{ MULT }} RUNTYP=OPTIMIZE $END
+ $STATPT OPTTOL={{ OPTTOL }} NSTEP={{ NSTEP }} $END
+ $BASIS  GBASIS={{ GBASIS }} NGAUSS={{ NGAUSS }} $END
 
-{{coords}}
+$DATA
+C1
+{% for i in COORDINATES -%}
+{{ i }}
+{%- endfor -%}
+ $END 
