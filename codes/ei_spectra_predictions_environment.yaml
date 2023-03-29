@@ -1,0 +1,10 @@
+name: ei-spectra-predictions
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python >=3.7
+  - jinja2
+  - openbabel
+  - pandas
+  - numpy
