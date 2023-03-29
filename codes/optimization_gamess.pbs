@@ -1,13 +1,11 @@
 #!/bin/sh
 
-#PBS -l select=1:ncpus=4:mem=16gb
-#PBS -l walltime=02:30:00  
-##PBS -N $molname                             
+#PBS -l select=1:ncpus=1:mem=16gb  
 #PBS -j oe
 #PBS -m e
-#PBS -M wrojasv@recetox.muni.cz
 
-molname=ch2
+bin=$bin
+molname=$PBS_JOBNAME
 
 export OMP_NUM_THREADS=1
 module load gamess-sept2018
