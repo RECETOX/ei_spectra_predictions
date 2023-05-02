@@ -1,6 +1,0 @@
-WALLTIME = 02:00:00
-NCPUS = 4
-MEM = 16gb
-SCRATCH_LOCAL = 100gb
-BIN = /storage/brno2/home/wrojasv/MassSpec/QC_Spectra_Predictions/Project/bin
-USER_EMAIL = wrojasv@recetox.muni.cz
