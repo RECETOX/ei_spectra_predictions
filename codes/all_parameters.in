@@ -5,7 +5,6 @@ WALLTIME = 02:00:00
 NCPUS = 4
 MEM = 16gb
 SCRATCH_LOCAL = 100gb
-BIN = /auto/brno2/home/wrojasv/MassSpec/QC_Spectra_Predictions/Project/bin/codes
 USER_EMAIL = wudmir.rojas@recetox.muni.cz
 ###################
 # GAMESS
@@ -17,3 +16,4 @@ NGAUSS = 6
 ###################
 #QCXMS
 ###################
+BIN = /auto/brno2/home/wrojasv/MassSpec/QC_Spectra_Predictions/Project/bin/codes
