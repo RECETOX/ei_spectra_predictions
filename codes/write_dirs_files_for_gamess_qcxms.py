@@ -43,21 +43,34 @@ def read_file(file):
     return lines
 
 
+def read_file_rdkit(file):
+    molfile = Chem.SDMolSupplier(file)
+    return molfile
+
+
+def get_props(mol):
+    chem_class = mol.GetProp("Class").replace(" ", "_")
+    inchikey = mol.GetProp("InChIKey")
+    n_atoms = mol.GetNumAtoms()
+    molname = mol.GetProp("NAME")
+    return chem_class, inchikey, n_atoms, molname
+
+
 def read_parameters_pbs(param_file):   
-    mylist = [] 
+    list_pbs_keys = [] 
     lines = read_file(param_file)
     for line in lines:
         if "WALLTIME" in line:
-            mylist.append(line.split()[2])
+            list_pbs_keys.append(line.split()[2])
         if "NCPUS" in line:
-            mylist.append(line.split()[2])
+            list_pbs_keys.append(line.split()[2])
         if "MEM" in line:
-            mylist.append(line.split()[2])
+            list_pbs_keys.append(line.split()[2])
         if "SCRATCH_LOCAL" in line:
-            mylist.append(line.split()[2])
+            list_pbs_keys.append(line.split()[2])
         if "USER_EMAIL" in line:
-            mylist.append(line.split()[2])
-    return mylist
+            list_pbs_keys.append(line.split()[2])
+    return list_pbs_keys
 
 
 def load_template(dir, filename):
@@ -76,8 +89,7 @@ def write_pbs_from_template(mylist, molname, template_name, file):
         message.write(content)
 
 
-def write_gamess_input(multiplicity, mol, mol_input_path):
-    name = mol.GetProp("NAME")
+def write_gamess_input(multiplicity, mol, molname, mol_input_path):
     AllChem.EmbedMolecule(mol, maxAttempts=10000, useRandomCoords=False)
     conf = mol.GetConformer()
     opt = f""" $CONTRL SCFTYP={get_method(multiplicity)} MULT={multiplicity} NPRINT=-5 RUNTYP=OPTIMIZE $END\n $STATPT OPTTOL=0.0005 NSTEP=100 NPRT=-2 $END\n $BASIS GBASIS=N31 NGAUSS=6 $END """
@@ -85,7 +97,7 @@ def write_gamess_input(multiplicity, mol, mol_input_path):
         outfile.write(f"{opt}{os.linesep}")
         outfile.write(f"{os.linesep}")
         outfile.write(f" $DATA{os.linesep}")
-        outfile.write(f"{name}{os.linesep}")
+        outfile.write(f"{molname}{os.linesep}")
         outfile.write(f"C1{os.linesep}")
         for (i, a) in enumerate(mol.GetAtoms()):
             pos = conf.GetAtomPosition(i)
@@ -97,17 +109,15 @@ listarg = argparse.ArgumentParser()
 listarg.add_argument('--sdf_input', type=str) 
 listarg.add_argument('--params_input', type=str) 
 listarg.add_argument('--project_name', type=str) 
-
 args = listarg.parse_args()
 
 if __name__ == "__main__":
 
-    molfile = Chem.SDMolSupplier(args.sdf_input)
+    molfile = read_file_rdkit(args.sdf_input)
 
     for mol in molfile:
         mol = Chem.AddHs(mol)
-        chem_class = mol.GetProp("Class").replace(" ", "_")
-        inchikey = mol.GetProp("InChIKey")
+        chem_class, inchikey, n_atoms, molname = get_props(mol)
         
         projectdir = Path.cwd() / args.project_name
         Path.mkdir(projectdir, parents=True, exist_ok=True)
@@ -123,7 +133,7 @@ if __name__ == "__main__":
         Path.touch(spectrum_input_path)
         
         multiplicity = CalculateSpinMultiplicity(mol)
-        write_gamess_input(multiplicity, mol, mol_input_path)
+        write_gamess_input(multiplicity, mol, molname, mol_input_path)
 
         mol_pbs_path = moldir / (inchikey + ".pbs")
         pbs_template = load_template("templates", "optimization_gamess_template.pbs")
