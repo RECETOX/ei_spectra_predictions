@@ -106,28 +106,28 @@ def write_gamess_input(multiplicity, mol, molname, mol_input_path):
 
 
 listarg = argparse.ArgumentParser()
-listarg.add_argument('--sdf_input', type=str) 
-listarg.add_argument('--params_input', type=str) 
-listarg.add_argument('--project_name', type=str) 
+listarg.add_argument('--sdf_filename', type=str) 
+listarg.add_argument('--params_filename', type=str) 
+listarg.add_argument('--project_dirname', type=str) 
 args = listarg.parse_args()
 
 if __name__ == "__main__":
 
-    molfile = read_file_rdkit(args.sdf_input)
+    molfile = read_file_rdkit(args.sdf_filename)
 
     for mol in molfile:
         mol = Chem.AddHs(mol)
         chem_class, inchikey, n_atoms, molname = get_props(mol)
         
-        projectdir = Path.cwd() / args.project_name
-        Path.mkdir(projectdir, parents=True, exist_ok=True)
+        proj_dir = Path(args.project_dirname)
+        Path.mkdir(proj_dir, parents=True, exist_ok=True)
 
-        moldir = Path.cwd() / args.project_name / "classes" / chem_class / inchikey / "Optimization"
+        moldir = proj_dir / "classes" / chem_class / inchikey / "Optimization"
         Path.mkdir(moldir, parents=True, exist_ok=True)
         mol_input_path = moldir / (inchikey + ".inp")
         Path.touch(mol_input_path)
 
-        spectradir = Path.cwd() / args.project_name / "classes" / chem_class / inchikey / "Spectra"
+        spectradir = proj_dir / "classes" / chem_class / inchikey / "Spectra"
         Path.mkdir(spectradir, parents=True, exist_ok=True)
         spectrum_input_path = spectradir / ("qcxms" + ".in")
         Path.touch(spectrum_input_path)
@@ -137,4 +137,4 @@ if __name__ == "__main__":
 
         mol_pbs_path = moldir / (inchikey + ".pbs")
         pbs_template = load_template("templates", "optimization_gamess_template.pbs")
-        write_pbs_from_template(read_parameters_pbs(args.params_input), inchikey, pbs_template, mol_pbs_path)
+        write_pbs_from_template(read_parameters_pbs(args.params_filename), inchikey, pbs_template, mol_pbs_path)

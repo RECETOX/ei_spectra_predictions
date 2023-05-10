@@ -1,3 +1,4 @@
+from rdkit import Chem
 from pathlib import Path
 from write_dirs_files_for_gamess_qcxms import CalculateSpinMultiplicity
 from write_dirs_files_for_gamess_qcxms import get_method, get_props
@@ -25,7 +26,7 @@ def read_parameters_gamess(param_file):
 def write_inp_from_template(mylist, multiplicity, molname, template_name,file, coord):
     content = template_name.render(SCFTYP=get_method(multiplicity), 
                                    MULT=multiplicity, 
-                                   OPTTOL= mylist[0], NSTEP=mylist[1],
+                                   OPTTOL=mylist[0], NSTEP=mylist[1],
                                    GBASIS=mylist[2], NGAUSS=mylist[3], 
                                    MOLNAME=molname, COORDINATES=coord)
     with open(file, 'w') as message:
@@ -39,31 +40,33 @@ def write_xyz_from_template(molname, n_atoms, template_name, file, coord):
 
 
 listarg = argparse.ArgumentParser()
-listarg.add_argument('--sdf_input', type=str) 
+listarg.add_argument('--sdf_filename', type=str)
+listarg.add_argument('--params_filename', type=str) 
+listarg.add_argument('--project_dirname', type=str)
 args = listarg.parse_args()
 
 if __name__ == "__main__":
 
-    molfile = read_file_rdkit(args.sdf_input)
+    molfile = read_file_rdkit(args.sdf_filename)
 
     for mol in molfile:
+        mol = Chem.AddHs(mol)
         chem_class, inchikey, n_atoms, molname = get_props(mol)
         multiplicity = CalculateSpinMultiplicity(mol)
+        proj_dir = Path(args.project_dirname).resolve()
 
-        moldir = Path("../classes").resolve() / chem_class / inchikey / "Optimization"
-        print(moldir)
+        moldir = proj_dir / "classes" / chem_class / inchikey / "Optimization"
         log_file = moldir / (inchikey + ".log")
-        print(log_file)
-        print(Path(log_file))
         mol_input_path = moldir / (inchikey + ".inp")
 
-        spectradir = Path("../classes").resolve() / chem_class / inchikey / "Spectra"
+        spectradir = proj_dir / "classes" / chem_class / inchikey / "Spectra"
         mol_xyz_path = spectradir / (inchikey + ".xyz")
 
         message_1 = "EXECUTION OF GAMESS TERMINATED -ABNORMALLY-"
         message_2 = "EXECUTION OF GAMESS TERMINATED NORMALLY"
         message_3 = "EQUILIBRIUM GEOMETRY LOCATED"
         message_4 = "ALWAYS THE LAST POINT COMPUTED!"
+        
         if Path(log_file).exists():
             lines_log = read_file(log_file)
 
@@ -78,10 +81,10 @@ if __name__ == "__main__":
                     for i in range(start_coord_index, end_coord_index):
                         data.append(lines_log[i])
 
-                    mylist = read_parameters_gamess("all_parameters.in")
-                    inp_template = load_template("../templates", "gamess_input_template.inp")
+                    mylist = read_parameters_gamess(args.params_filename)
+                    inp_template = load_template("templates", "gamess_input_template.inp")
                     
-                    start_inp_file = moldir / (inchikey + "_start.in")
+                    start_inp_file = moldir / (inchikey + "_start.inp")
 
                     if not Path(start_inp_file).exists():
                         Path(mol_input_path).rename(Path(start_inp_file))
@@ -117,11 +120,9 @@ if __name__ == "__main__":
                     
                     result = df[0] + df[1] + df[2] + df[3]
                     
-                    xyz_template = load_template("../templates", "structure_input_template.xyz")
+                    xyz_template = load_template("templates", "structure_input_template.xyz")
                     
                     print(f"Write XYZ file with optimized coordinates: {mol_xyz_path}")
                     write_xyz_from_template(molname, n_atoms, xyz_template, mol_xyz_path, result)
         else:
-            print("hi")
-            #print(f"LOG file does not exist:{log_file}")
-            
+            print(f"LOG file does not exist:{log_file}")
