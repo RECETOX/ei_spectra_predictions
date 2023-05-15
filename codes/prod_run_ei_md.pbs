@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #PBS -l select=1:ncpus=1:mem=16gb  
-#PBS -k oe 
+#PBS -j oe 
 #PBS -m e
 
 bin=$bin
@@ -30,7 +30,7 @@ for i in TMP.${PBS_ARRAY_INDEX}; do
 
     cd $SCRATCHDIR
 
-    $bin/qcxms_v.5.2.1 --prod >$molname'_prod_ei.out' 
+    $bin/qcxms_v5.2.1 --prod >$molname'_prod_ei.out' 
     
     cp -r * $local_path
     cd $local_path

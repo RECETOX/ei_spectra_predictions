@@ -20,6 +20,6 @@ cp -r $PBS_O_WORKDIR/qcxms.gs $SCRATCHDIR
 
 cd $SCRATCHDIR
 
-$bin/qcxms_v.5.2.1 -i $molname.xyz  >$molname'_prep_ei.out'
+$bin/qcxms_v5.2.1 -i $molname.xyz  >$molname'_prep_ei.out'
 
 cp -r $SCRATCHDIR/* $PBS_O_WORKDIR
