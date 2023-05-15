@@ -1,19 +1,19 @@
-###################
-# CLUSTER
-###################
+#########################
+# HPC PARAMETERS
+#########################
 WALLTIME = 02:00:00
 NCPUS = 4
 MEM = 16gb
 SCRATCH_LOCAL = 100gb
 USER_EMAIL = wudmir.rojas@recetox.muni.cz
-###################
-# GAMESS
-###################
+#########################
+# GAMESS PARAMETERS
+#########################
 OPTTOL = 0.0005
 NSTEP = 100 
 GBASIS = N31 
 NGAUSS = 6
-###################
-#QCXMS
-###################
-BIN = /auto/brno2/home/wrojasv/MassSpec/QC_Spectra_Predictions/Project/bin/codes
+#########################
+# QCXMS PARAMETERS
+#########################
+BIN = /storage/brno2/home/wrojasv/MassSpec/QC_Spectra_Predictions/source_code_git/ei_spectra_predictions/codes
