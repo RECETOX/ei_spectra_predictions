@@ -1,6 +1,6 @@
 #!/bin/sh
 
-word_dir=$(pwd)
+work_dir=$(pwd)
 for dir in classes/*/*/*; do
    basedir=`basename $dir`
    molname=`dirname $dir | xargs basename`
@@ -16,5 +16,5 @@ for dir in classes/*/*/*; do
          fi
       fi
    fi
-   cd $word_dir
+   cd $work_dir
 done
