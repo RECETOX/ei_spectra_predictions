@@ -17,3 +17,16 @@ NGAUSS = 6
 # QCXMS PARAMETERS
 #########################
 BIN = /storage/brno2/home/wrojasv/MassSpec/QC_Spectra_Predictions/source_code_git/ei_spectra_predictions/codes
+#QC Program            : xTB
+#QC Level              : GFN2-xTB
+#Dispersion            : D4
+#MO spectrum with      : xTB     
+#M+ Ion charge(charge) :    1
+#total traj.   (ntraj) :    2
+#time steps    (tstep) :    0.50 fs
+#sim. time / MD (tmax) :    5.00 ps
+#Initial temp. (tinit) :  500.00 K
+#------------ EI settings -----------
+#E(e-impact)   (eimp0) :   70.00 eV
+#Iee/atom     (ieeatm) :    0.60 eV/atom
+#relax. time  (trelax) : 2000.00 fs
