@@ -89,7 +89,7 @@ if __name__ == "__main__":
                     if not Path(start_inp_file).exists():
                         Path(mol_input_path).rename(Path(start_inp_file))
                     
-                    print(f"Write INP file with least coordinates: {mol_input_path}")
+                    print(f"Write INP file with last coordinates: {mol_input_path}")
                     write_inp_from_template(mylist, multiplicity, molname, inp_template, mol_input_path, data)
 
                 if message_2 and message_3 in line:
