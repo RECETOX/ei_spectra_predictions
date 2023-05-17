@@ -22,6 +22,7 @@ for dir in classes/*/*/*; do
         else 
           n_traj=$((`head -n 1 $file_xyz`*25))
         fi
+
         echo 'submitted neutral MD job'
         job1=$(qsub -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/neutral_run_md.pbs)
 
@@ -30,7 +31,7 @@ for dir in classes/*/*/*; do
 
         echo 'submitted production run EI MD job'
         job3=$(qsub -W depend=afterok:$job2 -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" -J 1-$n_traj $bin/prod_run_ei_md.pbs)
-
+      
       fi
     fi
     cd $work_dir
