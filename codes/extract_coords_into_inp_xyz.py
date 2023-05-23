@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
             for num, line in enumerate(lines_log):
                 if message_1 in line:
-                    print(f"Abnormal execution, check your input: {log_file}")
+                    print(f"Abnormal execution, check your input: {Path(log_file).parent}")
                 
                 if message_2 and message_4 in line:
                     data = []
@@ -89,7 +89,7 @@ if __name__ == "__main__":
                     if not Path(start_inp_file).exists():
                         Path(mol_input_path).rename(Path(start_inp_file))
                     
-                    print(f"Write INP file with last coordinates: {mol_input_path}")
+                    print(f"Write INP file with last coordinates: {Path(mol_input_path).parent}")
                     write_inp_from_template(mylist, multiplicity, molname, inp_template, mol_input_path, data)
 
                 if message_2 and message_3 in line:
@@ -122,7 +122,8 @@ if __name__ == "__main__":
                     
                     xyz_template = load_template("templates", "structure_input_template.xyz")
                     
-                    print(f"Write XYZ file with optimized coordinates: {mol_xyz_path}")
-                    write_xyz_from_template(molname, n_atoms, xyz_template, mol_xyz_path, result)
+                    if not Path(mol_xyz_path).exists():
+                        print(f"Write XYZ file with optimized coordinates: {Path(mol_xyz_path).parent}")
+                        write_xyz_from_template(molname, n_atoms, xyz_template, mol_xyz_path, result)
         else:
-            print(f"LOG file does not exist:{log_file}")
+            print(f"LOG file does not exist:{Path(log_file).parent}")
