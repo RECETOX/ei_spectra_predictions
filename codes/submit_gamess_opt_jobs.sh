@@ -7,13 +7,11 @@ for dir in classes/*/*/*; do
    if [[ $basedir == "Optimization" ]]; then
       cd $dir
       if [ ! -f "$molname.log" ]; then
-         echo "qsub  $molname.pbs"
+         echo "qsub  $dir/$molname.pbs"
          qsub  $molname.pbs
-      elif ! [[ `grep "EQUILIBRIUM GEOMETRY LOCATED" $molname.log` ]]; then
-         if ! [[ `grep "EXECUTION OF GAMESS TERMINATED -ABNORMALLY-" $molname.log` ]]; then 
-            echo "resubmit job: $molname"
-            qsub  $molname.pbs
-         fi
+      elif [[ ! `grep "EQUILIBRIUM GEOMETRY LOCATED" $molname.log` ]]; then 
+         echo "resubmit job: $dir/$molname.pbs"
+         qsub  $molname.pbs
       fi
    fi
    cd $work_dir

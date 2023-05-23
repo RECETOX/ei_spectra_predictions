@@ -23,26 +23,15 @@ for dir in classes/*/*/*; do
           n_traj=$((`head -n 1 $file_xyz`*25))
         fi
 
-        if [ -f "qcxms.gs" ]; then
-            echo "qcxms.gs already exists: "$molname
-        else
-            echo "submitted neutral MD job: "$molname
-            job1=$(qsub -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/neutral_run_md.pbs)
-        fi
+        echo "submitted neutral MD job: "$molname
+        job1=$(qsub -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/neutral_run_md.pbs)
 
-        if [ -d "TMPQCXMS" ];then
-            echo "TMPQCXMS directory already exists: "$molname
-        else
-            echo "submitted prep production MD job: "$molname
-            job2=$(qsub -W depend=afterok:$job1 -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/prep_prod_run_ei_md.pbs)
-        fi
+        echo "submitted prep production MD job: "$molname
+        job2=$(qsub -W depend=afterok:$job1 -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/prep_prod_run_ei_md.pbs)
 
-        if [ -d "TMPQCXMS" ]; then
-            echo "Succesfull EI-MD exists: "$molname
-        else
-            echo "submitted production run EI MD job: "$molname
-            job3=$(qsub -W depend=afterok:$job2 -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" -J 1-$n_traj $bin/prod_run_ei_md.pbs)
-        fi
+        echo "submitted production run EI MD job: "$molname
+        job3=$(qsub -W depend=afterok:$job2 -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" -J 1-$n_traj $bin/prod_run_ei_md.pbs)
+
       fi
     fi
     cd $work_dir

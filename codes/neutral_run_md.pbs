@@ -10,7 +10,7 @@ molname=$PBS_JOBNAME
 export OMP_NUM_THREADS=1
 
 if [ -f "qcxms.gs" ]; then
-    echo "qcmxms.gs exists"
+    echo "qcxms.gs already exists"
     exit
 fi
 
