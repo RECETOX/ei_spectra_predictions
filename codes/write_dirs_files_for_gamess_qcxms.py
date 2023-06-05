@@ -49,6 +49,7 @@ def read_file_rdkit(file):
 
 
 def get_props(mol):
+    mol = Chem.AddHs(mol)
     chem_class = mol.GetProp("Class").replace(" ", "_")
     inchikey = mol.GetProp("InChIKey")
     n_atoms = mol.GetNumAtoms()
@@ -89,10 +90,63 @@ def write_pbs_from_template(mylist, molname, template_name, file):
         message.write(content)
 
 
+def getRMS(mol, c1, c2):
+    rms = AllChem.GetBestRMS(mol, mol, c1, c2)
+    return rms
+
+
+def generate_3D_mol(mol):
+    """
+    This script was originally written by David Koes, University of Pittsburgh:
+    https://github.com/dkoes/rdkit-scripts/blob/master/rdconf.py
+    It is licensed under the MIT licence.
+
+    Given a smiles file, generate 3D conformers.
+    Energy minimizes and filters conformers to meet energy window and rms constraints.
+    """
+    maxconfs = 20
+    sample = 1
+    rmspar = 0.7
+    energy = 10
+    
+    if mol is not None:
+        AllChem.SanitizeMol(mol)
+        mol = AllChem.AddHs(mol)
+        cids = AllChem.EmbedMultipleConfs(mol, int(sample * maxconfs), AllChem.ETKDG())
+
+        cenergy = []
+        for conf in cids:
+            converged = not AllChem.UFFOptimizeMolecule(mol, confId=conf)
+            cenergy.append(AllChem.UFFGetMoleculeForceField(mol, confId=conf).CalcEnergy())
+
+        sortedcids = sorted(cids, key=lambda cid: cenergy[cid])
+        if len(sortedcids) > 0:
+            mine = cenergy[sortedcids[0]]
+        else:
+            mine = 0
+
+        written = {}
+        final = []
+        for conf in sortedcids:
+            if len(written) >= maxconfs:
+                break
+            passed = True
+            for seenconf in written.keys():
+                rms = getRMS(mol, seenconf, conf)
+                if (rms < rmspar) or (energy > 0 and cenergy[conf] - mine > energy):
+                    passed = False
+                    break
+            if passed:
+                written[conf] = True
+                final.append(mol.GetConformer(conf))
+    new_conf = final[0]
+    return new_conf
+
+
 def write_gamess_input(multiplicity, mol, molname, mol_input_path):
-    AllChem.EmbedMolecule(mol, maxAttempts=10000, useRandomCoords=False)
-    conf = mol.GetConformer()
-    opt = f""" $CONTRL SCFTYP={get_method(multiplicity)} MULT={multiplicity} NPRINT=-5 RUNTYP=OPTIMIZE $END\n $STATPT OPTTOL=0.0005 NSTEP=100 NPRT=-2 $END\n $BASIS GBASIS=N31 NGAUSS=6 $END """
+    conf = generate_3D_mol(mol)
+    mol = AllChem.AddHs(mol)
+    opt = f""" $CONTRL SCFTYP={get_method(multiplicity)} MULT={multiplicity} NPRINT=-5 RUNTYP=OPTIMIZE $END\n $STATPT OPTTOL=0.0005 NSTEP=100 $END\n $BASIS GBASIS=N31 NGAUSS=6 $END """
     with open(mol_input_path, 'w') as outfile:
         outfile.write(f"{opt}{os.linesep}")
         outfile.write(f"{os.linesep}")
@@ -116,7 +170,6 @@ if __name__ == "__main__":
     molfile = read_file_rdkit(args.sdf_filename)
 
     for mol in molfile:
-        mol = Chem.AddHs(mol)
         chem_class, inchikey, n_atoms, molname = get_props(mol)
         
         proj_dir = Path(args.project_dirname)
