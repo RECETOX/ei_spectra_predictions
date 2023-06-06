@@ -23,12 +23,12 @@ def read_parameters_gamess(param_file):
     return mylist
 
 
-def write_inp_from_template(mylist, multiplicity, molname, template_name,file, coord):
+def write_gamess_input_from_template(mylist, multiplicity, molname, template_name, file, coord, text):
     content = template_name.render(SCFTYP=get_method(multiplicity), 
                                    MULT=multiplicity, 
                                    OPTTOL=mylist[0], NSTEP=mylist[1],
                                    GBASIS=mylist[2], NGAUSS=mylist[3], 
-                                   MOLNAME=molname, COORDINATES=coord)
+                                   MOLNAME=molname, COORDINATES=coord, text = text, NPRT=-2)
     with open(file, 'w') as message:
         message.write(content)
 
@@ -66,33 +66,58 @@ if __name__ == "__main__":
         message_2 = "EXECUTION OF GAMESS TERMINATED NORMALLY"
         message_3 = "EQUILIBRIUM GEOMETRY LOCATED"
         message_4 = "ALWAYS THE LAST POINT COMPUTED!"
+        message_5 = "COORDINATES OF ALL ATOMS ARE (ANGS)" 
         
         if Path(log_file).exists():
             lines_log = read_file(log_file)
 
             for num, line in enumerate(lines_log):
+
                 if message_1 in line:
-                    print(f"Abnormal execution, check your input: {Path(log_file).parent}")
-                
-                if message_2 and message_4 in line:
-                    data = []
-                    start_coord_index = num + 4
-                    end_coord_index = start_coord_index + n_atoms
-                    for i in range(start_coord_index, end_coord_index):
-                        data.append(lines_log[i])
+                    for num, line in enumerate(lines_log):
+                        if message_5 in line:
+                            data = []
+                            start_coord_index = num + 3
+                            end_coord_index = start_coord_index + n_atoms
+                            for i in range(start_coord_index, end_coord_index):
+                                data.append(lines_log[i])
 
-                    mylist = read_parameters_gamess(args.params_filename)
-                    inp_template = load_template("templates", "gamess_input_template.inp")
-                    
-                    start_inp_file = moldir / (inchikey + "_start.inp")
+                            mylist = read_parameters_gamess(args.params_filename)
+                            inp_template = load_template("templates", "gamess_input_template.inp")
+                            
+                            start_inp_file = moldir / (inchikey + "_start.inp")
 
-                    if not Path(start_inp_file).exists():
-                        Path(mol_input_path).rename(Path(start_inp_file))
-                    
-                    print(f"Write INP file with last coordinates: {Path(mol_input_path).parent}")
-                    write_inp_from_template(mylist, multiplicity, molname, inp_template, mol_input_path, data)
+                            if not Path(start_inp_file).exists():
+                                Path(mol_input_path).rename(Path(start_inp_file))
+                            
+                            if not Path(mol_input_path).exists():
+                                print(f"Abnormal execution, write INP file  : {Path(log_file).parent}")
+                                write_gamess_input_from_template(mylist, multiplicity, molname, inp_template, mol_input_path, data, message_1)
+                            
 
-                if message_2 and message_3 in line:
+                if message_2 in line:
+                    for num, line in enumerate(lines_log):
+                        if message_4 in line:
+                            data = []
+                            start_coord_index = num + 4
+                            end_coord_index = start_coord_index + n_atoms
+                            for i in range(start_coord_index, end_coord_index):
+                                data.append(lines_log[i])
+
+                            mylist = read_parameters_gamess(args.params_filename)
+                            inp_template = load_template("templates", "gamess_input_template.inp")
+                            
+                            start_inp_file = moldir / (inchikey + "_start.inp")
+
+                            if not Path(start_inp_file).exists():
+                                Path(mol_input_path).rename(Path(start_inp_file))
+
+                            if not Path(mol_input_path).exists():
+                                print(f"Write INP file with last coordinates: {Path(mol_input_path).parent}")
+                                write_gamess_input_from_template(mylist, multiplicity, molname, inp_template, mol_input_path, data, message_2)
+
+
+                if message_3 in line:
                     data = []
                     start_coord_index = num + 4
                     end_coord_index = start_coord_index + n_atoms
