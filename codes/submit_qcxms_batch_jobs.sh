@@ -5,6 +5,7 @@ then
   walltime=$(grep 'WALLTIME' $data $1 | awk '{ print $3 }')
   user_email=$(grep 'USER_EMAIL' $data $1 | awk '{ print $3 }')
   bin=$(grep 'BIN' $data $1 | awk '{ print $3 }')
+  keyword_ntraj=$(grep 'ntraj' $data $1 | awk '{ print $3 }')
 fi
 
 work_dir=$(pwd)
@@ -14,11 +15,9 @@ for dir in classes/*/*/*; do
    if [[ $basedir == "Spectra" ]]; then
       cd $work_dir/$dir
       file_xyz=`ls $molname.xyz`
-      file_in=`ls qcxms.in`
       if [ -f "$file_xyz" ]; then
-        keyword_ntraj=`head -n 1 $file_in | awk '{ print $1 }'` 
         if [[ "$keyword_ntraj" ]]; then
-          n_traj=`head -n 1 $file_in | awk '{ print $2 }'`
+          n_traj=$keyword_ntraj
         else 
           n_traj=$((`head -n 1 $file_xyz`*25))
         fi
