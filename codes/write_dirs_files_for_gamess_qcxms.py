@@ -57,39 +57,6 @@ def get_props(mol):
     return chem_class, inchikey, n_atoms, molname
 
 
-def read_parameters_pbs(param_file):   
-    list_pbs_keys = [] 
-    lines = read_file(param_file)
-    for line in lines:
-        if "WALLTIME" in line:
-            list_pbs_keys.append(line.split()[2])
-        if "NCPUS" in line:
-            list_pbs_keys.append(line.split()[2])
-        if "MEM" in line:
-            list_pbs_keys.append(line.split()[2])
-        if "SCRATCH_LOCAL" in line:
-            list_pbs_keys.append(line.split()[2])
-        if "USER_EMAIL" in line:
-            list_pbs_keys.append(line.split()[2])
-    return list_pbs_keys
-
-
-def load_template(dir, filename):
-    template_path = Path(dir).resolve()
-    file_loader = FileSystemLoader(template_path)
-    environment = Environment(loader=file_loader)
-    load_template = environment.get_template(filename)
-    return load_template
-
-
-def write_pbs_from_template(mylist, molname, template_name, file):
-    content = template_name.render(MOLNAME=molname, WALLTIME=mylist[0],
-                                  NCPUS=mylist[1], MEM=mylist[2], 
-                                  SCRATCH_LOCAL=mylist[3], USER_EMAIL=mylist[4])
-    with open(file, 'w') as message:
-        message.write(content)
-
-
 def getRMS(mol, c1, c2):
     rms = AllChem.GetBestRMS(mol, mol, c1, c2)
     return rms
@@ -143,6 +110,75 @@ def generate_3D_mol(mol):
     return new_conf
 
 
+def read_parameters_pbs(param_file):   
+    list_pbs_keys = [] 
+    lines = read_file(param_file)
+    for line in lines:
+        if "WALLTIME" in line:
+            list_pbs_keys.append(line.split()[2])
+        if "NCPUS" in line:
+            list_pbs_keys.append(line.split()[2])
+        if "MEM" in line:
+            list_pbs_keys.append(line.split()[2])
+        if "SCRATCH_LOCAL" in line:
+            list_pbs_keys.append(line.split()[2])
+        if "USER_EMAIL" in line:
+            list_pbs_keys.append(line.split()[2])
+    return list_pbs_keys
+
+
+def read_parameters_qcxms(param_file):   
+    list_qcxms_keys = [] 
+    lines = read_file(param_file)
+    for line in lines:
+        if "QC_Program" in line:
+            list_qcxms_keys.append(line.split()[2])
+        if "QC_Level" in line:
+            list_qcxms_keys.append(line.split()[2])
+        if "ntraj" in line:
+            if len(line.split()) == 2:
+                list_qcxms_keys.append("")
+            else:
+                list_qcxms_keys.append(line.split()[2])
+        if "tmax" in line:
+            list_qcxms_keys.append(line.split()[2])
+        if "tinit" in line:
+            list_qcxms_keys.append(line.split()[2])
+        if "ieeatm" in line:
+            list_qcxms_keys.append(line.split()[2])
+    return list_qcxms_keys
+
+
+def load_template(dir, filename):
+    template_path = Path(dir).resolve()
+    file_loader = FileSystemLoader(template_path)
+    environment = Environment(loader=file_loader)
+    load_template = environment.get_template(filename)
+    return load_template
+
+
+def write_pbs_from_template(mylist, molname, template_name, file):
+    content = template_name.render(MOLNAME=molname, 
+                                   WALLTIME=mylist[0],
+                                   NCPUS=mylist[1],
+                                   MEM=mylist[2],
+                                   SCRATCH_LOCAL=mylist[3],
+                                   USER_EMAIL=mylist[4])
+    with open(file, 'w') as message:
+        message.write(content)
+
+
+def write_qcxms_input_from_template(mylist, template_name, file):
+    content = template_name.render(QC_Program=mylist[0],
+                                   QC_Level=mylist[1],
+                                   ntraj=mylist[2],
+                                   tmax=mylist[3],
+                                   tinit=mylist[4],
+                                   ieeatm=mylist[5])
+    with open(file, 'w') as message:
+        message.write(content)
+
+
 def write_gamess_input(multiplicity, mol, molname, mol_input_path):
     conf = generate_3D_mol(mol)
     mol = AllChem.AddHs(mol)
@@ -183,10 +219,14 @@ if __name__ == "__main__":
         spectradir = proj_dir / "classes" / chem_class / inchikey / "Spectra"
         Path.mkdir(spectradir, parents=True, exist_ok=True)
         spectrum_input_path = spectradir / ("qcxms" + ".in")
-        Path.touch(spectrum_input_path)
-        
+                
         multiplicity = CalculateSpinMultiplicity(mol)
         write_gamess_input(multiplicity, mol, molname, mol_input_path)
+
+        spectrum_input_path = spectradir / ("qcxms" + ".in")
+        qcxms_template = load_template("templates", "qcxms_input_template.in")
+        write_qcxms_input_from_template(read_parameters_qcxms(args.params_filename), qcxms_template, spectrum_input_path)
+
 
         mol_pbs_path = moldir / (inchikey + ".pbs")
         pbs_template = load_template("templates", "optimization_gamess_template.pbs")
