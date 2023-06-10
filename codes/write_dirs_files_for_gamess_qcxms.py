@@ -213,21 +213,23 @@ if __name__ == "__main__":
 
         moldir = proj_dir / "classes" / chem_class / inchikey / "Optimization"
         Path.mkdir(moldir, parents=True, exist_ok=True)
-        mol_input_path = moldir / (inchikey + ".inp")
-        Path.touch(mol_input_path)
+        mol_input_path = moldir / (inchikey + ".inp")              
+
 
         spectradir = proj_dir / "classes" / chem_class / inchikey / "Spectra"
         Path.mkdir(spectradir, parents=True, exist_ok=True)
-        spectrum_input_path = spectradir / ("qcxms" + ".in")
-                
+
         multiplicity = CalculateSpinMultiplicity(mol)
-        write_gamess_input(multiplicity, mol, molname, mol_input_path)
+        if not Path(mol_input_path).exists():
+            Path.touch(mol_input_path, exist_ok=True)
+            write_gamess_input(multiplicity, mol, molname, mol_input_path)
 
         spectrum_input_path = spectradir / ("qcxms" + ".in")
         qcxms_template = load_template("templates", "qcxms_input_template.in")
-        write_qcxms_input_from_template(read_parameters_qcxms(args.params_filename), qcxms_template, spectrum_input_path)
-
+        if not Path(spectrum_input_path).exists():
+            write_qcxms_input_from_template(read_parameters_qcxms(args.params_filename), qcxms_template, spectrum_input_path)
 
         mol_pbs_path = moldir / (inchikey + ".pbs")
         pbs_template = load_template("templates", "optimization_gamess_template.pbs")
-        write_pbs_from_template(read_parameters_pbs(args.params_filename), inchikey, pbs_template, mol_pbs_path)
+        if not Path(mol_pbs_path).exists():
+            write_pbs_from_template(read_parameters_pbs(args.params_filename), inchikey, pbs_template, mol_pbs_path)
