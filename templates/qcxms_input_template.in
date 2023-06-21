@@ -1,0 +1,6 @@
+{{ QC_Program }} 
+{{ QC_Level }} 
+ntraj  {{ ntraj }} 
+tmax  {{ tmax }} 
+tinit  {{ tinit }} 
+ieeatm  {{ ieeatm }} 
