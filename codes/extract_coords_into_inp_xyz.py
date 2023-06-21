@@ -71,6 +71,7 @@ if __name__ == "__main__":
         spectradir = proj_dir / "classes" / chem_class / inchikey / "Spectra"
         mol_xyz_path = spectradir / (inchikey + ".xyz")
 
+        #TODO: Move those into global constants in this script
         message_1 = "EXECUTION OF GAMESS TERMINATED -ABNORMALLY-"
         message_2 = "EXECUTION OF GAMESS TERMINATED NORMALLY"
         message_3 = "EQUILIBRIUM GEOMETRY LOCATED"
@@ -80,7 +81,7 @@ if __name__ == "__main__":
             lines_log = read_file(log_file)
 
             for num, line in enumerate(lines_log):
-                if message_1 in line:
+                if message_1 in line: #TODO: Each case should be in an individual function which is documented
                     for num, line in enumerate(lines_log):
                         if message_5 in line:
                             data = []

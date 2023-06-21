@@ -1,5 +1,6 @@
 #!/bin/sh
 
+#TODO: This script can still be optimized a bit
 if [ -t 0 ]
 then
   bin=$(grep 'BIN' $data $1 | awk '{ print $3 }')

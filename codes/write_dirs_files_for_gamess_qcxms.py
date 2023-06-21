@@ -210,6 +210,7 @@ if __name__ == "__main__":
     for mol in molfile:
         chem_class, inchikey, n_atoms, molname = get_props(mol)
 
+        #TODO: Extract function to construct the paths as they are often re-used
         proj_dir = Path(args.project_dirname)
         Path.mkdir(proj_dir, parents=True, exist_ok=True)
 
