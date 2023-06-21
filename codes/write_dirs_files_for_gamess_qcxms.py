@@ -46,6 +46,7 @@ def read_file_rdkit(file):
     return molfile
 
 
+#TODO: Add docstring decribing which properties are obtained here
 def get_props(mol):
     mol = Chem.AddHs(mol)
     chem_class = mol.GetProp("Class").replace(" ", "_")
@@ -55,6 +56,7 @@ def get_props(mol):
     return chem_class, inchikey, n_atoms, molname
 
 
+#TODO: Add dosctrings or rename variables
 def getRMS(mol, c1, c2):
     rms = AllChem.GetBestRMS(mol, mol, c1, c2)
     return rms
@@ -178,6 +180,7 @@ def write_qcxms_input_from_template(mylist, template_name, file):
         message.write(content)
 
 
+#TODO: multiplicity can be obtained from mol so doesn't need to be passed as a parameter
 def write_gamess_input(multiplicity, mol, molname, mol_input_path):
     conf = generate_3D_mol(mol)
     mol = AllChem.AddHs(mol)
