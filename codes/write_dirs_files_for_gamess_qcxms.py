@@ -1,10 +1,9 @@
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from pathlib import Path
+from jinja2 import Environment, FileSystemLoader
 import os
 import argparse
-
-from jinja2 import Environment, FileSystemLoader
 
 
 def CalculateSpinMultiplicity(Mol):
@@ -25,12 +24,11 @@ def CalculateSpinMultiplicity(Mol):
 
     TotalElectronicSpin = NumRadicalElectrons/2
     SpinMultiplicity = 2 * TotalElectronicSpin + 1
-
     return int(SpinMultiplicity)
 
 
 def get_method(multiplicity):
-    if multiplicity % 2 == 0 :
+    if multiplicity % 2 == 0:
         method = 'ROHF'
     else:
         method = 'RHF'
@@ -69,13 +67,14 @@ def generate_3D_mol(mol):
     It is licensed under the MIT licence.
 
     Given a smiles file, generate 3D conformers.
-    Energy minimizes and filters conformers to meet energy window and rms constraints.
+    Energy minimizes and filters conformers to meet energy window 
+    and rms constraints.
     """
     maxconfs = 20
     sample = 1
     rmspar = 0.7
     energy = 10
-    
+
     if mol is not None:
         AllChem.SanitizeMol(mol)
         mol = AllChem.AddHs(mol)
@@ -182,7 +181,7 @@ def write_qcxms_input_from_template(mylist, template_name, file):
 def write_gamess_input(multiplicity, mol, molname, mol_input_path):
     conf = generate_3D_mol(mol)
     mol = AllChem.AddHs(mol)
-    opt = f""" $CONTRL SCFTYP={get_method(multiplicity)} MULT={multiplicity} NPRINT=-5 RUNTYP=OPTIMIZE $END\n $STATPT OPTTOL=0.0005 NSTEP=100 $END\n $BASIS GBASIS=N31 NGAUSS=6 $END """
+    opt = f""" $CONTRL SCFTYP={get_method(multiplicity)} MULT={multiplicity} NPRINT=-5 RUNTYP=OPTIMIZE $END\n $STATPT OPTTOL=0.0005 NSTEP=100 $END\n $BASIS GBASIS=N31 NGAUSS=6 $END\n $SYSTEM MWORDS=128 $END """
     with open(mol_input_path, 'w') as outfile:
         outfile.write(f"{opt}{os.linesep}")
         outfile.write(f"{os.linesep}")
@@ -207,14 +206,13 @@ if __name__ == "__main__":
 
     for mol in molfile:
         chem_class, inchikey, n_atoms, molname = get_props(mol)
-        
+
         proj_dir = Path(args.project_dirname)
         Path.mkdir(proj_dir, parents=True, exist_ok=True)
 
         moldir = proj_dir / "classes" / chem_class / inchikey / "Optimization"
         Path.mkdir(moldir, parents=True, exist_ok=True)
         mol_input_path = moldir / (inchikey + ".inp")              
-
 
         spectradir = proj_dir / "classes" / chem_class / inchikey / "Spectra"
         Path.mkdir(spectradir, parents=True, exist_ok=True)
