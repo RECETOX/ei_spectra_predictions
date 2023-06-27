@@ -135,6 +135,8 @@ def prepare_resubmission(params_filename, inchikey, n_atoms, molname, multiplici
 
 
 def write_summary_log(project_dirname, count_abn, count_inp, count_xyz):
+    """
+    """
     with open(f"info_extract_coords_{project_dirname}.log", 'a') as f:
         f.write(f"Number of abnormal molecules: {count_abn}")
         f.write(f"{os.linesep}")
@@ -176,6 +178,10 @@ if __name__ == "__main__":
         spectradir = proj_dir / "classes" / chem_class / inchikey / "Spectra"
         mol_xyz_path = spectradir / (inchikey + ".xyz")
 
+        writer = Chem.SDWriter(str(spectradir / f'{inchikey}.sdf'))
+        writer.write(mol)
+        writer.close()
+
         #TODO: Move those into global constants in this script
         message_1 = "EXECUTION OF GAMESS TERMINATED -ABNORMALLY-"
         message_2 = "EXECUTION OF GAMESS TERMINATED NORMALLY"
@@ -208,7 +214,7 @@ if __name__ == "__main__":
                             print(f"Write INP file with last coordinates: {mol_input_path}")
 
                 if message_3 in line:
-                    count_xyz += extract_geometry_to_xzy(args, n_atoms, molname, mol_xyz_path, gamess_output, num)
+                    count_xyz += extract_geometry_to_xzy(args.project_dirname, n_atoms, molname, mol_xyz_path, gamess_output, num)
         else:
             with open(info_log, 'a') as f:
                 f.write(f"LOG file does not exist:{Path(gamess_log).parent}")

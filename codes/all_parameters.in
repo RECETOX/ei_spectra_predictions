@@ -1,9 +1,9 @@
 #########################
 # HPC PARAMETERS
 #########################
-WALLTIME = 10:00:00
+WALLTIME = 4:00:00
 NCPUS = 4
-MEM = 16gb
+MEM = 8gb
 SCRATCH_LOCAL = 100gb
 USER_EMAIL = wudmir.rojas@recetox.muni.cz
 #########################
@@ -11,7 +11,7 @@ USER_EMAIL = wudmir.rojas@recetox.muni.cz
 #########################
 OPTTOL = 0.0005
 NSTEP = 100 
-GBASIS = N31 
+GBASIS = N21 
 NGAUSS = 6
 #########################
 # SOURCE PATH

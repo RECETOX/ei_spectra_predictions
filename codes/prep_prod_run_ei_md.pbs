@@ -9,7 +9,7 @@ molname=$PBS_JOBNAME
 
 export OMP_NUM_THREADS=1
 
-if [ -d "TMPQCXMS" ];then
+if [ -d "$PBS_O_WORKDIR/TMPQCXMS" ];then
     echo 'TMPQCXMS directory already exists'
     exit
 fi
