@@ -1,0 +1,39 @@
+#!/bin/sh
+
+#PBS -l select=1:ncpus=1:mem=1gb  
+#PBS -j oe
+#PBS -m e
+
+done_factor=$done_factor
+n_traj=$n_traj
+
+count_traj_c=0
+count_traj_uc=0
+threshold_perc=$(($done_factor*$n_traj/100))
+
+if [ ! -f "$PBS_O_WORKDIR/tmpqcxms.res" ]; then
+  cd $PBS_O_WORKDIR/TMPQCXMS
+  for i in TMP.*; do
+    cd $i
+    if [ -f "qcxms.res" ] && [ -f "ready" ]; then
+      let count_traj_c++
+      cat  $PBS_O_WORKDIR/TMPQCXMS/$i/qcxms.res >> $PBS_O_WORKDIR/tmp_c.res
+    else
+      let count_traj_uc++
+      echo  $i >> $PBS_O_WORKDIR/tmp_uc.res
+    fi
+    cd ..
+  done
+
+
+  if [ "$count_traj_c" -ge "$threshold_perc" ]; then 
+    mv -f $PBS_O_WORKDIR/tmp_c.res  $PBS_O_WORKDIR/tmpqcxms.res
+    rm -f $PBS_O_WORKDIR/tmp_uc.res
+    rm -f $PBS_O_WORKDIR/missing_trajs.res
+    
+  else
+    mv -f $PBS_O_WORKDIR/tmp_uc.res  $PBS_O_WORKDIR/missing_trajs.res
+    rm -f $PBS_O_WORKDIR/tmp_c.res
+  fi
+fi
+
