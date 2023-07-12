@@ -1,8 +1,7 @@
 #!/bin/sh
 
 #TODO: This script can still be optimized a bit
-if [ -t 0 ]
-then
+if [ -t 0 ]; then
   bin=$(grep 'BIN' $data $1 | awk '{ print $3 }')
 fi
 
@@ -20,19 +19,7 @@ for dir in classes/*/*/*; do
   if [[ $basedir == "Spectra" ]]; then
     cd $work_dir/$dir
 
-    if [ -d "TMPQCXMS" ]; then
-
-      rm -f $work_dir/$dir/tmpqcxms.res
-      cd $work_dir/$dir/TMPQCXMS
-      for i in TMP.*; do
-        cd $work_dir/$dir/TMPQCXMS/$i
-        if [ -f "qcxms.res" ]; then
-          cat  qcxms.res >> $work_dir/$dir/tmpqcxms.res
-        fi
-      done
-
-      cd $work_dir/$dir
-
+    if [ -f "tmpqcxms.res" ]; then
       if [ ! -f "result.jdx" ]; then
         $bin/plotms -f tmpqcxms.res 
       fi

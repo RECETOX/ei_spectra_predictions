@@ -28,24 +28,24 @@ for dir in classes/*/*/*; do
         n_traj=$((`head -n 1 $file_xyz`*25))
       fi
           
-      echo "submitted neutral MD job: "$class_name": molname" $molname
-      neutral_job=$(qsub -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/neutral_run_md.pbs)
-
-      echo "submitted prep production MD job: "$class_name": molname" $molname
-      prep_job=$(qsub -W depend=afterok:$neutral_job -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/prep_prod_run_ei_md.pbs)
-
       if [ -f "missing_trajs.res" ]; then  
         readarray -t traj_array <  missing_trajs.res
         ended_job=true
         for i in ${traj_array[@]#*.}; do
-          prod_job=$(qsub -W depend=afterok:$prep_job -N $molname -M $user_email -l walltime=$walltime -l select=1:ncpus=1:mem=$MEM:scratch_local=100gb -v "bin=$bin" -J $i-$((i+1)):2 $bin/prod_run_ei_md.pbs)
+          prod_job=$(qsub -N $molname -M $user_email -l walltime=$walltime -l select=1:ncpus=1:mem=$MEM:scratch_local=100gb -v "bin=$bin" -J $i-$((i+1)):2 $bin/prod_run_ei_md.pbs)
         done
 
       elif [ -f "tmpqcxms.res" ]; then
-        echo "continue to next" $class_name": molname" $molname
+        echo "successful SPECTRUM simulated in class: " $class_name": molname" $molname
         continue
       else
         ended_job=true
+        echo "submitted neutral MD job: "$class_name": molname" $molname
+        neutral_job=$(qsub -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/neutral_run_md.pbs)
+
+        echo "submitted prep production MD job: "$class_name": molname" $molname
+        prep_job=$(qsub -W depend=afterok:$neutral_job -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/prep_prod_run_ei_md.pbs)
+        
         echo "submitted production run EI MD job: "$class_name": molname" $molname
         prod_job=$(qsub -W depend=afterok:$prep_job -N $molname -M $user_email -l walltime=$walltime -l select=1:ncpus=1:mem=$MEM:scratch_local=100gb -v "bin=$bin" -J 1-$n_traj $bin/prod_run_ei_md.pbs)
       fi

@@ -21,6 +21,7 @@ for dir in classes/*/*/*; do
    if [[ $basedir == "Spectra" ]]; then
       let COUNTER_TOTAL++
       cd $work_dir/$dir
+      rm *.o*.*
       tmp=${dir#*/}
       class_name=${tmp%%/*}
       file_xyz=`ls $molname.xyz`
@@ -38,16 +39,17 @@ for dir in classes/*/*/*; do
         if [ -d "TMPQCXMS" ]; then
           echo "found TMPQCXMS in class" $class_name": molname" $molname >> $work_dir/info_explore_batch_jobs.log
 
+          if [ -f "tmpqcxms.res" ]; then
+            let COUNTER_mol++
+            echo "successful SPECTRUM simulated in class" $class_name": molname" $molname >> $work_dir/info_explore_batch_jobs.log
+            continue
+          fi
+
           for i in `seq 1 $n_traj`; do
             cd $work_dir/$dir/TMPQCXMS/TMP.$i
 
             if [ -f "ready" ]; then
-              #echo "Found "ready" file in TMP."$i >> $work_dir/info_explore_batch_jobs.log
               let COUNTER_TMP_C++
-              if [ "$COUNTER_TMP_C" == "$n_traj" ]; then
-                let COUNTER_mol++
-                echo "successful SPECTRUM simulated in class" $class_name": molname" $molname >> $work_dir/info_explore_batch_jobs.log
-              fi
 
             else
               #echo "NOT found "ready" file in TMP."$i >> $work_dir/info_explore_batch_jobs.log
@@ -56,6 +58,7 @@ for dir in classes/*/*/*; do
           done
           echo "Number of completed TMP :" $COUNTER_TMP_C >> $work_dir/info_explore_batch_jobs.log
           echo "Number of uncompleted TMP :" $COUNTER_TMP_UC >> $work_dir/info_explore_batch_jobs.log
+          
         else
           echo "Not found TMPQCXMS in class" $class_name": molname" $molname >> $work_dir/info_explore_batch_jobs.log
         fi
@@ -70,4 +73,5 @@ done
 echo "Number of xyz files found:" $COUNTER_xyz "missing:" $((COUNTER_TOTAL - COUNTER_xyz)) >> $work_dir/info_explore_batch_jobs.log
 echo "Total number of mols:" $COUNTER_TOTAL >> $work_dir/info_explore_batch_jobs.log
 echo "Number of mols ended successfully: " $COUNTER_mol >> $work_dir/info_explore_batch_jobs.log
+
 
