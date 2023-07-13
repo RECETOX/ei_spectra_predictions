@@ -9,8 +9,13 @@ molname=$PBS_JOBNAME
 
 export OMP_NUM_THREADS=1
 
+echo 'starting job'
+date 
+
 if [ -d "$PBS_O_WORKDIR/TMPQCXMS" ];then
     echo 'TMPQCXMS directory already exists'
+    echo 'finished job' 
+    date 
     exit
 fi
 
@@ -23,3 +28,6 @@ cd $SCRATCHDIR
 $bin/qcxms_v5.2.1 -i $molname.xyz  >$molname'_prep_ei.out'
 
 cp -r $SCRATCHDIR/* $PBS_O_WORKDIR
+
+echo 'finished job' 
+date 

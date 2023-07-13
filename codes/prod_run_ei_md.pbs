@@ -10,10 +10,15 @@ export OMP_NUM_THREADS=1
 
 DIR=$PBS_O_WORKDIR/TMPQCXMS
 
+echo 'starting job'
+date 
+
 cd $DIR/TMP.${PBS_ARRAY_INDEX}
 
 if [ -f "ready" ]; then
     echo 'Succesfull EI-MD exists'
+    echo 'finished job' 
+    date 
     exit
 fi
 
@@ -31,3 +36,6 @@ cp -r * $local_path
 cd $local_path
 
 cd ..
+
+echo 'finished job' 
+date 
