@@ -1,7 +1,6 @@
 #!/bin/sh
 
-if [ -t 0 ]
-then
+if [ -t 0 ]; then
   keyword_ntraj=$(grep 'ntraj' $data $1 | awk '{ print $3 }')
 fi
 
@@ -52,7 +51,7 @@ for dir in classes/*/*/*; do
               let COUNTER_TMP_C++
 
             else
-              #echo "NOT found "ready" file in TMP."$i >> $work_dir/info_explore_batch_jobs.log
+              # echo "NOT found "ready" file in TMP."$i >> $work_dir/info_explore_batch_jobs.log
               let COUNTER_TMP_UC++
             fi
           done
