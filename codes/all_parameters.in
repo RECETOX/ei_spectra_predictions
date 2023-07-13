@@ -1,10 +1,11 @@
 #########################
 # HPC PARAMETERS
 #########################
-WALLTIME = 4:00:00
-NCPUS = 4
-MEM = 8gb
+WALLTIME = 24:00:00
+NCPUS = 2
+MEM = 2gb
 SCRATCH_LOCAL = 100gb
+threshold_traj = 96 (in %)
 USER_EMAIL = wudmir.rojas@recetox.muni.cz
 #########################
 # GAMESS PARAMETERS
