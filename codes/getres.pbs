@@ -4,12 +4,12 @@
 #PBS -j oe
 #PBS -m e
 
-done_factor=$done_factor
+threshold_traj=$threshold_traj
 n_traj=$n_traj
 
 count_traj_c=0
 count_traj_uc=0
-threshold_perc=$(($done_factor*$n_traj/100))
+threshold_perc=$(($threshold_traj*$n_traj/100))
 
 if [ ! -f "$PBS_O_WORKDIR/tmpqcxms.res" ]; then
   cd $PBS_O_WORKDIR/TMPQCXMS
