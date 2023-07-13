@@ -5,7 +5,7 @@ if [ -t 0 ]; then
   user_email=$(grep 'USER_EMAIL' $data $1 | awk '{ print $3 }')
   bin=$(grep 'BIN' $data $1 | awk '{ print $3 }')
   keyword_ntraj=$(grep 'ntraj' $data $1 | awk '{ print $3 }')
-  done_factor=$(grep 'done_factor' $data $1 | awk '{ print $3 }')
+  threshold_traj=$(grep 'threshold_traj' $data $1 | awk '{ print $3 }')
   MEM=$(grep 'MEM' $data $1 | awk '{ print $3 }')
 fi
 
@@ -36,23 +36,23 @@ for dir in classes/*/*/*; do
         done
 
       elif [ -f "tmpqcxms.res" ]; then
-        echo "successful SPECTRUM simulated in class: " $class_name": molname" $molname
+        echo "successful SPECTRUM simulated in class: " $class_name": molname" $molname >> $work_dir/info_submit_batch_jobs.log
         continue
       else
         ended_job=true
-        echo "submitted neutral MD job: "$class_name": molname" $molname
+        echo "submitted neutral MD job: "$class_name": molname" $molname >> $work_dir/info_submit_batch_jobs.log
         neutral_job=$(qsub -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/neutral_run_md.pbs)
 
-        echo "submitted prep production MD job: "$class_name": molname" $molname
+        echo "submitted prep production MD job: "$class_name": molname" $molname >> $work_dir/info_submit_batch_jobs.log
         prep_job=$(qsub -W depend=afterok:$neutral_job -N $molname -M $user_email -l walltime=$walltime -v "bin=$bin" $bin/prep_prod_run_ei_md.pbs)
         
-        echo "submitted production run EI MD job: "$class_name": molname" $molname
+        echo "submitted production run EI MD job: "$class_name": molname" $molname >> $work_dir/info_submit_batch_jobs.log
         prod_job=$(qsub -W depend=afterok:$prep_job -N $molname -M $user_email -l walltime=$walltime -l select=1:ncpus=1:mem=$MEM:scratch_local=100gb -v "bin=$bin" -J 1-$n_traj $bin/prod_run_ei_md.pbs)
       fi
 
       if [ "$ended_job"=true ];then
-        echo "get tmpqcxms.res: "$class_name": molname" $molname
-        getres_job=$(qsub -W depend=afterok:$prod_job -N $molname -M $user_email -l walltime=$walltime  -v "done_factor=$done_factor, n_traj=$n_traj" $bin/getres.pbs)
+        echo "get tmpqcxms.res: "$class_name": molname" $molname >> $work_dir/info_submit_batch_jobs.log
+        getres_job=$(qsub -W depend=afterok:$prod_job -N $molname -M $user_email -l walltime=$walltime  -v "threshold_traj=$threshold_traj, n_traj=$n_traj" $bin/getres.pbs)
       fi
 
     else
@@ -60,4 +60,5 @@ for dir in classes/*/*/*; do
     fi
   fi
   cd $work_dir
+  echo "==============="  >> $work_dir/info_submit_batch_jobs.log
 done
