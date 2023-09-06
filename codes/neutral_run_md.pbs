@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#PBS -l select=1:ncpus=1:mem=2gb  
+#PBS -l select=1:ncpus=1:mem=8gb  
 #PBS -j oe
 #PBS -m e
 
@@ -25,9 +25,9 @@ cp -r $PBS_O_WORKDIR/qcxms.in $SCRATCHDIR
 
 cd $SCRATCHDIR
 
-$bin/qcxms_v5.2.1 -i $molname.xyz  >$molname'_neutral.out'
+$bin/qcxms_v5.2.1 -i $molname.xyz  >$molname'_neutral.log'
 
-cp -r $SCRATCHDIR/* $PBS_O_WORKDIR
+mv -f $SCRATCHDIR/* $PBS_O_WORKDIR
 
 echo 'finished job' 
 date 

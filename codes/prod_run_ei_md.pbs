@@ -30,9 +30,9 @@ cp -r $local_path/qcxms.start $SCRATCHDIR
 
 cd $SCRATCHDIR
 
-$bin/qcxms_v5.2.1 --prod >$molname'_prod_ei.out' 
+$bin/qcxms_v5.2.1 --prod >$molname'_prod_ei.log' 
     
-cp -r * $local_path
+mv -f * $local_path
 cd $local_path
 
 cd ..
