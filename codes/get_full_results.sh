@@ -10,7 +10,7 @@ work_dir=$(pwd)
 if [ ! -d "results" ]; then
   mkdir $work_dir/results
 fi
-
+rm -rf $work_dir/info_get_msp.log
 rm -f $work_dir/results/all_results.msp
 
 for dir in classes/*/*/*; do
@@ -18,7 +18,8 @@ for dir in classes/*/*/*; do
   inchikey=`dirname $dir | xargs basename`
   if [[ $basedir == "Spectra" ]]; then
     cd $work_dir/$dir
-
+    tmp=${dir#*/}
+    class_name=${tmp%%/*}
     if [ -f "tmpqcxms.res" ]; then
       if [ ! -f "result.jdx" ]; then
         $bin/plotms -f tmpqcxms.res 
@@ -28,12 +29,13 @@ for dir in classes/*/*/*; do
       molname=`sed -n '2{p;q}'  $inchikey.xyz`
       kword=$(grep 'NPOINTS' result.jdx)
       num_peaks=$(sed 's/^[^=]*=//' <<< "$kword")
+      echo `pwd`
       sed -n '/PEAK/,/END/{/PEAK/!{/END/!p}}' result.jdx > temp.dat
       awk '{print $1, $2}' temp.dat > tempa.dat
       sed "1s/^/NAME: $molname\nINCHIKEY: $inchikey\nNum Peaks: $num_peaks\n/" tempa.dat >> $work_dir/results/all_results.msp
       sed -i '$a\ ' $work_dir/results/all_results.msp
       rm temp.dat tempa.dat 
-
+      echo "Get msp from class :" $class_name" --> molname :" $molname >> $work_dir/info_get_msp.log
     fi
   fi
     cd $work_dir

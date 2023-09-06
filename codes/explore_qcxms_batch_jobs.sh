@@ -6,7 +6,6 @@ fi
 
 work_dir=$(pwd)
 rm -rf $work_dir/info_explore_batch_jobs.log
-var1=false
 
 COUNTER_xyz=0
 COUNTER_mol=0
@@ -17,16 +16,27 @@ for dir in classes/*/*/*; do
    COUNTER_TMP_UC=0
    COUNTER_TMP_C=0
    
+  #  if [[ $basedir == "Optimization" ]]; then
+  #     cd $work_dir/$dir
+  #     echo `pwd`
+  #     rm *.o*
+  #     rm *.pbs
+  #     rm *.inp 
+  #  fi
+
    if [[ $basedir == "Spectra" ]]; then
       let COUNTER_TOTAL++
       cd $work_dir/$dir
-      rm *.o*.*
+      echo $work_dir/$dir
+
+      rm *.o*
+    
       tmp=${dir#*/}
       class_name=${tmp%%/*}
       file_xyz=`ls $molname.xyz`
 
       if [ -f "$file_xyz" ]; then
-        echo "found" $file_xyz "in class" $class_name": molname" $molname >> $work_dir/info_explore_batch_jobs.log
+        echo "found" $file_xyz "in class :" $class_name" --> molname :" $molname >> $work_dir/info_explore_batch_jobs.log
         let COUNTER_xyz++
 
         if [[ "$keyword_ntraj" ]]; then
@@ -36,11 +46,11 @@ for dir in classes/*/*/*; do
         fi
         
         if [ -d "TMPQCXMS" ]; then
-          echo "found TMPQCXMS in class" $class_name": molname" $molname >> $work_dir/info_explore_batch_jobs.log
+          echo "found TMPQCXMS in class :" $class_name" --> molname :" $molname >> $work_dir/info_explore_batch_jobs.log
 
           if [ -f "tmpqcxms.res" ]; then
             let COUNTER_mol++
-            echo "successful SPECTRUM simulated in class" $class_name": molname" $molname >> $work_dir/info_explore_batch_jobs.log
+            echo "successful SPECTRUM simulated in class :" $class_name" --> molname :" $molname >> $work_dir/info_explore_batch_jobs.log
             continue
           fi
 
@@ -59,11 +69,11 @@ for dir in classes/*/*/*; do
           echo "Number of uncompleted TMP :" $COUNTER_TMP_UC >> $work_dir/info_explore_batch_jobs.log
           
         else
-          echo "Not found TMPQCXMS in class" $class_name": molname" $molname >> $work_dir/info_explore_batch_jobs.log
+          echo "Not found TMPQCXMS in class :" $class_name" --> molname :" $molname >> $work_dir/info_explore_batch_jobs.log
         fi
 
       else
-        echo "NOT found xyz in class" $class_name": molname" $molname >> $work_dir/info_explore_batch_jobs.log
+        echo "NOT found xyz in class :" $class_name" --> molname :" $molname >> $work_dir/info_explore_batch_jobs.log
       fi
     fi
     cd $work_dir
