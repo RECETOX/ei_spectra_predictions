@@ -1,6 +1,6 @@
 # ei_spectra_predictions
 
-**Spectra generation steps**
+## Spectra generation steps
 
 ### Handling input files for molecular optimization in the HPC
 
