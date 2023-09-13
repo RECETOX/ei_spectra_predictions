@@ -1,306 +1,304 @@
-query	reference	CosineGreedy_score	CosineGreedy_matches
-Acenaphthene	Acenaphthene	0.6686826253068303	13
-para-Terphenyl	para-Terphenyl	0.8891480656798413	17
-Retene	Retene	0.6475717890239177	34
-2,3-Benzofluorene	2,3-Benzofluorene	0.7048651991825848	10
-Dicofol	Dicofol	0.8501198765946428	17
-Benzophenone	Benzophenone	0.9068416030069708	11
-2-tert-Butyl-4-methoxyphenol	2-tert-Butyl-4-methoxyphenol	0.5599856458878816	28
-Butylated hydroxytoluene	Butylated hydroxytoluene	0.6001181630425422	27
-Bumetrizole	Bumetrizole	0.3123405006946177	40
-4-Methylbenzophenone	4-Methylbenzophenone	0.6568811489638634	14
-1-Methylphenanthrene	1-Methylphenanthrene	0.843607311634017	12
-Triclosan	Triclosan	0.2962761052343153	16
-Enzacamene	Enzacamene	0.4379334691018894	69
-2,4-Di-tert-butyl-6-(5-chloro-2H-benzotriazol-2-yl)phenol	2,4-Di-tert-butyl-6-(5-chloro-2H-benzotriazol-2-yl)phenol	0.3429536668091588	30
-Octrizole	Octrizole	0.4914186992437122	13
-1,2,7,9-Tetrachlorodibenzofuran	1,2,7,9-Tetrachlorodibenzofuran	0.8533235921909922	33
-2,2',3,4,5,5',6-Heptachlorobiphenyl	2,2',3,4,5,5',6-Heptachlorobiphenyl	0.7558227415660982	68
-2,4,6-Trichlorobiphenyl	2,4,6-Trichlorobiphenyl	0.8715101456724527	39
-2,2',3,3',4,5',6,6'-Octachlorobiphenyl	2,2',3,3',4,5',6,6'-Octachlorobiphenyl	0.7970760632613563	78
-Mirex	Mirex	0.4425979456633549	74
-beta-Hexachlorocyclohexane	beta-Hexachlorocyclohexane	0.2047149794149129	49
-alpha-1,2,3,4,5,6-Hexachlorocyclohexane	alpha-1,2,3,4,5,6-Hexachlorocyclohexane	0.2925170457059624	49
-Lindane	Lindane	0.1425176843394728	41
-delta-Hexachlorocyclohexane	delta-Hexachlorocyclohexane	0.2297187109341147	51
-epsilon-Hexachlorocyclohexane	epsilon-Hexachlorocyclohexane	0.1924079830340594	47
-2,4'-Dichlorodiphenyldichloroethylene	2,4'-Dichlorodiphenyldichloroethylene	0.5086087930079526	41
-2,4'-Dichlorodiphenyldichloroethane	2,4'-Dichlorodiphenyldichloroethane	0.4218677188516392	32
-2,4'-Dichlorodiphenyltrichloroethane	2,4'-Dichlorodiphenyltrichloroethane	0.631355590920689	48
-2,4,4'-Trichlorobiphenyl	2,4,4'-Trichlorobiphenyl	0.8752060875151414	33
-2,2',4,5,5'-Pentachlorobiphenyl	2,2',4,5,5'-Pentachlorobiphenyl	0.8090765294215987	54
-2,3',4,4',5-Pentachlorobiphenyl	2,3',4,4',5-Pentachlorobiphenyl	0.9081107932620012	41
-2,2',3,4,4',5'-Hexachlorobiphenyl	2,2',3,4,4',5'-Hexachlorobiphenyl	0.825402681829375	69
-2,2',4,4',5,5'-Hexachlorobiphenyl	2,2',4,4',5,5'-Hexachlorobiphenyl	0.7775595865907817	80
-2,2',3,4,4',5,5'-Heptachlorobiphenyl	2,2',3,4,4',5,5'-Heptachlorobiphenyl	0.7764483317558767	86
-2,2',5,5'-Tetrachlorobiphenyl	2,2',5,5'-Tetrachlorobiphenyl	0.8130373852174498	52
-2,3',4,6-Tetrachlorobiphenyl	2,3',4,6-Tetrachlorobiphenyl	0.8741092399660083	48
-2,3',5',6-Tetrachlorobiphenyl	2,3',5',6-Tetrachlorobiphenyl	0.8444779097503833	41
-2,2',3,4',5-Pentachlorobiphenyl	2,2',3,4',5-Pentachlorobiphenyl	0.8012069786673442	63
-2,3,3',4,5-Pentachlorobiphenyl	2,3,3',4,5-Pentachlorobiphenyl	0.8774874099456991	45
-3,3',4,5,5'-Pentachlorobiphenyl	3,3',4,5,5'-Pentachlorobiphenyl	0.8839705453302414	45
-2,3',4,4',5',6-Hexachlorobiphenyl	2,3',4,4',5',6-Hexachlorobiphenyl	0.8665522570163389	67
-2,3,3',4,5,6-Hexachlorobiphenyl	2,3,3',4,5,6-Hexachlorobiphenyl	0.858433029074869	79
-2,3,3',4',5',6-Hexachlorobiphenyl	2,3,3',4',5',6-Hexachlorobiphenyl	0.8733802469789652	72
-2,3,3',4',5,6-Hexachlorobiphenyl	2,3,3',4',5,6-Hexachlorobiphenyl	0.8509759570637616	51
-2,3,3',4',5,5',6-Heptachlorobiphenyl	2,3,3',4',5,5',6-Heptachlorobiphenyl	0.8244041358956171	75
-cis-Prallethrin	cis-Prallethrin	0.6382868577574479	30
-cis-Tetramethrin	cis-Tetramethrin	0.3934716028280448	18
-trans-Tetramethrin	trans-Tetramethrin	0.5120813506001377	20
-Bifenthrin	Bifenthrin	0.7269740612268849	21
-Fenpropathrin	Fenpropathrin	0.2565341828917838	30
-cis-Phenothrin	cis-Phenothrin	0.6973468691623136	26
-trans-Phenothrin	trans-Phenothrin	0.3087889686204831	27
-cis-Cyphenothrin	cis-Cyphenothrin	0.6251622896098575	34
-trans-Cyphenothrin	trans-Cyphenothrin	0.1791019900508745	23
-cis-Fenvalerate	cis-Fenvalerate	0.3722171573700361	46
-trans-Fenvalerate	trans-Fenvalerate	0.3692369177831109	41
-Deltamethrin	Deltamethrin	0.2878284342416832	35
-Chlorpyrifos oxon	Chlorpyrifos oxon	0.0154505918490121	5
-lambda-Cyhalothrin	lambda-Cyhalothrin	0.2277184400214245	32
-Tefluthrin	Tefluthrin	0.7668893766959727	22
-Transfluthrin	Transfluthrin	0.6949528351013372	28
-cis-Permethrin	cis-Permethrin	0.8453100619939691	17
-trans-Permethrin	trans-Permethrin	0.7223593346198698	23
-cis-Allethrin	cis-Allethrin	0.6074032114982107	30
-cis-Cyfluthrin_isomer1	cis-Cyfluthrin_isomer1	0.2390493357413326	38
-trans-Cyfluthrin_isomer1	trans-Cyfluthrin_isomer1	0.3497094797814483	46
-cis-Cyfluthrin_isomer2	cis-Cyfluthrin_isomer2	0.3040645446818629	31
-trans-Cyfluthrin_Isomer2	trans-Cyfluthrin_Isomer2	0.2121821363973767	25
-Octachlorodibenzofuran	Octachlorodibenzofuran	0.879504883530639	42
-2,3,4,5-Tetrabromo-6-chlorotoluene	2,3,4,5-Tetrabromo-6-chlorotoluene	0.8829805218175755	61
-2,3,4,5,6-Pentabromotoluene	2,3,4,5,6-Pentabromotoluene	0.9190056844933276	58
-2,3,4,5,6-Pentabromoethylbenzene	2,3,4,5,6-Pentabromoethylbenzene	0.6365602313847921	95
-2,3,5,6-Tetrabromo-p-xylene	2,3,5,6-Tetrabromo-p-xylene	0.8285768450463147	53
-Allyl 2,4,6-tribromophenyl ether	Allyl 2,4,6-tribromophenyl ether	0.3864730022672642	19
-2-Bromoallyl(2,4,6-tribromophenyl) ether	2-Bromoallyl(2,4,6-tribromophenyl) ether	0.3265096911454281	49
-2,3,4,5,6-Pentabromobenzyl alcohol	2,3,4,5,6-Pentabromobenzyl alcohol	0.0312898594439902	20
-2-Ethylhexyl 2,3,4,5-Tetrabromobenzoate	2-Ethylhexyl 2,3,4,5-Tetrabromobenzoate	0.2082664346732356	30
-syn-Dechlorane plus	syn-Dechlorane plus	0.3440671542349365	140
-anti-Dechlorane plus	anti-Dechlorane plus	0.0842539440667222	101
-alpha-1,2-Dibromo-4-(1,2-dibromoethyl)cyclohexane	alpha-1,2-Dibromo-4-(1,2-dibromoethyl)cyclohexane	0.2143202074209434	25
-1,2,5,6-Tetrabromocyclooctane	1,2,5,6-Tetrabromocyclooctane	0.2972191355631199	28
-1,1-Dibromo-2,3,3,4,4,5-hexachloro-2-cyclopenta-2,4-dien-1-ylcyclooctane	1,1-Dibromo-2,3,3,4,4,5-hexachloro-2-cyclopenta-2,4-dien-1-ylcyclooctane	0.1148715785688122	129
-alpha-Amylcinnamaldehyde	alpha-Amylcinnamaldehyde	0.2685751410621562	34
-Citral (Geranial)	Citral (Geranial)	0.1916546752302228	17
-alpha-Hexylcinnamaldehyde	alpha-Hexylcinnamaldehyde	0.0317479555209143	2
-Lilial	Lilial	0.451252447840798	31
-alpha-Amylcinnamyl alcohol	alpha-Amylcinnamyl alcohol	0.1887919663282464	30
-Eugenol	Eugenol	0.7637722791342477	26
-Isoeugenol	Isoeugenol	0.8253695808435686	23
-4-Methoxybenzyl alcohol	4-Methoxybenzyl alcohol	0.3971145347868816	15
-Methyleugenol	Methyleugenol	0.7475894942882719	36
-Cinnamyl alcohol	Cinnamyl alcohol	0.2440112989521012	24
-Benzyl alcohol	Benzyl alcohol	0.4798214381571902	10
-Estragole	Estragole	0.7216458085918451	23
-Benzyl benzoate	Benzyl benzoate	0.7232560284565585	10
-Benzyl cinnamate	Benzyl cinnamate	0.6313838881223096	21
+query	reference	CosineHungarian_score	CosineHungarian_matches
+Acenaphthene	Acenaphthene	0.6686826253068304	13
+para-Terphenyl	para-Terphenyl	0.8887600137767644	16
+Retene	Retene	0.6450506473602031	33
+2,3-Benzofluorene	2,3-Benzofluorene	0.7020521842701191	9
+Dicofol	Dicofol	0.8484530614227901	9
+Benzophenone	Benzophenone	0.9068416030069704	11
+2-tert-Butyl-4-methoxyphenol	2-tert-Butyl-4-methoxyphenol	0.5361664161984837	19
+Butylated hydroxytoluene	Butylated hydroxytoluene	0.5929706797659072	20
+Bumetrizole	Bumetrizole	0.2661240207598365	22
+4-Methylbenzophenone	4-Methylbenzophenone	0.6568811489638633	14
+1-Methylphenanthrene	1-Methylphenanthrene	0.8427959243006534	11
+Triclosan	Triclosan	0.2430807078046091	12
+Enzacamene	Enzacamene	0.417351297176539	58
+2,4-Di-tert-butyl-6-(5-chloro-2H-benzotriazol-2-yl)phenol	2,4-Di-tert-butyl-6-(5-chloro-2H-benzotriazol-2-yl)phenol	0.336653277349482	25
+Octrizole	Octrizole	0.459279136577339	12
+1,2,7,9-Tetrachlorodibenzofuran	1,2,7,9-Tetrachlorodibenzofuran	0.8450496336631833	20
+2,2',3,4,5,5',6-Heptachlorobiphenyl	2,2',3,4,5,5',6-Heptachlorobiphenyl	0.7487951759738778	53
+2,4,6-Trichlorobiphenyl	2,4,6-Trichlorobiphenyl	0.865880685678905	34
+2,2',3,3',4,5',6,6'-Octachlorobiphenyl	2,2',3,3',4,5',6,6'-Octachlorobiphenyl	0.7797501037773169	61
+Mirex	Mirex	0.4372599034247368	64
+beta-Hexachlorocyclohexane	beta-Hexachlorocyclohexane	0.0920618043501743	33
+alpha-1,2,3,4,5,6-Hexachlorocyclohexane	alpha-1,2,3,4,5,6-Hexachlorocyclohexane	0.1492740054200533	39
+Lindane	Lindane	0.0871922665013543	32
+delta-Hexachlorocyclohexane	delta-Hexachlorocyclohexane	0.1129840586456127	39
+epsilon-Hexachlorocyclohexane	epsilon-Hexachlorocyclohexane	0.1306732357027965	38
+2,4'-Dichlorodiphenyldichloroethylene	2,4'-Dichlorodiphenyldichloroethylene	0.5023115529204529	35
+2,4'-Dichlorodiphenyldichloroethane	2,4'-Dichlorodiphenyldichloroethane	0.4156077649704224	25
+2,4'-Dichlorodiphenyltrichloroethane	2,4'-Dichlorodiphenyltrichloroethane	0.628735073389999	42
+2,4,4'-Trichlorobiphenyl	2,4,4'-Trichlorobiphenyl	0.8714203694590718	29
+2,2',4,5,5'-Pentachlorobiphenyl	2,2',4,5,5'-Pentachlorobiphenyl	0.8020784153874775	46
+2,3',4,4',5-Pentachlorobiphenyl	2,3',4,4',5-Pentachlorobiphenyl	0.9061817691219298	35
+2,2',3,4,4',5'-Hexachlorobiphenyl	2,2',3,4,4',5'-Hexachlorobiphenyl	0.8152957569355297	55
+2,2',4,4',5,5'-Hexachlorobiphenyl	2,2',4,4',5,5'-Hexachlorobiphenyl	0.7658186956057487	70
+2,2',3,4,4',5,5'-Heptachlorobiphenyl	2,2',3,4,4',5,5'-Heptachlorobiphenyl	0.770552422170589	74
+2,2',5,5'-Tetrachlorobiphenyl	2,2',5,5'-Tetrachlorobiphenyl	0.8085205617317928	48
+2,3',4,6-Tetrachlorobiphenyl	2,3',4,6-Tetrachlorobiphenyl	0.8670991780323307	43
+2,3',5',6-Tetrachlorobiphenyl	2,3',5',6-Tetrachlorobiphenyl	0.84032320437712	36
+2,2',3,4',5-Pentachlorobiphenyl	2,2',3,4',5-Pentachlorobiphenyl	0.7936738317295909	56
+2,3,3',4,5-Pentachlorobiphenyl	2,3,3',4,5-Pentachlorobiphenyl	0.8745073690974677	40
+3,3',4,5,5'-Pentachlorobiphenyl	3,3',4,5,5'-Pentachlorobiphenyl	0.8793032909662604	40
+2,3',4,4',5',6-Hexachlorobiphenyl	2,3',4,4',5',6-Hexachlorobiphenyl	0.8609258969068738	60
+2,3,3',4,5,6-Hexachlorobiphenyl	2,3,3',4,5,6-Hexachlorobiphenyl	0.8543064078890631	62
+2,3,3',4',5',6-Hexachlorobiphenyl	2,3,3',4',5',6-Hexachlorobiphenyl	0.8669285296581263	61
+2,3,3',4',5,6-Hexachlorobiphenyl	2,3,3',4',5,6-Hexachlorobiphenyl	0.8387159045156956	43
+2,3,3',4',5,5',6-Heptachlorobiphenyl	2,3,3',4',5,5',6-Heptachlorobiphenyl	0.8170015639688876	63
+cis-Prallethrin	cis-Prallethrin	0.6340690826006565	24
+cis-Tetramethrin	cis-Tetramethrin	0.3864889713591263	17
+trans-Tetramethrin	trans-Tetramethrin	0.4908821682619522	18
+Bifenthrin	Bifenthrin	0.7223297167404105	17
+Fenpropathrin	Fenpropathrin	0.2405311943739384	24
+cis-Phenothrin	cis-Phenothrin	0.6810127165341128	25
+trans-Phenothrin	trans-Phenothrin	0.2928624691877459	22
+cis-Cyphenothrin	cis-Cyphenothrin	0.6099030278756564	26
+trans-Cyphenothrin	trans-Cyphenothrin	0.1506790944726695	13
+cis-Fenvalerate	cis-Fenvalerate	0.2659396427036337	30
+trans-Fenvalerate	trans-Fenvalerate	0.3057763310800772	24
+Deltamethrin	Deltamethrin	0.2405770434243623	18
+Chlorpyrifos oxon	Chlorpyrifos oxon	0.0045497307462183	3
+lambda-Cyhalothrin	lambda-Cyhalothrin	0.1858098549762118	21
+Tefluthrin	Tefluthrin	0.7597069521438197	17
+Transfluthrin	Transfluthrin	0.3200994230729063	20
+cis-Permethrin	cis-Permethrin	0.8349518480763064	14
+trans-Permethrin	trans-Permethrin	0.7036566388493185	16
+cis-Allethrin	cis-Allethrin	0.5840871795164055	22
+cis-Cyfluthrin_isomer1	cis-Cyfluthrin_isomer1	0.2172646033585082	21
+trans-Cyfluthrin_isomer1	trans-Cyfluthrin_isomer1	0.2871865900374318	27
+cis-Cyfluthrin_isomer2	cis-Cyfluthrin_isomer2	0.2232230280840552	11
+trans-Cyfluthrin_Isomer2	trans-Cyfluthrin_Isomer2	0.102453967851535	13
+Octachlorodibenzofuran	Octachlorodibenzofuran	0.8753258952399354	33
+2,3,4,5-Tetrabromo-6-chlorotoluene	2,3,4,5-Tetrabromo-6-chlorotoluene	0.8065391149249117	51
+2,3,4,5,6-Pentabromotoluene	2,3,4,5,6-Pentabromotoluene	0.9154671117653916	55
+2,3,4,5,6-Pentabromoethylbenzene	2,3,4,5,6-Pentabromoethylbenzene	0.6328183155811031	86
+2,3,5,6-Tetrabromo-p-xylene	2,3,5,6-Tetrabromo-p-xylene	0.8255162087185175	50
+Allyl 2,4,6-tribromophenyl ether	Allyl 2,4,6-tribromophenyl ether	0.3833001270220684	17
+2-Bromoallyl(2,4,6-tribromophenyl) ether	2-Bromoallyl(2,4,6-tribromophenyl) ether	0.3113712576873396	39
+2,3,4,5,6-Pentabromobenzyl alcohol	2,3,4,5,6-Pentabromobenzyl alcohol	0.0195439342804553	15
+2-Ethylhexyl 2,3,4,5-Tetrabromobenzoate	2-Ethylhexyl 2,3,4,5-Tetrabromobenzoate	0.1562479719188694	24
+syn-Dechlorane plus	syn-Dechlorane plus	0.029131662470254	35
+anti-Dechlorane plus	anti-Dechlorane plus	0.0101417836289426	26
+alpha-1,2-Dibromo-4-(1,2-dibromoethyl)cyclohexane	alpha-1,2-Dibromo-4-(1,2-dibromoethyl)cyclohexane	0.1375214539529271	17
+1,2,5,6-Tetrabromocyclooctane	1,2,5,6-Tetrabromocyclooctane	0.2352816651454662	23
+1,1-Dibromo-2,3,3,4,4,5-hexachloro-2-cyclopenta-2,4-dien-1-ylcyclooctane	1,1-Dibromo-2,3,3,4,4,5-hexachloro-2-cyclopenta-2,4-dien-1-ylcyclooctane	0.0571191131206845	45
+alpha-Amylcinnamaldehyde	alpha-Amylcinnamaldehyde	0.2267305030045717	25
+Citral (Geranial)	Citral (Geranial)	0.1856789769292757	13
+alpha-Hexylcinnamaldehyde	alpha-Hexylcinnamaldehyde	0.030155943769211	1
+Lilial	Lilial	0.442481112587611	23
+alpha-Amylcinnamyl alcohol	alpha-Amylcinnamyl alcohol	0.1699330715127864	24
+Eugenol	Eugenol	0.739531394673148	14
+Isoeugenol	Isoeugenol	0.7961969028982653	13
+4-Methoxybenzyl alcohol	4-Methoxybenzyl alcohol	0.3918995363790606	11
+Methyleugenol	Methyleugenol	0.6897269457035768	22
+Cinnamyl alcohol	Cinnamyl alcohol	0.240794084748223	21
+Benzyl alcohol	Benzyl alcohol	0.436381443476957	7
+Estragole	Estragole	0.7091236833043304	20
+Benzyl benzoate	Benzyl benzoate	0.7232560284565583	10
+Benzyl cinnamate	Benzyl cinnamate	0.6284369540646387	18
 Benzyl salicylate	Benzyl salicylate	0.8340342419522866	6
-Camphor	Camphor	0.3848047140562334	20
-Eucalyptol	Eucalyptol	0.4159937423829322	28
-Limonene	Limonene	0.1814793925589838	20
-Isomethyl-alpha-ionone	Isomethyl-alpha-ionone	0.2924543369294284	32
-delta-Iraldeine	delta-Iraldeine	0.2361832945030653	27
-Safrole	Safrole	0.7276925338913401	23
-Cashmeran	Cashmeran	0.6050835013107129	50
-Celestolide	Celestolide	0.6790902145479797	36
-Phantolide	Phantolide	0.5117268886610559	34
-Tonalide	Tonalide	0.7957458599380185	37
-Traseolide	Traseolide	0.4406630120148149	16
-Galaxolide	Galaxolide	0.4897870695207494	52
-Aldrin	Aldrin	0.4722372976940649	121
-Endosulfan	Endosulfan	0.3048627027502588	103
-Heptachlor	Heptachlor	0.3408500113684084	104
-cis-Heptachlor epoxide	cis-Heptachlor epoxide	0.6852267020953301	129
-Endosulfan sulphate	Endosulfan sulphate	0.3963694633292561	128
-Endrin ketone	Endrin ketone	0.1540925186822233	149
-trans-Chlordane	trans-Chlordane	0.6905027446476082	114
-cis-Chlordane	cis-Chlordane	0.8255586776283285	125
-Endrin aldehyde	Endrin aldehyde	0.4600244411993994	142
-Endrin	Endrin	0.2102183028529618	109
-4,4'-Dichlorodiphenyldichloroethylene	4,4'-Dichlorodiphenyldichloroethylene	0.6704469392439499	44
-Methoxychlor	Methoxychlor	0.8221536005060271	33
-4,4'-Dichlorodiphenyldichloroethane	4,4'-Dichlorodiphenyldichloroethane	0.6155551067275046	44
-4,4'-Dichlorodiphenyltrichloroethane	4,4'-Dichlorodiphenyltrichloroethane	0.5953335523613787	44
-Tris(4-tert-butylphenyl) phosphate	Tris(4-tert-butylphenyl) phosphate	0.0375477366323797	15
-Tris(1,3-dichloro-2-propyl)phosphate	Tris(1,3-dichloro-2-propyl)phosphate	0.0569500613485956	6
-Tri-o-cresyl phosphate	Tri-o-cresyl phosphate	0.2737676601946223	21
-Tri-m-cresyl phosphate	Tri-m-cresyl phosphate	0.3919221868810664	20
-Tri-p-cresyl-phosphate	Tri-p-cresyl-phosphate	0.3590572027293167	17
-Isodecyl diphenyl phosphate	Isodecyl diphenyl phosphate	0.0302525169473586	6
-Tris(isopropylphenyl)phosphate	Tris(isopropylphenyl)phosphate	0.099973089707574	18
-Tris(3,5-xylenyl)phosphate	Tris(3,5-xylenyl)phosphate	0.3346451696353502	20
-Tris(2-butoxyethyl) phosphate	Tris(2-butoxyethyl) phosphate	0.035316768312394	4
-Tris(2-chloroethyl) phosphate	Tris(2-chloroethyl) phosphate	0.062812445753278	8
-Tris(1-chloro-2-propyl) phosphate	Tris(1-chloro-2-propyl) phosphate	0.0138034580828726	5
-Tris(2-ethylhexyl) phosphate	Tris(2-ethylhexyl) phosphate	0.0170923663287966	3
-Triphenyl phosphate	Triphenyl phosphate	0.2559061999038055	9
-1,2-Benzanthraquinone	1,2-Benzanthraquinone	0.7266709952673507	28
-1,4-Chrysenequinone	1,4-Chrysenequinone	0.791489901395205	50
-1-Nitronaphthalene	1-Nitronaphthalene	0.5583611103119761	31
-2-Methylnaphthalene	2-Methylnaphthalene	0.7921596134356365	13
-1-Methylnaphthalene	1-Methylnaphthalene	0.7697709687769609	11
-2,6-Dimethylnaphthalene	2,6-Dimethylnaphthalene	0.7800722860194869	22
-1,3-Dimethylnaphthalene	1,3-Dimethylnaphthalene	0.574528921517635	23
-1,4-Dimethylnaphthalene	1,4-Dimethylnaphthalene	0.48627665482328	20
-1,5-Dimethylnaphthalene	1,5-Dimethylnaphthalene	0.8527139634468925	23
-1,2-Dimethylnaphthalene	1,2-Dimethylnaphthalene	0.5746049798379735	24
-1,8-Dimethylnaphthalene	1,8-Dimethylnaphthalene	0.766561135058469	24
-7,12-Dimethylbenz[a]anthracene	7,12-Dimethylbenz[a]anthracene	0.6976583743049022	29
-2,4-D butyl ester	2,4-D butyl ester	0.4970517444941189	41
-Chlorferone	Chlorferone	0.0071297354185563	6
-Carbofuran phenol	Carbofuran phenol	0.7636137759691831	30
-Diazinone	Diazinone	0.0078513311782601	2
-Dimethachlor	Dimethachlor	0.1068123286452304	21
-Alachlor	Alachlor	0.271873790620568	25
-Chlorpyrifos	Chlorpyrifos	0.0341230415258377	13
-Fenoxaprop-ethyl	Fenoxaprop-ethyl	0.4270511423809005	36
-Atrazine	Atrazine	0.4884351009623486	24
-Malathion	Malathion	0.4286443378865651	11
-Metazachlor	Metazachlor	0.5637392823104245	23
-Metolachlor	Metolachlor	0.087962369717273	31
-Methyl parathion	Methyl parathion	0.2061837351623499	21
-Pendimethalin	Pendimethalin	0.2478234938735063	49
-Phosmet	Phosmet	0.6581628368659735	8
+Camphor	Camphor	0.3750491402867121	15
+Eucalyptol	Eucalyptol	0.3983259689775495	18
+Limonene	Limonene	0.1294602789688691	17
+Isomethyl-alpha-ionone	Isomethyl-alpha-ionone	0.2805190355284931	27
+delta-Iraldeine	delta-Iraldeine	0.2259654311226358	23
+Safrole	Safrole	0.7045566907337075	18
+Cashmeran	Cashmeran	0.5859183724399895	36
+Celestolide	Celestolide	0.6746375630371619	31
+Phantolide	Phantolide	0.5075150398630448	32
+Tonalide	Tonalide	0.7927764148913639	33
+Traseolide	Traseolide	0.4069434158510415	12
+Galaxolide	Galaxolide	0.4772982012405654	43
+Aldrin	Aldrin	0.4393639959405016	89
+Endosulfan	Endosulfan	0.2512322834481074	54
+Heptachlor	Heptachlor	0.3332999477507622	79
+cis-Heptachlor epoxide	cis-Heptachlor epoxide	0.6683145647076151	86
+Endosulfan sulphate	Endosulfan sulphate	0.3578002876390199	82
+Endrin ketone	Endrin ketone	0.1267197003432928	91
+trans-Chlordane	trans-Chlordane	0.6638414752140115	90
+cis-Chlordane	cis-Chlordane	0.7918988549532371	98
+Endrin aldehyde	Endrin aldehyde	0.4429587813003903	92
+Endrin	Endrin	0.1909513067439957	78
+4,4'-Dichlorodiphenyldichloroethylene	4,4'-Dichlorodiphenyldichloroethylene	0.662711268412427	35
+Methoxychlor	Methoxychlor	0.8205084248661962	31
+4,4'-Dichlorodiphenyldichloroethane	4,4'-Dichlorodiphenyldichloroethane	0.6091552133747902	35
+4,4'-Dichlorodiphenyltrichloroethane	4,4'-Dichlorodiphenyltrichloroethane	0.5901390653443171	36
+Tris(4-tert-butylphenyl) phosphate	Tris(4-tert-butylphenyl) phosphate	0.0363539250828587	14
+Tris(1,3-dichloro-2-propyl)phosphate	Tris(1,3-dichloro-2-propyl)phosphate	0.0487394466099303	3
+Tri-o-cresyl phosphate	Tri-o-cresyl phosphate	0.2720042553864656	16
+Tri-m-cresyl phosphate	Tri-m-cresyl phosphate	0.3865371683749279	16
+Tri-p-cresyl-phosphate	Tri-p-cresyl-phosphate	0.3539649687133504	12
+Isodecyl diphenyl phosphate	Isodecyl diphenyl phosphate	0.0233522228112741	4
+Tris(isopropylphenyl)phosphate	Tris(isopropylphenyl)phosphate	0.0899767144738189	13
+Tris(3,5-xylenyl)phosphate	Tris(3,5-xylenyl)phosphate	0.3327195074931084	19
+Tris(2-butoxyethyl) phosphate	Tris(2-butoxyethyl) phosphate	0.034166051712231	3
+Tris(2-chloroethyl) phosphate	Tris(2-chloroethyl) phosphate	0.0532201420483208	6
+Tris(1-chloro-2-propyl) phosphate	Tris(1-chloro-2-propyl) phosphate	0.0017715094965282	3
+Tris(2-ethylhexyl) phosphate	Tris(2-ethylhexyl) phosphate	0.0157440512643996	2
+Triphenyl phosphate	Triphenyl phosphate	0.2519418645136176	7
+1,2-Benzanthraquinone	1,2-Benzanthraquinone	0.7208009778757404	23
+1,4-Chrysenequinone	1,4-Chrysenequinone	0.7702944642253192	21
+1-Nitronaphthalene	1-Nitronaphthalene	0.5498696930215061	26
+2-Methylnaphthalene	2-Methylnaphthalene	0.791067281573822	11
+1-Methylnaphthalene	1-Methylnaphthalene	0.7687759365161649	9
+2,6-Dimethylnaphthalene	2,6-Dimethylnaphthalene	0.7788440186492716	19
+1,3-Dimethylnaphthalene	1,3-Dimethylnaphthalene	0.5705028619876942	19
+1,4-Dimethylnaphthalene	1,4-Dimethylnaphthalene	0.4851026656615984	18
+1,5-Dimethylnaphthalene	1,5-Dimethylnaphthalene	0.8514485260513156	20
+1,2-Dimethylnaphthalene	1,2-Dimethylnaphthalene	0.5725885913758716	20
+1,8-Dimethylnaphthalene	1,8-Dimethylnaphthalene	0.7659501131419003	22
+7,12-Dimethylbenz[a]anthracene	7,12-Dimethylbenz[a]anthracene	0.6974070739657486	27
+2,4-D butyl ester	2,4-D butyl ester	0.4741559669682646	26
+Carbofuran phenol	Carbofuran phenol	0.7409569323154311	17
+Diazinone	Diazinone	0.007548204413629	2
+Dimethachlor	Dimethachlor	0.0921687990969764	17
+Alachlor	Alachlor	0.154694632988591	16
+Chlorpyrifos	Chlorpyrifos	0.0230826561136804	9
+Fenoxaprop-ethyl	Fenoxaprop-ethyl	0.4044479252903006	24
+Atrazine	Atrazine	0.4734781831127778	17
+Malathion	Malathion	0.3779219158279605	7
+Metazachlor	Metazachlor	0.548462944301807	15
+Metolachlor	Metolachlor	0.0746555647151049	25
+Methyl parathion	Methyl parathion	0.2031733061258092	15
+Pendimethalin	Pendimethalin	0.1945860183190327	29
+Phosmet	Phosmet	0.6264001296907982	6
 Terbufos	Terbufos	0.2334522750961613	3
-Trifluralin	Trifluralin	0.053152031699173	16
-2,2',3,4,4',5',6-Heptabromodiphenyl ether	2,2',3,4,4',5',6-Heptabromodiphenyl ether	0.3189577852984228	71
-2-Chlorobiphenyl	2-Chlorobiphenyl	0.9026045506156016	24
-2,3-Dichlorobiphenyl	2,3-Dichlorobiphenyl	0.7689651788112382	33
-2,2',5-Trichlorobiphenyl	2,2',5-Trichlorobiphenyl	0.7891707388159462	39
-2,4',5-Trichlorobiphenyl	2,4',5-Trichlorobiphenyl	0.8827438598076895	35
-2,2',3,5'-Tetrachlorobiphenyl	2,2',3,5'-Tetrachlorobiphenyl	0.7908276553028472	58
-2,3',4,4'-Tetrachlorobiphenyl	2,3',4,4'-Tetrachlorobiphenyl	0.9038318605408616	42
-2,2',3,4',5,5',6-Heptachlorobiphenyl	2,2',3,4',5,5',6-Heptachlorobiphenyl	0.7872748058767428	76
-2,2',3,4,4',5',6-Heptachlorobiphenyl	2,2',3,4,4',5',6-Heptachlorobiphenyl	0.8397628162803047	83
-2,2',3,3',4,4',5-Heptachlorobiphenyl	2,2',3,3',4,4',5-Heptachlorobiphenyl	0.8134524963836288	95
-2,2',3,4,5'-Pentachlorobiphenyl	2,2',3,4,5'-Pentachlorobiphenyl	0.8479544327041326	63
-2,3,3',4',6-Pentachlorobiphenyl	2,3,3',4',6-Pentachlorobiphenyl	0.8817562358321545	48
-2,2',3,3',4,4',5,5',6-Nonachlorobiphenyl	2,2',3,3',4,4',5,5',6-Nonachlorobiphenyl	0.7797658521862936	107
-2,2',3,5,5',6-Hexachlorobiphenyl	2,2',3,5,5',6-Hexachlorobiphenyl	0.860476969813485	75
-2,2',3,4',5,5',6-Heptachloro-4-methoxybiphenyl	2,2',3,4',5,5',6-Heptachloro-4-methoxybiphenyl	0.7255242775895534	122
-2,2',3',4,4',5-Hexachloro-3-methoxybiphenyl	2,2',3',4,4',5-Hexachloro-3-methoxybiphenyl	0.7285327713210482	128
-2,2',3,4',5,5'-Hexachloro-4-methoxybiphenyl	2,2',3,4',5,5'-Hexachloro-4-methoxybiphenyl	0.7387420002364409	90
-2,2',3,4,5,5'-Hexachlorobiphenyl	2,2',3,4,5,5'-Hexachlorobiphenyl	0.8387203637207835	71
-Praziquantel	Praziquantel	0.0674313478378656	14
-Mexacarbate	Mexacarbate	0.4724911225949857	22
-Aminocarb	Aminocarb	0.5010130343999024	19
-Isocarbophos	Isocarbophos	0.2367322120469925	18
-Acephate	Acephate	0.1157631758821187	8
-Carbaryl	Carbaryl	0.2702052110620964	11
-Mevinphos	Mevinphos	0.1050167267362857	5
-Dicrotophos	Dicrotophos	0.0804244312871083	13
-Monocrotophos	Monocrotophos	0.088157617985564	10
-Dimethoate	Dimethoate	0.5511161086463584	15
-Vamidothion	Vamidothion	0.1089957613329502	14
-Temephos	Temephos	0.2792804892500098	10
-Methomyl	Methomyl	0.5945616818200773	11
-Ethiofencarb	Ethiofencarb	0.1393697172614496	11
-Furathiocarb	Furathiocarb	0.6291332789981446	32
-Methabenzthiazuron	Methabenzthiazuron	0.2984627193278899	8
-Methiocarb	Methiocarb	0.2068404151577237	11
-Tebuthiuron	Tebuthiuron	0.0878416572077489	9
-Propham	Propham	0.3592220706761312	8
+Trifluralin	Trifluralin	0.0518014536884609	13
+2,2',3,4,4',5',6-Heptabromodiphenyl ether	2,2',3,4,4',5',6-Heptabromodiphenyl ether	0.310681856782292	52
+2-Chlorobiphenyl	2-Chlorobiphenyl	0.8162629912503042	20
+2,3-Dichlorobiphenyl	2,3-Dichlorobiphenyl	0.7669059203171495	30
+2,2',5-Trichlorobiphenyl	2,2',5-Trichlorobiphenyl	0.7845446172652886	37
+2,4',5-Trichlorobiphenyl	2,4',5-Trichlorobiphenyl	0.8765558459111668	33
+2,2',3,5'-Tetrachlorobiphenyl	2,2',3,5'-Tetrachlorobiphenyl	0.7822117565786177	51
+2,3',4,4'-Tetrachlorobiphenyl	2,3',4,4'-Tetrachlorobiphenyl	0.901075735698056	38
+2,2',3,4',5,5',6-Heptachlorobiphenyl	2,2',3,4',5,5',6-Heptachlorobiphenyl	0.7837311237787168	68
+2,2',3,4,4',5',6-Heptachlorobiphenyl	2,2',3,4,4',5',6-Heptachlorobiphenyl	0.8333920422213257	67
+2,2',3,3',4,4',5-Heptachlorobiphenyl	2,2',3,3',4,4',5-Heptachlorobiphenyl	0.8068331396189962	79
+2,2',3,4,5'-Pentachlorobiphenyl	2,2',3,4,5'-Pentachlorobiphenyl	0.8409484960541755	54
+2,3,3',4',6-Pentachlorobiphenyl	2,3,3',4',6-Pentachlorobiphenyl	0.8742675210057993	40
+2,2',3,3',4,4',5,5',6-Nonachlorobiphenyl	2,2',3,3',4,4',5,5',6-Nonachlorobiphenyl	0.3154510792009137	72
+2,2',3,5,5',6-Hexachlorobiphenyl	2,2',3,5,5',6-Hexachlorobiphenyl	0.8403631843630756	57
+2,2',3,4',5,5',6-Heptachloro-4-methoxybiphenyl	2,2',3,4',5,5',6-Heptachloro-4-methoxybiphenyl	0.6301617006841065	78
+2,2',3',4,4',5-Hexachloro-3-methoxybiphenyl	2,2',3',4,4',5-Hexachloro-3-methoxybiphenyl	0.6815561444165167	74
+2,2',3,4',5,5'-Hexachloro-4-methoxybiphenyl	2,2',3,4',5,5'-Hexachloro-4-methoxybiphenyl	0.7294364742474629	56
+2,2',3,4,5,5'-Hexachlorobiphenyl	2,2',3,4,5,5'-Hexachlorobiphenyl	0.8209689676261935	57
+Praziquantel	Praziquantel	0.0415042024275216	12
+Mexacarbate	Mexacarbate	0.4456718001315433	16
+Aminocarb	Aminocarb	0.4774942436567537	11
+Isocarbophos	Isocarbophos	0.23011574547947	13
+Acephate	Acephate	0.1021150299864112	3
+Carbaryl	Carbaryl	0.2623394594816379	9
+Mevinphos	Mevinphos	0.104713004236791	4
+Dicrotophos	Dicrotophos	0.0532669336297215	6
+Monocrotophos	Monocrotophos	0.0715575123171377	3
+Dimethoate	Dimethoate	0.5409125849222874	9
+Vamidothion	Vamidothion	0.101997892648759	9
+Temephos	Temephos	0.2779263265577668	8
+Methomyl	Methomyl	0.5662388858966811	2
+Ethiofencarb	Ethiofencarb	0.1358358926142853	7
+Furathiocarb	Furathiocarb	0.4257492648374058	21
+Methabenzthiazuron	Methabenzthiazuron	0.2978100578992844	8
+Methiocarb	Methiocarb	0.2020410992916851	8
+Tebuthiuron	Tebuthiuron	0.0833367618973463	5
+Propham	Propham	0.262604018254557	6
 Propoxur	Propoxur	0.013129285677445	2
-Pyraclostrobin	Pyraclostrobin	0.2740551554651246	16
-Thiobencarb	Thiobencarb	0.7077359902235897	15
-Isoprocarb	Isoprocarb	0.0733766683954499	11
-Linuron	Linuron	0.6597817595196385	51
-Metobromuron	Metobromuron	0.8591328510048829	31
-Monolinuron	Monolinuron	0.7951775843490747	28
+Pyraclostrobin	Pyraclostrobin	0.2723210987672954	15
+Thiobencarb	Thiobencarb	0.6757035675413728	13
+Isoprocarb	Isoprocarb	0.0659806595492956	7
+Linuron	Linuron	0.650299655274528	33
+Metobromuron	Metobromuron	0.8559767070785186	26
+Monolinuron	Monolinuron	0.7851708680523809	20
 Pirimicarb	Pirimicarb	0.5150918128837811	12
-Siduron	Siduron	0.1511319267758743	7
-Bendiocarb	Bendiocarb	0.1025580443035392	5
-Bifenazate	Bifenazate	0.4152366041351092	51
-Carbofuran	Carbofuran	0.1710838130243293	19
-Cycluron	Cycluron	0.1852179008111498	9
-Diethofencarb	Diethofencarb	0.3580135822165844	12
-Diflubenzuron	Diflubenzuron	0.7953404323189878	5
-Fenobucarb	Fenobucarb	0.0723836082270114	9
-Dioxacarb	Dioxacarb	0.4563102503318951	17
-Promecarb	Promecarb	0.1104910343667806	12
-Fenoxycarb	Fenoxycarb	0.0792664161276638	17
-Indoxacarb	Indoxacarb	0.3832866968981598	67
-Ametryn	Ametryn	0.8162246490152327	24
-Azoxystrobin	Azoxystrobin	0.0900230366617561	31
-Benalaxyl	Benalaxyl	0.1985394137797034	16
-Benzoximate	Benzoximate	0.0035217950886336	3
-Boscalid	Boscalid	0.812652209648119	31
-Butafenacil	Butafenacil	0.4918392462198822	11
-Carbetamide	Carbetamide	0.1763455229170261	11
-Carfentrazone-ethyl	Carfentrazone-ethyl	0.1284842199890117	34
-Fenhexamid	Fenhexamid	0.3944385212188911	22
-Flutolanil	Flutolanil	0.7593706323828874	7
-Furalaxyl	Furalaxyl	0.802376943738917	21
-Kresoxim-methyl	Kresoxim-methyl	0.6596348795587048	25
-Mepanipyrim	Mepanipyrim	0.5283352644734994	7
-Mepronil	Mepronil	0.9038776568616712	10
-Metalaxyl	Metalaxyl	0.1754864678365899	25
-Myclobutanil	Myclobutanil	0.1856849859400173	47
-Oxadixyl	Oxadixyl	0.2257353208969565	14
-Picoxystrobin	Picoxystrobin	0.253998644928485	41
-Piperonyl butoxide	Piperonyl butoxide	0.0976262566434825	32
-Prometon	Prometon	0.5335817605173456	12
-Pyracarbolid	Pyracarbolid	0.9159972858595812	5
+Siduron	Siduron	0.1388159224013895	4
+Bendiocarb	Bendiocarb	0.1025431695963231	5
+Bifenazate	Bifenazate	0.3366545814697144	34
+Carbofuran	Carbofuran	0.1546122802395839	11
+Cycluron	Cycluron	0.1846731495070747	6
+Diethofencarb	Diethofencarb	0.3417948518126384	8
+Diflubenzuron	Diflubenzuron	0.7950680292880509	5
+Fenobucarb	Fenobucarb	0.0694973007846138	7
+Dioxacarb	Dioxacarb	0.455140231310754	17
+Promecarb	Promecarb	0.0947802941946999	9
+Fenoxycarb	Fenoxycarb	0.0761231583917912	12
+Indoxacarb	Indoxacarb	0.3091732724669483	40
+Ametryn	Ametryn	0.815353084805138	22
+Azoxystrobin	Azoxystrobin	0.0832256882779464	23
+Benalaxyl	Benalaxyl	0.1907953724879653	15
+Benzoximate	Benzoximate	0.0033781364523796	3
+Boscalid	Boscalid	0.7964151096902077	26
+Butafenacil	Butafenacil	0.4917339422075072	11
+Carbetamide	Carbetamide	0.1653616818739754	9
+Carfentrazone-ethyl	Carfentrazone-ethyl	0.0945667195810036	28
+Fenhexamid	Fenhexamid	0.3849743336109443	18
+Flutolanil	Flutolanil	0.7593706323828876	7
+Furalaxyl	Furalaxyl	0.8010092796430771	19
+Kresoxim-methyl	Kresoxim-methyl	0.6204323786502776	18
+Mepanipyrim	Mepanipyrim	0.5281096458962076	7
+Mepronil	Mepronil	0.9022350727642736	9
+Metalaxyl	Metalaxyl	0.1582245842898632	19
+Myclobutanil	Myclobutanil	0.1633788738491529	33
+Oxadixyl	Oxadixyl	0.1510876552796054	10
+Picoxystrobin	Picoxystrobin	0.2186119646952953	30
+Piperonyl butoxide	Piperonyl butoxide	0.0507671469027992	17
+Prometon	Prometon	0.5311353052434469	11
+Pyracarbolid	Pyracarbolid	0.9096637541615196	5
 Pyrimethanil	Pyrimethanil	0.4080527984965693	12
-Pyriproxyfen	Pyriproxyfen	0.1477861193888209	16
-Quinoxyfen	Quinoxyfen	0.2114317429183025	28
-Triadimefon	Triadimefon	0.4160679193059463	33
-Trifloxystrobin	Trifloxystrobin	0.6103744110557114	37
-Zoxamide	Zoxamide	0.850646388112566	25
-Secbumeton	Secbumeton	0.3393703981876441	20
-Fenazaquin	Fenazaquin	0.2878663963201034	18
-Amitraz	Amitraz	0.480518148882609	33
-Tebufenpyrad	Tebufenpyrad	0.4280569926754292	49
-Fludioxonil	Fludioxonil	0.8056654160036489	19
-Terbumeton	Terbumeton	0.4596620490661035	16
-Rotenone	Rotenone	0.5411811080584259	37
-Enilconazole	Enilconazole	0.1878627504473405	16
-Acibenzolar-S-methyl	Acibenzolar-S-methyl	0.2166003405327937	18
+Pyriproxyfen	Pyriproxyfen	0.1447181585148485	10
+Quinoxyfen	Quinoxyfen	0.2106408826763761	25
+Triadimefon	Triadimefon	0.4088669325195507	26
+Trifloxystrobin	Trifloxystrobin	0.5190630772247615	23
+Zoxamide	Zoxamide	0.8493063473468353	21
+Secbumeton	Secbumeton	0.3308114815695661	19
+Fenazaquin	Fenazaquin	0.2602511595792119	17
+Amitraz	Amitraz	0.4679483495364536	27
+Tebufenpyrad	Tebufenpyrad	0.3957750464827033	37
+Fludioxonil	Fludioxonil	0.8033247974416385	15
+Terbumeton	Terbumeton	0.4574693994954873	14
+Rotenone	Rotenone	0.5130387366298046	13
+Enilconazole	Enilconazole	0.152735567361257	15
+Acibenzolar-S-methyl	Acibenzolar-S-methyl	0.2131081343362036	16
 Bupirimate	Bupirimate	0.6395685964565879	3
-Buprofezin	Buprofezin	0.5078421924439166	31
-Carboxin	Carboxin	0.7901602734090946	16
-Ethofumesate	Ethofumesate	0.6003249189226497	20
-Fenamidone	Fenamidone	0.1206105427074543	20
-Fipronil	Fipronil	0.8624745305940877	26
-Flufenacet	Flufenacet	0.3094230212759561	19
-Mefenacet	Mefenacet	0.2010134120942445	17
-Methoprotryne	Methoprotryne	0.0782045344752608	20
-Metribuzin	Metribuzin	0.2229245846627122	16
-Prometryn	Prometryn	0.6597695396798163	14
-Thiofanox	Thiofanox	0.0192320350366293	2
-Cyazofamid	Cyazofamid	0.1567226976140341	8
-Ethiprole	Ethiprole	0.4810375458375112	23
-Pyridaben	Pyridaben	0.5252186185966888	18
-Tricyclazole	Tricyclazole	0.8694075785106143	22
-Simetryn	Simetryn	0.8909852529881714	19
-Sulfentrazone	Sulfentrazone	0.6370016121288055	27
-Terbutryn	Terbutryn	0.3878322056982017	14
-Diclobutrazol	Diclobutrazol	0.3590094676635683	32
-Diniconazole	Diniconazole	0.3574479321768802	14
-Epoxiconazole	Epoxiconazole	0.1237555416213162	38
-Etoxazole	Etoxazole	0.3312133959569777	75
-Fenarimol	Fenarimol	0.5458262113221779	46
-Fluquinconazole	Fluquinconazole	0.1243578386850533	21
-Flusilazole	Flusilazole	0.3314103956506187	27
-Flutriafol	Flutriafol	0.4287167747925733	11
-Hexaconazole	Hexaconazole	0.4008408562978354	61
-Nuarimol	Nuarimol	0.5605732898572492	65
-Paclobutrazol	Paclobutrazol	0.5014127548725813	31
-Penconazole	Penconazole	0.1505510460650332	41
-Tebuconazole	Tebuconazole	0.5624966094223774	28
-Tetraconazole	Tetraconazole	0.1045552711952458	31
-Metconazole	Metconazole	0.7421474325302181	64
-Triflumizole	Triflumizole	0.3541717778455137	48
-Triticonazole	Triticonazole	0.4900791615449469	100
-Ipconazole	Ipconazole	0.6924413921288353	74
+Buprofezin	Buprofezin	0.4895686698180223	19
+Carboxin	Carboxin	0.7885194893435347	13
+Ethofumesate	Ethofumesate	0.5898690916556171	14
+Fenamidone	Fenamidone	0.1189132934339773	16
+Fipronil	Fipronil	0.862052072147914	23
+Flufenacet	Flufenacet	0.2306018400378231	16
+Mefenacet	Mefenacet	0.1923504864781831	15
+Methoprotryne	Methoprotryne	0.0767301357221437	15
+Metribuzin	Metribuzin	0.1823605525388285	7
+Prometryn	Prometryn	0.6597695396798161	14
+Cyazofamid	Cyazofamid	0.1406403884376446	5
+Ethiprole	Ethiprole	0.4419487851454519	11
+Pyridaben	Pyridaben	0.5246422686237704	16
+Tricyclazole	Tricyclazole	0.8671835699185604	15
+Simetryn	Simetryn	0.8784744046558178	16
+Sulfentrazone	Sulfentrazone	0.6298873392562667	21
+Terbutryn	Terbutryn	0.3873807064072352	13
+Diclobutrazol	Diclobutrazol	0.3519661057916621	25
+Diniconazole	Diniconazole	0.3552860479671341	12
+Epoxiconazole	Epoxiconazole	0.1121875554934016	28
+Etoxazole	Etoxazole	0.3166546191461432	53
+Fenarimol	Fenarimol	0.5431192123468135	37
+Fluquinconazole	Fluquinconazole	0.1242172170755046	20
+Flusilazole	Flusilazole	0.3279290688515918	16
+Flutriafol	Flutriafol	0.4272334583581941	11
+Hexaconazole	Hexaconazole	0.3771150883403612	36
+Nuarimol	Nuarimol	0.5546296415336353	46
+Paclobutrazol	Paclobutrazol	0.4954257891452944	23
+Penconazole	Penconazole	0.1385925204688171	32
+Tebuconazole	Tebuconazole	0.5604044412574559	24
+Tetraconazole	Tetraconazole	0.1010642292821126	25
+Metconazole	Metconazole	0.725730741031501	42
+Triflumizole	Triflumizole	0.3291099430016307	33
+Triticonazole	Triticonazole	0.4247708100458819	56
+Ipconazole	Ipconazole	0.6683824129676478	45
 Spirodiclofen	Spirodiclofen	0.0313439500583982	3
-Spiromesifen	Spiromesifen	0.1192770420033771	32
-Spirotetramat	Spirotetramat	0.1017801402820636	18
-17-alpha-Ethynylestradiol	17-alpha-Ethynylestradiol	0.3358986128015088	61
-Bisphenol A	Bisphenol A	0.3905768693746854	13
-4-tert-Octylphenol	4-tert-Octylphenol	0.8173039731210908	12
-Estrone	Estrone	0.8426294229429094	58
-17-beta-Estradiol	17-beta-Estradiol	0.8433504611803545	40
-Progesterone	Progesterone	0.3835907505029575	79
-Testosterone	Testosterone	0.415313577920414	77
+Spiromesifen	Spiromesifen	0.083509983360438	24
+Spirotetramat	Spirotetramat	0.073971316809155	11
+17-alpha-Ethynylestradiol	17-alpha-Ethynylestradiol	0.3058618977031245	49
+Bisphenol A	Bisphenol A	0.38841943943227	12
+4-tert-Octylphenol	4-tert-Octylphenol	0.8165849700578953	12
+Estrone	Estrone	0.827414263134048	45
+17-beta-Estradiol	17-beta-Estradiol	0.8291863895807443	34
+Progesterone	Progesterone	0.347421147313457	63
+Testosterone	Testosterone	0.3545633532445171	54
