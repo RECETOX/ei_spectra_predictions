@@ -1,0 +1,322 @@
+name
+beta-Hexachlorocyclohexane
+epsilon-Hexachlorocyclohexane
+Lindane
+delta-Hexachlorocyclohexane
+alpha-1,2,3,4,5,6-Hexachlorocyclohexane
+alpha-1,2-Dibromo-4-(1,2-dibromoethyl)cyclohexane
+1,2-Benzanthraquinone
+Ethiprole
+Tebuthiuron
+Pyraclostrobin
+Octrizole
+Carfentrazone-ethyl
+Bumetrizole
+Sulfentrazone
+2,4-Di-tert-butyl-6-(5-chloro-2H-benzotriazol-2-yl)phenol
+Cyazofamid
+Fipronil
+4,4'-Dichlorodiphenyldichloroethane
+2,2',3,5'-Tetrachlorobiphenyl
+2,2',3,4',5,5'-Hexachloro-4-methoxybiphenyl
+Carbetamide
+2,3,3',4',6-Pentachlorobiphenyl
+Mepronil
+2,3,3',4,5-Pentachlorobiphenyl
+Difenoconazole
+Benzoximate
+2,4,4'-Trichlorobiphenyl
+Pendimethalin
+Furalaxyl
+Mepanipyrim
+2,3',4,6-Tetrachlorobiphenyl
+Spirotetramat
+2,4'-Dichlorodiphenyltrichloroethane
+2,2',5-Trichlorobiphenyl
+Transfluthrin
+Fenobucarb
+Promecarb
+Spirodiclofen
+Pyridaben
+2,3,4,5,6-Pentabromoethylbenzene
+Flusilazole
+Carboxin
+2,3,3',4',5',6-Hexachlorobiphenyl
+2,2',5,5'-Tetrachlorobiphenyl
+2,3',5',6-Tetrachlorobiphenyl
+Ethiofencarb
+2,2',3,3',4,5',6,6'-Octachlorobiphenyl
+Bromuconazole
+Fenoxycarb
+Triflumizole
+2-Ethylhexyl 2,3,4,5-Tetrabromobenzoate
+Myclobutanil
+Methoxychlor
+Flufenacet
+Picoxystrobin
+2,4,6-Trichlorobiphenyl
+Bisphenol A
+2,2',3,4,4',5',6-Heptabromodiphenyl ether
+Aminocarb
+4-tert-Octylphenol
+Etoxazole
+Butafenacil
+2,2',3,3',4,4',5,5',6-Nonachlorobiphenyl
+2,3,3',4,5,6-Hexachlorobiphenyl
+2,4'-Dichlorodiphenyldichloroethane
+Flutriafol
+Siduron
+2,3,4,5,6-Pentabromobenzyl alcohol
+2,2',3,4',5,5',6-Heptachloro-4-methoxybiphenyl
+2,2',3,4,4',5',6-Heptachlorobiphenyl
+2,2',4,5,5'-Pentachlorobiphenyl
+2-Chlorobiphenyl
+Monolinuron
+Diethofencarb
+Tetraconazole
+4-Methoxybenzyl alcohol
+2,2',4,4',5,5'-Hexachlorobiphenyl
+3,3',4,5,5'-Pentachlorobiphenyl
+Pyriproxyfen
+Fenarimol
+Butylated hydroxytoluene
+Iprovalicarb
+Bifenthrin
+Trifloxystrobin
+2,2',3,4,5'-Pentachlorobiphenyl
+2,3,4,5,6-Pentabromotoluene
+2,3',4,4',5',6-Hexachlorobiphenyl
+Triticonazole
+Fenoxaprop-ethyl
+Flutolanil
+Tebuconazole
+2,2',3,4,5,5',6-Heptachlorobiphenyl
+Enilconazole
+Isoprocarb
+Thiobencarb
+Dimethomorph
+Diflubenzuron
+Amitraz
+2,3',4,4'-Tetrachlorobiphenyl
+Paclobutrazol
+2,2',3,3',4,4',5-Heptachlorobiphenyl
+2,2',3,4,4',5'-Hexachlorobiphenyl
+Benzophenone
+2,3,5,6-Tetrabromo-p-xylene
+Fenpropimorph
+Nuarimol
+Dimethachlor
+Dioxacarb
+Lilial
+Benzyl benzoate
+Zoxamide
+2,3,3',4',5,5',6-Heptachlorobiphenyl
+Metazachlor
+Propiconazole
+Hexaconazole
+2,2',3,4',5-Pentachlorobiphenyl
+2,3',4,4',5-Pentachlorobiphenyl
+2,2',3',4,4',5-Hexachloro-3-methoxybiphenyl
+2,2',3,4,5,5'-Hexachlorobiphenyl
+4,4'-Dichlorodiphenyldichloroethylene
+2,2',3,4',5,5',6-Heptachlorobiphenyl
+Cyproconazole
+2,2',3,5,5',6-Hexachlorobiphenyl
+Dicofol
+2,4-D butyl ester
+Diclobutrazol
+Oxadixyl
+2,4',5-Trichlorobiphenyl
+Indoxacarb
+Fenhexamid
+Bitertanol
+Bifenazate
+Propham
+2,2',3,4,4',5,5'-Heptachlorobiphenyl
+Azoxystrobin
+Penconazole
+Metobromuron
+2,3,4,5-Tetrabromo-6-chlorotoluene
+Benzyl alcohol
+Metolachlor
+4-Methylbenzophenone
+Boscalid
+Alachlor
+Triclosan
+para-Terphenyl
+Linuron
+2,3-Dichlorobiphenyl
+Fenpropathrin
+Methiocarb
+Isocarbophos
+Mexacarbate
+Pyracarbolid
+4,4'-Dichlorodiphenyltrichloroethane
+2,3,3',4',5,6-Hexachlorobiphenyl
+Benzyl salicylate
+2,4'-Dichlorodiphenyldichloroethylene
+Tefluthrin
+Pyrimethanil
+Trifluralin
+Methyleugenol
+Propargite
+Tebufenpyrad
+Piperonyl butoxide
+Fludioxonil
+Bendiocarb
+Safrole
+1,2,7,9-Tetrachlorodibenzofuran
+Octachlorodibenzofuran
+Galaxolide
+Acibenzolar-S-methyl
+Methabenzthiazuron
+Mefenacet
+Tricyclazole
+Thiofanox
+Benalaxyl
+Vamidothion
+Fenamidone
+Metalaxyl
+alpha-Hexylcinnamaldehyde
+alpha-Amylcinnamaldehyde
+Benzyl cinnamate
+Diniconazole
+alpha-Amylcinnamyl alcohol
+Cinnamyl alcohol
+Carbofuran
+Furathiocarb
+Ethofumesate
+Carbofuran phenol
+Chlorferone
+Fenazaquin
+Fluquinconazole
+Bupirimate
+trans-Cyphenothrin
+cis-Cyphenothrin
+Flucythrinate
+Mevinphos
+Spiromesifen
+Malathion
+cis-Cypermethrin
+trans-Cypermethrin
+cis-Fenvalerate
+trans-Fenvalerate
+Deltamethrin
+cis-Cyfluthrin_isomer2
+cis-Cyfluthrin_isomer1
+trans-Cyfluthrin_Isomer2
+trans-Cyfluthrin_isomer1
+cis-Permethrin
+trans-Permethrin
+cis-Phenothrin
+trans-Phenothrin
+cis-Prallethrin
+cis-Allethrin
+lambda-Cyhalothrin
+2,3-Benzofluorene
+Celestolide
+Traseolide
+Phantolide
+Phosmet
+Rotenone
+trans-Tetramethrin
+cis-Tetramethrin
+1,5-Dimethylnaphthalene
+Carbaryl
+Acenaphthene
+2,6-Dimethylnaphthalene
+2-Methylnaphthalene
+1,2-Dimethylnaphthalene
+1-Methylnaphthalene
+1-Nitronaphthalene
+1,3-Dimethylnaphthalene
+1,8-Dimethylnaphthalene
+1,4-Dimethylnaphthalene
+Cycluron
+Methomyl
+Dimethoate
+Terbufos
+Endosulfan
+Tris(1,3-dichloro-2-propyl)phosphate
+Tri-p-cresyl-phosphate
+Tris(2-ethylhexyl) phosphate
+Tris(2-chloroethyl) phosphate
+Monocrotophos
+Tris(1-chloro-2-propyl) phosphate
+Tris(isopropylphenyl)phosphate
+Tris(3,5-xylenyl)phosphate
+Tris(4-tert-butylphenyl) phosphate
+Tri-m-cresyl phosphate
+Isodecyl diphenyl phosphate
+Tri-n-butyl-phosphate
+Dicrotophos
+Tris(2-butoxyethyl) phosphate
+Triphenyl phosphate
+Tri-o-cresyl phosphate
+Endosulfan sulphate
+Diazinone
+Methyl parathion
+Chlorpyrifos
+Temephos
+1,2,5,6-Tetrabromocyclooctane
+1,1-Dibromo-2,3,3,4,4,5-hexachloro-2-cyclopenta-2,4-dien-1-ylcyclooctane
+Pirimicarb
+Cashmeran
+Spiroxamine
+Quinoxyfen
+Acephate
+Eucalyptol
+cis-Heptachlor epoxide
+7,12-Dimethylbenz[a]anthracene
+1-Methylphenanthrene
+1,4-Chrysenequinone
+Triadimenol
+Propoxur
+2-Bromoallyl(2,4,6-tribromophenyl) ether
+Allyl 2,4,6-tribromophenyl ether
+Triadimefon
+Estragole
+Kresoxim-methyl
+Isoeugenol
+2-tert-Butyl-4-methoxyphenol
+Eugenol
+Endrin
+Camphor
+Mirex
+Endrin aldehyde
+Enzacamene
+Endrin ketone
+Isomethyl-alpha-ionone
+delta-Iraldeine
+Retene
+Ipconazole
+Citral (Geranial)
+Limonene
+Metconazole
+Chlorpyrifos oxon
+17-alpha-Ethynylestradiol
+Estrone
+Testosterone
+Progesterone
+17-beta-Estradiol
+Epoxiconazole
+Praziquantel
+Tonalide
+Buprofezin
+Metribuzin
+Prometryn
+Terbumeton
+Methoprotryne
+Terbuthylazine
+Terbutryn
+Prometon
+Simetryn
+Atrazine
+Ametryn
+Secbumeton
+trans-Chlordane
+cis-Chlordane
+Heptachlor
+Aldrin
+syn-Dechlorane plus
+anti-Dechlorane plus
