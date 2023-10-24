@@ -8,7 +8,6 @@ reference_file <- file.path('analysis/data/experimental/RECETOX_GC-EI_MS_2020102
 simulated_file <- file.path('analysis/data/filtered/matchms_filtering_default_filter_1%_all_peaks.msp')
 matchms_match <- read.table(file.path('analysis/data/matchms_top5_comparison.tsv'), header = TRUE, sep = "\t", fill = TRUE)
 
-analysis/R_scripts/output_file.tsv
 # Check for NA values in the 'query' column
 if (any(is.na(matchms_match$query))) {
   print("There are NA values in the 'query' column.")
@@ -24,8 +23,6 @@ data_reference <- Spectra(reference_file, source = MsBackendMsp::MsBackendMsp())
 data_simulated <- Spectra(simulated_file, source = MsBackendMsp::MsBackendMsp())
 
 sim_names <- data_simulated$name
-ref_names <- data_reference$name
-
 ref_names <- data_reference$name
 
 name_combination <- expand.grid(sim_names, ref_names)
