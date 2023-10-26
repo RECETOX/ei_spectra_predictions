@@ -25,11 +25,12 @@ match_spectra <- function(reference_file, simulated_file, output_file, ppm = 5) 
   # Convert matched spectra to data frame
   matched_spectra_df <- spectraData(matched_spectra, columns = c("name", "target_name", "reverse_score", "score", "presence_ratio", "matched_peaks_count"))
   matched_spectra_df <- as.data.frame(matched_spectra_df)
+  write.table(matched_spectra_df, file = output_file, sep = "\t", quote = FALSE, row.names = FALSE)
 
   # Write results to output file
   matched_spectra_df[is.na(matched_spectra_df[[3]]), 3] <- 0
 
-  write.table(matched_spectra_df, file = output_file, sep = "\t", quote = FALSE, row.names = FALSE)
+  write.table(matched_spectra_df, file = paste(output_file,"filterNA",sep = '_'), sep = "\t", quote = FALSE, row.names = FALSE)
 }
 
 base_path <- 'analysis/data'
