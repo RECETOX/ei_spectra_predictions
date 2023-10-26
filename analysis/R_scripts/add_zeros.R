@@ -30,17 +30,11 @@ add_zeros <- function(out_file, match_file, reference_file, simulated_file, quer
   for (i in 1:nrow(name_combination)) {
     matches <- match_file[match_file[query] == as.character(name_combination$Var1[i]) & match_file[reference] == as.character(name_combination$Var2[i]),]
     if(nrow(matches) == 0) {
-      if(length(names(match_file)) == 6) {
-        new_row <- data.frame(name_combination$Var1[i], name_combination$Var2[i], 0, 0, 0, 0)
-        names(new_row) <- names(match_file)
-        zero_scores <- rbind(zero_scores, new_row)
-      }  else {
-        new_row <- data.frame(name_combination$Var1[i], name_combination$Var2[i], 0, 0)
-        names(new_row) <- names(match_file)
-        zero_scores <- rbind(zero_scores, new_row)
-      }
+       new_row <- data.frame(name_combination$Var1[i], name_combination$Var2[i], 0, 0)
+       zero_scores <- rbind(zero_scores, new_row)
     }
   }
+  
 
   names(zero_scores) <- c(query, reference, scores, matches)
   match_file <- rbind(match_file, zero_scores)
@@ -51,14 +45,20 @@ add_zeros <- function(out_file, match_file, reference_file, simulated_file, quer
 reference_file <- file.path('analysis/data/experimental/RECETOX_GC-EI_MS_20201028_norm_matchms.msp')
 simulated_file <- file.path('analysis/data/filtered/matchms_filtering_default_filter_1%_all_peaks.msp')
 
-# for MatchMS
-# matchms_match <- read.table(file.path('analysis/data/matchms_top5_comparison.tsv'), header = TRUE, sep = "\t", fill = TRUE)
-# out_file_matchms = file.path('analysis/R_scripts/matchms_top5_comparison_with_zeros.tsv')
-# add_zeros(out_file_matchms, as.data.frame(matchms_match), reference_file, simulated_file, 
-#  "query", "reference", "CosineHungarian_0.01_0.0_1.0_scores", "CosineHungarian_0.01_0.0_1.0_matches")
+# for MatchMS top 5
+matchms_match <- read.table(file.path('analysis/data/matchms_top5_comparison.tsv'), header = TRUE, sep = "\t", fill = TRUE)
+out_file_matchms = file.path('analysis/data/matchms_top5_comparison_with_zeros.tsv')
+add_zeros(out_file_matchms, matchms_match, reference_file, simulated_file, 
+ "query", "reference", "CosineHungarian_0.01_0.0_1.0_scores", "CosineHungarian_0.01_0.0_1.0_matches")
 
-# for MatchSpectra
-mspectra_match <- read.table(file.path('analysis/data/outputs/matchspectra_R/metaboannotation_top5.tsv'), header = TRUE, sep = "\t", fill = TRUE)
-out_file_mspectra = file.path('analysis/R_scripts/metaboannotation_top5_with_zeros.tsv')
-add_zeros(out_file_mspectra, as.data.frame(mspectra_match), reference_file, simulated_file,
- "name", "target_name", "score", "matched_peaks_count")
+# for MatchMS all peaks
+matchms_match <- read.table(file.path('analysis/data/matchms_all_peaks.tsv'), header = TRUE, sep = "\t", fill = TRUE)
+out_file_matchms = file.path('analysis/data/matchms_all_peaks_with_zeros.tsv')
+add_zeros(out_file_matchms, matchms_match, reference_file, simulated_file, 
+ "query", "reference", "CosineHungarian_0.01_0.0_1.0_scores", "CosineHungarian_0.01_0.0_1.0_matches")
+
+# # for MatchSpectra
+# mspectra_match <- read.table(file.path('analysis/data/outputs/matchspectra_R/metaboannotation_top5.tsv'), header = TRUE, sep = "\t", fill = TRUE)
+# out_file_mspectra = file.path('analysis/R_scripts/metaboannotation_top5_with_zeros.tsv')
+# add_zeros(out_file_mspectra, mspectra_match, reference_file, simulated_file,
+#  "name", "target_name", "score", "matched_peaks_count")
