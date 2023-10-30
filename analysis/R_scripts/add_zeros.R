@@ -34,9 +34,8 @@ add_zeros <- function(out_file, match_file, reference_file, simulated_file, quer
        zero_scores <- rbind(zero_scores, new_row)
     }
   }
-  
+  names(zero_scores) <- names(match_file)
 
-  names(zero_scores) <- c(query, reference, scores, matches)
   match_file <- rbind(match_file, zero_scores)
   write.table(match_file, file = out_file)
 }
