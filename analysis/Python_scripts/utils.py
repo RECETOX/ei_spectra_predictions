@@ -45,11 +45,11 @@ def append_classes(df, left_on):
         "S": [has_atom(m, 'S') for m in molecules],
         "P": [has_atom(m, 'P') for m in molecules],
         "Si": [has_atom(m, 'Si') for m in molecules],
-        "C,O,N,H": [has_organic_atoms(m) for m in molecules],
+#        "C,O,N,H": [has_organic_atoms(m) for m in molecules],
     })
     merged_df = pd.merge(df, class_names, left_on=left_on, right_on='molname')
     return merged_df
 
 # Define a function to map the true columns to a list of names
 def get_true_names(row, df):
-    return [col for col in df.columns[11:18] if row[col]]
+    return [col for col in df.columns[11:17] if row[col]]
