@@ -1,5 +1,6 @@
 import pandas as pd
 from rdkit import Chem
+from itertools import combinations
 
 def is_spectrum_for_compound(compund_name, spectrum_name):
     options = [compund_name + x for x in ["", "_isomer1", "_isomer2", " isomer 1", " isomer 2"]]
@@ -45,11 +46,35 @@ def append_classes(df, left_on):
         "S": [has_atom(m, 'S') for m in molecules],
         "P": [has_atom(m, 'P') for m in molecules],
         "Si": [has_atom(m, 'Si') for m in molecules],
-#        "C,O,N,H": [has_organic_atoms(m) for m in molecules],
+        "C,O,N,H": [has_organic_atoms(m) for m in molecules],
     })
     merged_df = pd.merge(df, class_names, left_on=left_on, right_on='molname')
     return merged_df
 
 # Define a function to map the true columns to a list of names
 def get_true_names(row, df):
-    return [col for col in df.columns[11:17] if row[col]]
+    return [col for col in df.columns[11:18] if row[col]]
+
+# Function to split values with commas and create new rows
+def split_and_add_rows(df, column_name, split_by):
+    df_copy = df.copy()
+    df_copy[column_name] = df_copy[column_name].str.split(split_by)
+    df_copy = df_copy.explode(column_name).reset_index(drop=True)
+    return df_copy
+
+def generate_combinations(df, column_name):
+    new_rows = []
+    for index, row in df.iterrows():
+        values = row[column_name].split(', ')
+        all_combos = []
+        
+        for r in range(2, len(values) + 1):
+            for combo in combinations(values, r):
+                all_combos.append(', '.join(combo))
+        
+        for combo in all_combos:
+            new_row = row.copy()
+            new_row[column_name] = combo
+            new_rows.append(new_row)
+    
+    return pd.DataFrame(new_rows).reset_index(drop=True)
