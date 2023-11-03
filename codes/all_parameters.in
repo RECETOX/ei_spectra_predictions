@@ -1,9 +1,9 @@
 #########################
 # HPC PARAMETERS
 #########################
-WALLTIME = 24:00:00
+WALLTIME = 48:00:00
 NCPUS = 2
-MEM = 10gb
+MEM = 8gb
 SCRATCH_LOCAL = 100gb
 threshold_traj = 96 (in %)
 USER_EMAIL = wudmir.rojas@recetox.muni.cz
@@ -22,7 +22,7 @@ BIN = /storage/brno2/home/wrojasv/MassSpec/QC_Spectra_Predictions/source_code_gi
 # QCXMS PARAMETERS
 #########################
 QC_Program : xTB
-QC_Level   : xTB2 
+QC_Level   : xTB1 
 ntraj      : 
 tmax       : 20.00 ps
 tinit      : 500.00 K

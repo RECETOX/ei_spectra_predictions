@@ -16,13 +16,11 @@ for dir in classes/*/*/*; do
    COUNTER_TMP_UC=0
    COUNTER_TMP_C=0
    
-  #  if [[ $basedir == "Optimization" ]]; then
-  #     cd $work_dir/$dir
-  #     echo `pwd`
-  #     rm *.o*
-  #     rm *.pbs
-  #     rm *.inp 
-  #  fi
+   if [[ $basedir == "Optimization" ]]; then
+      cd $work_dir/$dir
+      echo `pwd`
+      rm *.o*
+   fi
 
    if [[ $basedir == "Spectra" ]]; then
       let COUNTER_TOTAL++
