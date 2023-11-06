@@ -180,7 +180,7 @@ def write_qcxms_input_from_template(mylist, template_name, file):
         message.write(content)
 
 
-#TODO: multiplicity can be obtained from mol so doesn't need to be passed as a parameter
+# TODO: multiplicity can be obtained from mol so doesn't need to be passed as a parameter
 def write_gamess_input(multiplicity, mol, molname, mol_input_path):
     conf = generate_3D_mol(mol)
     mol = AllChem.AddHs(mol)
@@ -210,7 +210,7 @@ if __name__ == "__main__":
     for mol in molfile:
         chem_class, inchikey, n_atoms, molname = get_props(mol)
 
-        #TODO: Extract function to construct the paths as they are often re-used
+        # TODO: Extract function to construct the paths as they are often re-used
         proj_dir = Path(args.project_dirname)
         Path.mkdir(proj_dir, parents=True, exist_ok=True)
 
