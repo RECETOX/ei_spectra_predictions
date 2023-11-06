@@ -15,4 +15,5 @@ dependencies:
 - python==3.10
 - rdkit
 - seaborn
+- python-kaleido
 
