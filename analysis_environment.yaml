@@ -1,0 +1,18 @@
+name: rms
+channels:
+- bioconda
+- conda-forge
+- pkgs/main
+dependencies:
+- bioconductor-metaboannotation
+- bioconductor-msbackendmsp
+- ipykernel
+- matchms==0.23.1
+- nbformat
+- numba
+- pandas
+- plotly
+- python==3.10
+- rdkit
+- seaborn
+
