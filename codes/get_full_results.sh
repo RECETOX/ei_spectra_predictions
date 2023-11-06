@@ -21,11 +21,7 @@ for dir in classes/*/*/*; do
     tmp=${dir#*/}
     class_name=${tmp%%/*}
     if [ -f "tmpqcxms.res" ]; then
-      echo "exist .res" $class_name" --> " $inchikey 
-      echo "exist .res" $class_name" --> " $inchikey >> $work_dir/info_get_msp_debug.log
       if [ ! -f "result.jdx" ]; then
-        echo "Does not exist .res" $class_name" --> " $inchikey
-        echo "Does not exist .res" $class_name" --> " $inchikey >> $work_dir/info_get_msp_debug.log
         $bin/plotms -f tmpqcxms.res 
       fi
       rm -f result.csv
