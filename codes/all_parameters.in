@@ -12,7 +12,7 @@ USER_EMAIL = wudmir.rojas@recetox.muni.cz
 #########################
 OPTTOL = 0.0005
 NSTEP = 100 
-GBASIS = N21 
+GBASIS = N31 
 NGAUSS = 6
 #########################
 # SOURCE PATH
