@@ -33,6 +33,10 @@ match_spectra <- function(reference_file, simulated_file, output_file, ppm = 5) 
   write.table(matched_spectra_df, file = paste(output_file,"filterNA",sep = '_'), sep = "\t", quote = FALSE, row.names = FALSE)
 }
 
+##############################################
+# Simulated spectra must be in MS-LIMA format.
+##############################################
+
 # matching for all peaks
 reference_file_all_peaks <- file.path('analysis/data/experimental/RECETOX_GC-EI_MS_20201028.msp')
 simulated_file_all_peaks <- file.path('analysis/data/filtered/simulated_matchms_filter_1%I_all_peaks.msp')
