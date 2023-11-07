@@ -1,8 +1,0 @@
-{
-    "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true,
-    "git.ignoreLimitWarning": true,
-    "jupyter.kernels.excludePythonEnvironments": [
-        "~/micromamba/envs/ei-spectra-predictions/bin/python"
-    ]
-}
