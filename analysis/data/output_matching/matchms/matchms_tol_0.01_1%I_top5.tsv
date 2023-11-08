@@ -78,6 +78,7 @@ Pyrene	Pyrene	0.9410392612669211	2
 Atrazine	Pyrene	0.05042029256609674	1
 para-Terphenyl	para-Terphenyl	0.9222347316702998	2
 Triphenylene	para-Terphenyl	0.16591657510886548	2
+Benzanthracene/Benzophenanthrene	para-Terphenyl	0.16700383574206867	2
 Benzo[ghi]fluoranthene	para-Terphenyl	0.07765974186418327	1
 Terbuthylazine	para-Terphenyl	0.15915851127340286	3
 Fluoranthene	Retene	0.24915230772313204	2
@@ -90,9 +91,11 @@ Pyrene	Benzo[b]naphtho[2,1-d]thiophene	0.0898792004769896	1
 Atrazine	2,3-Benzofluorene	0.76374660206701	2
 Benzo[ghi]fluoranthene	Benzo[ghi]fluoranthene	0.9397118410959231	2
 Triphenylene	Triphenylene	0.9212501050396342	2
+Benzanthracene/Benzophenanthrene	Triphenylene	0.9272871087078133	2
 Benzo[ghi]fluoranthene	Triphenylene	0.3017210317343174	2
 Terbuthylazine	Triphenylene	0.1430086695269273	1
 Triphenylene	Benzanthracene/Benzophenanthrene	0.8820737885888467	2
+Benzanthracene/Benzophenanthrene	Benzanthracene/Benzophenanthrene	0.8878540676555028	2
 Benzo[ghi]fluoranthene	Benzanthracene/Benzophenanthrene	0.3845396291619331	2
 Terbuthylazine	Benzanthracene/Benzophenanthrene	0.13768125342413323	1
 Pendimethalin	Benzofluoranthene	0.16900294931090729	1
@@ -2419,6 +2422,7 @@ Benzofluoranthene	Dimethoate	0.07781544352815892	1
 Dibenzanthracene	Dimethoate	0.11935840135460213	1
 Triphenylene	Dimethoate	0.0809413648517533	1
 Hydroxychrysene	Dimethoate	0.04399156332575548	1
+Benzanthracene/Benzophenanthrene	Dimethoate	0.09200007453767602	1
 Phenanthrene_2H10	Dimethoate	0.06261271191818496	1
 Phenanthrene	Dimethoate	0.10470776865546647	1
 Indeno[1,2,3-cd]pyrene	Dimethoate	0.05842530033959551	1
@@ -2449,6 +2453,7 @@ Benzofluoranthene	Vamidothion	0.02447980194993404	1
 Dibenzanthracene	Vamidothion	0.03754871647250931	1
 Triphenylene	Vamidothion	0.025463179174854373	1
 Hydroxychrysene	Vamidothion	0.013839216341326625	1
+Benzanthracene/Benzophenanthrene	Vamidothion	0.02894211613979299	1
 Phenanthrene_2H10	Vamidothion	0.01969720556499547	1
 Phenanthrene	Vamidothion	0.032939803759876804	1
 Indeno[1,2,3-cd]pyrene	Vamidothion	0.018379896281914193	1
