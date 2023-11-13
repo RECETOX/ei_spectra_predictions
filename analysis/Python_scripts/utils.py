@@ -26,7 +26,7 @@ def has_atom(mol, atom):
 def has_organic_atoms(mol):
     # Check if the molecule contains any halogen atoms
     for atom in mol.GetAtoms():
-        if atom.GetSymbol() in ['C', 'O', 'N', 'H']:
+        if atom.GetSymbol() in ['C', 'O', 'H']:
             return True
 
     return False
@@ -47,7 +47,7 @@ def append_classes(df, left_on):
         "S": [has_atom(m, 'S') for m in molecules],
         "P": [has_atom(m, 'P') for m in molecules],
         "Si": [has_atom(m, 'Si') for m in molecules],
-        "C,O,N,H": [has_organic_atoms(m) for m in molecules],
+        "C,O,N,H": [has_organic_atoms(m) or has_atom(m, 'N') for m in molecules],
         "N": [has_atom(m, 'N') for m in molecules],
     })
     merged_df = pd.merge(df, class_names, left_on=left_on, right_on='molname')
