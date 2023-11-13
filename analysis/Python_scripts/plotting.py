@@ -83,7 +83,7 @@ def plot_histogram(x, xaxis_title='', title=''):
     # Display the plot
     fig.show()
 
-def create_plot(df, path):
+def create_plot(df, path, grouping_column):
     sns.set_style(style='white')
     plt.figure(figsize=(17, 5))
 
@@ -91,22 +91,21 @@ def create_plot(df, path):
     colors = ['yellow', 'deepskyblue']
     sns.set_palette(sns.color_palette(colors))
 
-    ax = sns.boxplot(x="true_names", y="value", hue="Number", 
+    ax = sns.boxplot(x=grouping_column, y="value", hue="Number", 
                     data=df, hue_order=['CosineHungarian_0.01_0.0_1.0_matches',np.nan],
                     medianprops={'color': 'darkgreen', 'linewidth': 4.0},
                     flierprops={'marker': 'o', 'markersize': 10, 'markerfacecolor': 'none'})  # RUN PLOT   
     ax2 = ax.twinx()
 
-    sns.boxplot(ax=ax2,x='true_names', y='value', hue='Number',
+    sns.boxplot(ax=ax2,x=grouping_column, y='value', hue='Number',
                 data=df, hue_order=[np.nan, 'CosineHungarian_0.01_0.0_1.0_scores'], 
                 medianprops={'color': 'b', 'linewidth': 4.0}, 
                 flierprops={'marker': 'o', 'markersize': 10, 'markerfacecolor': 'none'})
 
     ax.legend_.remove()
-    ax.set_ylim([0, 5])  # Set y-axis limits
+    #ax.set_ylim([0, 5])  # Set y-axis limits
     ax.yaxis.set_major_locator(plt.MultipleLocator(1))  # Set major tick marks
-    ax.set_ylabel('Match values')  # Set y-axis label
-    ax.yaxis.label.set_size(20)  # Set font size of y-axis label
+    ax.set_ylabel('Match values', fontsize=20)  # Set y-axis label
     ax.set_xlabel('Chemical composition', fontsize=20)  # Set x-axis label and font size
     ax.tick_params(axis='x', labelsize=13)  # Set font size of x-axis tick labels
     ax.tick_params(axis='y', labelsize=13)  # Set font size of y-axis tick labels
@@ -114,9 +113,9 @@ def create_plot(df, path):
     ax.xaxis.labelpad = 10
 
     # Create a count for each x-axis label
-    count_data = df['true_names'].value_counts().reset_index()
-    count_data.columns = ['true_names', 'count']
-    count_data = count_data.sort_values(by=['true_names'])
+    count_data = df[grouping_column].value_counts().reset_index()
+    count_data.columns = [grouping_column, 'count']
+    count_data = count_data.sort_values(by=[grouping_column])
     count_data['count'] = count_data['count'] // 2
 
     # Remove the original x-axis labels
@@ -124,13 +123,12 @@ def create_plot(df, path):
 
     # Add the count labels to the x-axis
     ax.set_xticks(np.arange(len(count_data)))
-    ax.set_xticklabels(count_data['true_names'] + ' (' + count_data['count'].astype(str) + ')', rotation=45, ha='right')
+    ax.set_xticklabels(count_data[grouping_column] + ' (' + count_data['count'].astype(str) + ')', rotation=45, ha='right')
 
     ax2.legend_.remove()
     ax2.set_ylim([0, 1])  # Set y-axis limits
     ax2.yaxis.set_major_locator(plt.MultipleLocator(0.2))  # Set major tick marks
-    ax2.set_ylabel('Score values')  # Set y-axis label
-    ax2.yaxis.label.set_size(20)  # Set font size of y-axis label
+    ax2.set_ylabel('Score values', fontsize=20)  # Set y-axis label
     ax2.tick_params(axis='y', labelsize=12)  # Set font size of y-axis tick labels
     ax2.yaxis.labelpad = 10
 
