@@ -241,5 +241,3 @@ if __name__ == "__main__":
             print(f"LOG file does not exist:{Path(gamess_log).parent}")
     
     write_summary_log(args.project_dirname, count_abn, count_inp, count_xyz)
-
-
