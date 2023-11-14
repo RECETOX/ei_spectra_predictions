@@ -6,59 +6,86 @@ import os
 import argparse
 
 
-def CalculateSpinMultiplicity(Mol):
+def calculate_spin_multiplicity(molecule):
     """Calculate spin multiplicity of a molecule. The spin multiplicity is calculated
     from the number of free radical electrons using Hund's rule of maximum
     multiplicity defined as 2S + 1 where S is the total electron spin. The
     total spin is 1/2 the number of free radical electrons in a molecule.
 
-    Arguments:
-    Mol (object): RDKit molecule object.
+    Args:
+        molecule (object): RDKit molecule object.
 
     Returns:
-    int : Spin multiplicity.
+        int: Spin multiplicity.
     """
-    NumRadicalElectrons = 0
-    for Atom in Mol.GetAtoms():
-        NumRadicalElectrons += Atom.GetNumRadicalElectrons()
+    num_radical_electrons = sum(atom.GetNumRadicalElectrons() for atom in molecule.GetAtoms())
+    total_electronic_spin = num_radical_electrons / 2
+    spin_multiplicity =  int(2 * total_electronic_spin + 1)
 
-    TotalElectronicSpin = NumRadicalElectrons/2
-    SpinMultiplicity = 2 * TotalElectronicSpin + 1
-    return int(SpinMultiplicity)
+    return spin_multiplicity
 
 
 def get_method(multiplicity):
-    if multiplicity % 2 == 0:
-        method = 'ROHF'
-    else:
-        method = 'RHF'
-    return method
+    """Get the quantum chemistry method based on spin multiplicity.
+
+    Args:
+        multiplicity (int): Spin multiplicity.
+
+    Returns:
+        str: Quantum chemistry method.
+    """
+    return 'ROHF' if multiplicity % 2 == 0 else 'RHF'
 
 
-def read_file(file):
-    with open(file, 'r') as f:
-        lines = f.readlines()
+def read_file(file_path):
+    """Read lines from a file.
+
+    Args:
+        file_path (str): File path.
+
+    Returns:
+        list: List of lines.
+    """
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+    
     return lines
 
 
-def read_file_rdkit(file):
-    molfile = Chem.SDMolSupplier(file)
+def read_file_rdkit(file_path):
+    molfile = Chem.SDMolSupplier(file_path)
     return molfile
 
 
-#TODO: Add docstring decribing which properties are obtained here
-def get_props(mol):
-    mol = Chem.AddHs(mol)
-    chem_class = mol.GetProp("Class").replace(" ", "_")
-    inchikey = mol.GetProp("InChIKey")
-    n_atoms = mol.GetNumAtoms()
-    molname = mol.GetProp("NAME")
+def get_props(molecule):
+    """Get molecular properties which include chemical class, inchikey, n_atoms, and molecule name.
+
+    Args:
+        molecule (object): RDKit molecule object.
+
+    Returns:
+        tuple: Tuple of molecular properties.
+    """
+    molecule = Chem.AddHs(molecule)
+    chem_class = molecule.GetProp("Class").replace(" ", "_")
+    inchikey = molecule.GetProp("InChIKey")
+    n_atoms = molecule.GetNumAtoms()
+    molname = molecule.GetProp("NAME")
     return chem_class, inchikey, n_atoms, molname
 
 
-#TODO: Add dosctrings or rename variables
-def getRMS(mol, c1, c2):
-    rms = AllChem.GetBestRMS(mol, mol, c1, c2)
+def get_rms(molecule, c1, c2):
+    """Get RMS value between two conformers.
+
+    Args:
+        molecule (object): RDKit molecule object.
+        c1 (int): Conformer index 1.
+        c2 (int): Conformer index 2.
+
+    Returns:
+        float: RMS value.
+    """
+    rms = AllChem.GetBestRMS(molecule, molecule, c1, c2)
     return rms
 
 
@@ -72,36 +99,37 @@ def generate_3D_mol(mol):
     Energy minimizes and filters conformers to meet energy window 
     and rms constraints.
     """
-    maxconfs = 20
+    max_confs = 20
     sample = 1
-    rmspar = 0.7
+    rms_par = 0.7
     energy = 10
 
     if mol is not None:
         AllChem.SanitizeMol(mol)
         mol = AllChem.AddHs(mol)
-        cids = AllChem.EmbedMultipleConfs(mol, int(sample * maxconfs), AllChem.ETKDG())
+        cids = AllChem.EmbedMultipleConfs(mol, int(sample * max_confs), AllChem.ETKDG())
 
         cenergy = []
         for conf in cids:
             converged = not AllChem.UFFOptimizeMolecule(mol, confId=conf)
             cenergy.append(AllChem.UFFGetMoleculeForceField(mol, confId=conf).CalcEnergy())
 
-        sortedcids = sorted(cids, key=lambda cid: cenergy[cid])
-        if len(sortedcids) > 0:
-            mine = cenergy[sortedcids[0]]
+        sorted_cids = sorted(cids, key=lambda cid: cenergy[cid])
+
+        if len(sorted_cids) > 0:
+            mine = cenergy[sorted_cids[0]]
         else:
             mine = 0
 
         written = {}
         final = []
-        for conf in sortedcids:
-            if len(written) >= maxconfs:
+        for conf in sorted_cids:
+            if len(written) >= max_confs:
                 break
             passed = True
             for seenconf in written.keys():
-                rms = getRMS(mol, seenconf, conf)
-                if (rms < rmspar) or (energy > 0 and cenergy[conf] - mine > energy):
+                rms = get_rms(mol, seenconf, conf)
+                if (rms < rms_par) or (energy > 0 and cenergy[conf] - mine > energy):
                     passed = False
                     break
             if passed:
@@ -111,77 +139,76 @@ def generate_3D_mol(mol):
     return new_conf
 
 
-def read_parameters_pbs(param_file):   
-    list_pbs_keys = [] 
+def read_parameters(param_file, keys_to_search):
+    """
+    Read and extract parameter values from a file based on a list of keys.
+
+    Parameters:
+    - param_file (str): The path to the parameter file.
+    - keys_to_search (list): A list of keys to search for in each line of the file.
+
+    Returns:
+    dict: A dictionary containing the extracted parameter values corresponding to the provided keys.
+    """
+    parameters = {}
     lines = read_file(param_file)
     for line in lines:
-        if "WALLTIME" in line:
-            list_pbs_keys.append(line.split()[2])
-        if "NCPUS" in line:
-            list_pbs_keys.append(line.split()[2])
-        if "MEM" in line:
-            list_pbs_keys.append(line.split()[2])
-        if "SCRATCH_LOCAL" in line:
-            list_pbs_keys.append(line.split()[2])
-        if "USER_EMAIL" in line:
-            list_pbs_keys.append(line.split()[2])
-    return list_pbs_keys
-
-
-def read_parameters_qcxms(param_file):   
-    list_qcxms_keys = [] 
-    lines = read_file(param_file)
-    for line in lines:
-        if "QC_Program" in line:
-            list_qcxms_keys.append(line.split()[2])
-        if "QC_Level" in line:
-            list_qcxms_keys.append(line.split()[2])
-        if "ntraj" in line:
-            if len(line.split()) == 2:
-                list_qcxms_keys.append("")
-            else:
-                list_qcxms_keys.append(line.split()[2])
-        if "tmax" in line:
-            list_qcxms_keys.append(line.split()[2])
-        if "tinit" in line:
-            list_qcxms_keys.append(line.split()[2])
-        if "ieeatm" in line:
-            list_qcxms_keys.append(line.split()[2])
-    return list_qcxms_keys
+        for key in keys_to_search:
+            if key in line:
+                if key == "ntraj":
+                    if len(line.split()) == 2:
+                        parameters[key] = ""
+                    else:
+                        parameters[key] = line.split()[2]
+                else:
+                    parameters[key] = line.split()[2]
+    return parameters
 
 
 def load_template(dir, filename):
-    template_path = Path(dir).resolve()
-    file_loader = FileSystemLoader(template_path)
+    """Load a template from a file.
+
+    Args:
+        dir (str): Directory path.
+        filename (str): Template file name.
+
+    Returns:
+        object: Template object.
+    """
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    project_directory = os.path.dirname(script_directory)
+    # Construct the template directory path based on the current script directory
+    template_dir = os.path.join(project_directory, 'templates')
+
+    file_loader = FileSystemLoader(template_dir)
     environment = Environment(loader=file_loader)
     load_template = environment.get_template(filename)
     return load_template
 
 
-def write_pbs_from_template(mylist, molname, template_name, file):
-    content = template_name.render(MOLNAME=molname, 
-                                   WALLTIME=mylist[0],
-                                   NCPUS=mylist[1],
-                                   MEM=mylist[2],
-                                   SCRATCH_LOCAL=mylist[3],
-                                   USER_EMAIL=mylist[4])
+def write_from_template(parameters, template, file):
+    """Write file from a template.
+
+    Args:
+        parameters (dict): dict containing parameters.
+        template (object): Template object.
+        file (str): Output file path.
+    """
+    content = template.render(**parameters)
+    
     with open(file, 'w') as message:
         message.write(content)
 
 
-def write_qcxms_input_from_template(mylist, template_name, file):
-    content = template_name.render(QC_Program=mylist[0],
-                                   QC_Level=mylist[1],
-                                   ntraj=mylist[2],
-                                   tmax=mylist[3],
-                                   tinit=mylist[4],
-                                   ieeatm=mylist[5])
-    with open(file, 'w') as message:
-        message.write(content)
-
-
-# TODO: multiplicity can be obtained from mol so doesn't need to be passed as a parameter
 def write_gamess_input(multiplicity, mol, molname, mol_input_path):
+    """Write GAMESS input file.
+
+    Args:
+        multiplicity (int): Spin multiplicity.
+        mol (object): RDKit molecule object.
+        molname (str): Molecular name.
+        mol_input_path (str): Output file path.
+    """
     conf = generate_3D_mol(mol)
     mol = AllChem.AddHs(mol)
     opt = f""" $CONTRL SCFTYP={get_method(multiplicity)} MULT={multiplicity} NPRINT=-5 RUNTYP=OPTIMIZE $END\n $STATPT OPTTOL=0.0005 NSTEP=100 $END\n $BASIS GBASIS=N31 NGAUSS=6 $END\n $SYSTEM MWORDS=128 $END """
@@ -205,33 +232,35 @@ args = listarg.parse_args()
 
 if __name__ == "__main__":
 
-    molfile = read_file_rdkit(args.sdf_filename)
+    mol_file = read_file_rdkit(args.sdf_filename)
 
-    for mol in molfile:
+    for mol in mol_file:
         chem_class, inchikey, n_atoms, molname = get_props(mol)
 
         # TODO: Extract function to construct the paths as they are often re-used
         proj_dir = Path(args.project_dirname)
         Path.mkdir(proj_dir, parents=True, exist_ok=True)
 
-        moldir = proj_dir / "classes" / chem_class / inchikey / "Optimization"
-        Path.mkdir(moldir, parents=True, exist_ok=True)
-        mol_input_path = moldir / (inchikey + ".inp")              
+        mol_dir = proj_dir / "classes" / chem_class / inchikey / "Optimization"
+        Path.mkdir(mol_dir, parents=True, exist_ok=True)
+        mol_input_path = mol_dir / (inchikey + ".inp")              
 
-        spectradir = proj_dir / "classes" / chem_class / inchikey / "Spectra"
-        Path.mkdir(spectradir, parents=True, exist_ok=True)
+        spectra_dir = proj_dir / "classes" / chem_class / inchikey / "Spectra"
+        Path.mkdir(spectra_dir, parents=True, exist_ok=True)
 
-        multiplicity = CalculateSpinMultiplicity(mol)
+        multiplicity = calculate_spin_multiplicity(mol)
         if not Path(mol_input_path).exists():
             Path.touch(mol_input_path, exist_ok=True)
             write_gamess_input(multiplicity, mol, molname, mol_input_path)
 
-        spectrum_input_path = spectradir / ("qcxms" + ".in")
+        spectrum_input_path = spectra_dir / ("qcxms" + ".in")
         qcxms_template = load_template("templates", "qcxms_input_template.in")
         if not Path(spectrum_input_path).exists():
-            write_qcxms_input_from_template(read_parameters_qcxms(args.params_filename), qcxms_template, spectrum_input_path)
+            qcxms_params = read_parameters(args.params_filename, ["QC_Program", "QC_Level", "ntraj", "tmax", "tinit", "ieeatm"])
+            write_from_template(parameters=qcxms_params, template=qcxms_template, file=spectrum_input_path)
 
-        mol_pbs_path = moldir / (inchikey + ".pbs")
+        mol_pbs_path = mol_dir / (inchikey + ".pbs")
         pbs_template = load_template("templates", "optimization_gamess_template.pbs")
         if not Path(mol_pbs_path).exists():
-            write_pbs_from_template(read_parameters_pbs(args.params_filename), inchikey, pbs_template, mol_pbs_path)
+            pbs_params = read_parameters(args.params_filename, ["WALLTIME", "NCPUS", "MEM", "SCRATCH_LOCAL", "USER_EMAIL"])
+            write_from_template(parameters={"MOLNAME": inchikey, **pbs_params}, template=pbs_template, file=mol_pbs_path)
