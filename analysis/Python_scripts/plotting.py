@@ -84,7 +84,7 @@ def plot_histogram(x, xaxis_title='', title=''):
     # Display the plot
     fig.show()
 
-def create_plot(df, path, grouping_column):
+def create_plot(df, path, grouping_column, xlabel):
     sns.set_style(style='white')
     plt.figure(figsize=(17, 5))
 
@@ -107,7 +107,8 @@ def create_plot(df, path, grouping_column):
     # ax.set_ylim([0, 5])  # Set y-axis limits
     # ax.yaxis.set_major_locator(plt.MultipleLocator(1))  # Set major tick marks
     ax.set_ylabel('Match values', fontsize=20)  # Set y-axis label
-    ax.set_xlabel('Chemical composition', fontsize=20)  # Set x-axis label and font size
+    if xlabel:
+        ax.set_xlabel(xlabel, fontsize=20)  # Set x-axis label and font size
     ax.tick_params(axis='x', labelsize=13)  # Set font size of x-axis tick labels
     # ax.tick_params(axis='y', labelsize=13)  # Set font size of y-axis tick labels
     # ax.yaxis.labelpad = 10
@@ -140,15 +141,17 @@ def create_plot(df, path, grouping_column):
 
 
 def scatterplot_matplotlib(df):
-    plt.figure(figsize=(18, 8))
+    fig = plt.figure(figsize=(18, 6))
     scatter = plt.scatter(
-    df['CosineHungarian_0.01_0.0_1.0_scores'],
-    df['CosineHungarian_0.01_0.0_1.0_matches'],
-    s=df['FractionQuery'] * 200,  # Adjust the size scaling factor as needed
-    c=df['FractionReference'],
-    cmap='viridis',  # change the colorscale as needed
-    alpha=0.5
-)
+        df['CosineHungarian_0.01_0.0_1.0_scores'],
+        df['CosineHungarian_0.01_0.0_1.0_matches'],
+        s=df['FractionQuery'] * 200,  # Adjust the size scaling factor as needed
+        c=df['FractionReference'] * 100,
+        cmap='viridis',  # change the colorscale as needed
+        alpha=0.5,
+        vmin=0,
+        vmax=100
+    )
     plt.colorbar(scatter).set_label('Reference Matched %')
     plt.xlabel('Score')
     plt.ylabel('Matches')
@@ -158,5 +161,4 @@ def scatterplot_matplotlib(df):
     for size in sizes:
         plt.scatter([], [], c='c', alpha=0.5, s=size * 2 , label=str(size))
     plt.legend(scatterpoints=1, title='Query Matched %', labelspacing=1, loc='upper left')
-
-    plt.show()
+    return fig
