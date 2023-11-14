@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from rdkit import Chem
 from itertools import combinations
+from matchms.importing import load_from_msp
 
 def is_spectrum_for_compound(compund_name, spectrum_name):
     options = [compund_name + x for x in ["", "_isomer1", "_isomer2", " isomer 1", " isomer 2"]]
@@ -11,6 +12,15 @@ def get_matching_rows(df, query_name, reference_name):
     return df[df.apply(lambda x: is_spectrum_for_compound(x[query_name], x[reference_name]), axis=1)]
 
 def has_halogen_atoms(mol):
+    """
+    Check if a molecule contains any halogen atoms.
+
+    Parameters:
+    - mol (Chem.Mol): RDKit molecule object.
+
+    Returns:
+    - bool: True if the molecule has halogen atoms, False otherwise.
+    """
     # Check if the molecule contains any halogen atoms
     for atom in mol.GetAtoms():
         if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I']:
@@ -18,12 +28,31 @@ def has_halogen_atoms(mol):
     return False
 
 def has_atom(mol, atom):
+    """
+    Check if a molecule contains a specific type of atom.
+
+    Parameters:
+    - mol (Chem.Mol): RDKit molecule object.
+    - atom (str): Symbol of the atom to check.
+
+    Returns:
+    - bool: True if the molecule contains the specified atom, False otherwise.
+    """
     for mol_atom in mol.GetAtoms():
         if mol_atom.GetSymbol() == atom:
             return True
     return False
 
 def has_organic_atoms(mol):
+    """
+    Check if a molecule contains any organic atoms (C, O, N, H).
+
+    Parameters:
+    - mol (Chem.Mol): RDKit molecule object.
+
+    Returns:
+    - bool: True if the molecule has organic atoms, False otherwise.
+    """
     # Check if the molecule contains any halogen atoms
     for atom in mol.GetAtoms():
         if atom.GetSymbol() in ['C', 'O', 'N', 'H']:
@@ -32,6 +61,16 @@ def has_organic_atoms(mol):
     return False
 
 def append_classes(df, left_on):
+    """
+    Append molecular classes information to a DataFrame based on a specified column.
+
+    Parameters:
+    - df (pd.DataFrame): The input DataFrame.
+    - left_on (str): The column to merge on.
+
+    Returns:
+    - pd.DataFrame: The input DataFrame with additional molecular classes information.
+    """
     molecules = Chem.SDMolSupplier("../../data/RECETOX_GC-EI-MS_20201028.sdf")
     class_names = pd.DataFrame({
         "class" : [m.GetProp("Class") for m in molecules],
@@ -55,16 +94,47 @@ def append_classes(df, left_on):
 
 # Define a function to map the true columns to a list of names
 def get_true_names(row, df):
+    """
+    Map true columns to a list of names for a given row.
+
+    Parameters:
+    - row: The row in the DataFrame.
+    - df (pd.DataFrame): The DataFrame.
+
+    Returns:
+    - list: List of true column names for the given row.
+    """
     return [col for col in df.columns[11:18] if row[col]]
 
 # Function to split values with commas and create new rows
 def split_and_add_rows(df, column_name, split_by):
+    """
+    Split values in a DataFrame column by a specified delimiter and create new rows.
+
+    Parameters:
+    - df (pd.DataFrame): The input DataFrame.
+    - column_name (str): The column to split and explode.
+    - split_by (str): The delimiter to split values.
+
+    Returns:
+    - pd.DataFrame: DataFrame with additional rows after splitting and exploding the specified column.
+    """
     df_copy = df.copy()
     df_copy[column_name] = df_copy[column_name].str.split(split_by)
     df_copy = df_copy.explode(column_name).reset_index(drop=True)
     return df_copy
 
 def generate_combinations(df, column_name):
+    """
+    Generate combinations of values in a DataFrame column and create new rows.
+
+    Parameters:
+    - df (pd.DataFrame): The input DataFrame.
+    - column_name (str): The column to generate combinations for.
+
+    Returns:
+    - pd.DataFrame: DataFrame with additional rows after generating combinations for the specified column.
+    """
     new_rows = []
     for index, row in df.iterrows():
         values = row[column_name].split(', ')
@@ -99,3 +169,10 @@ def preprocess_data(merged_top5_same):
     mdf = mdf.dropna(subset=['value', 'true_names'])
 
     return mdf
+
+def load_spectra_metadata(file_path, metadata_column_name):
+    spectra = list(load_from_msp(file_path))
+    spectra_metadata = pd.DataFrame.from_dict([x.metadata for x in spectra])
+    spectra_metadata.rename(columns={'compound_name': metadata_column_name}, inplace=True)
+    spectra_names = spectra_metadata[metadata_column_name].to_list()
+    return spectra, spectra_metadata, spectra_names
