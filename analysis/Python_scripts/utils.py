@@ -55,7 +55,7 @@ def has_organic_atoms(mol):
     """
     # Check if the molecule contains any halogen atoms
     for atom in mol.GetAtoms():
-        if atom.GetSymbol() in ['C', 'O', 'N', 'H']:
+        if atom.GetSymbol() in ['C', 'O', 'H']:
             return True
 
     return False
@@ -86,7 +86,7 @@ def append_classes(df, left_on):
         "S": [has_atom(m, 'S') for m in molecules],
         "P": [has_atom(m, 'P') for m in molecules],
         "Si": [has_atom(m, 'Si') for m in molecules],
-        "C,O,N,H": [has_organic_atoms(m) for m in molecules],
+        "C,O,N,H": [has_organic_atoms(m) or has_atom(m, 'N') for m in molecules],
         "N": [has_atom(m, 'N') for m in molecules],
     })
     merged_df = pd.merge(df, class_names, left_on=left_on, right_on='molname')
@@ -151,23 +151,25 @@ def generate_combinations(df, column_name):
     
     return pd.DataFrame(new_rows).reset_index(drop=True)
 
-def preprocess_data(merged_top5_same):
+def preprocess_data(merged_top5_same, cols_to_keep):
+    key_cols = ['query', 'reference'] + cols_to_keep
     # Concatenate the DataFrames in df1_list and add a 'value' column with the value 'matches'.
-    df1 = merged_top5_same[['query', 'reference', 'true_names', 'CosineHungarian_0.01_0.0_1.0_matches']].copy()
+    df1 = merged_top5_same[key_cols + ['CosineHungarian_0.01_0.0_1.0_matches']].copy()
 
     # Concatenate the DataFrames in df2_list and add a 'value' column with the value 'scores'.
-    df2 = merged_top5_same[['query', 'reference', 'true_names', 'CosineHungarian_0.01_0.0_1.0_scores']].copy()
+    df2 = merged_top5_same[key_cols + ['CosineHungarian_0.01_0.0_1.0_scores']].copy()
 
     # Concatenate df1 and df2 into a single DataFrame.
     df_cat = pd.concat([df1, df2])
 
-    mdf = pd.melt(df_cat, id_vars=['query', 'reference', 'true_names'], var_name=['Number'])      # MELT
+    mdf = pd.melt(df_cat, id_vars=key_cols, var_name='Number')      # MELT
+    mdf = mdf.dropna()
+    return mdf
 
-    #cleaning data
+def clean_chemical_composition_data(mdf):
     mdf = split_and_add_rows(mdf, 'true_names', split_by=', C,O,N,H')
     mdf['true_names'] = mdf['true_names'].replace('', np.nan)
-    mdf = mdf.dropna(subset=['value', 'true_names'])
-
+    mdf = mdf.dropna()
     return mdf
 
 def load_spectra_metadata(file_path, metadata_column_name):
