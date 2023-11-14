@@ -81,21 +81,23 @@ def generate_combinations(df, column_name):
     
     return pd.DataFrame(new_rows).reset_index(drop=True)
 
-def preprocess_data(merged_top5_same, col_to_keep):
+def preprocess_data(merged_top5_same, cols_to_keep):
+    key_cols = ['query', 'reference'] + cols_to_keep
     # Concatenate the DataFrames in df1_list and add a 'value' column with the value 'matches'.
-    df1 = merged_top5_same[['query', 'reference', col_to_keep, 'CosineHungarian_0.01_0.0_1.0_matches']].copy()
+    df1 = merged_top5_same[key_cols + ['CosineHungarian_0.01_0.0_1.0_matches']].copy()
 
     # Concatenate the DataFrames in df2_list and add a 'value' column with the value 'scores'.
-    df2 = merged_top5_same[['query', 'reference', col_to_keep, 'CosineHungarian_0.01_0.0_1.0_scores']].copy()
+    df2 = merged_top5_same[key_cols + ['CosineHungarian_0.01_0.0_1.0_scores']].copy()
 
     # Concatenate df1 and df2 into a single DataFrame.
     df_cat = pd.concat([df1, df2])
 
-    mdf = pd.melt(df_cat, id_vars=['query', 'reference', col_to_keep], var_name='Number')      # MELT
-    mdf = mdf.dropna(subset=['value', col_to_keep])
+    mdf = pd.melt(df_cat, id_vars=key_cols, var_name='Number')      # MELT
+    mdf = mdf.dropna()
     return mdf
 
 def clean_chemical_composition_data(mdf):
     mdf = split_and_add_rows(mdf, 'true_names', split_by=', C,O,N,H')
     mdf['true_names'] = mdf['true_names'].replace('', np.nan)
+    mdf = mdf.dropna()
     return mdf
