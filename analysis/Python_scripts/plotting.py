@@ -137,3 +137,26 @@ def create_plot(df, path, grouping_column):
     plt.show()
     plt.clf()
     plt.close()
+
+
+def scatterplot_matplotlib(df):
+    plt.figure(figsize=(18, 8))
+    scatter = plt.scatter(
+    df['CosineHungarian_0.01_0.0_1.0_scores'],
+    df['CosineHungarian_0.01_0.0_1.0_matches'],
+    s=df['FractionQuery'] * 200,  # Adjust the size scaling factor as needed
+    c=df['FractionReference'],
+    cmap='viridis',  # change the colorscale as needed
+    alpha=0.5
+)
+    plt.colorbar(scatter).set_label('Reference Matched %')
+    plt.xlabel('Score')
+    plt.ylabel('Matches')
+
+    # Add a legend for the size
+    sizes = [1, 50, 100]
+    for size in sizes:
+        plt.scatter([], [], c='c', alpha=0.5, s=size * 2 , label=str(size))
+    plt.legend(scatterpoints=1, title='Query Matched %', labelspacing=1, loc='upper left')
+
+    plt.show()
