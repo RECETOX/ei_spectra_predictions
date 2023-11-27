@@ -8,5 +8,5 @@ on:
 jobs:
   call-workflow:
     uses: recetox/galaxytools/.github/workflows/add_issue_to_project.yml@master
-    with:
+    secrets:
       github-token: ${{ secrets.PAT }}
