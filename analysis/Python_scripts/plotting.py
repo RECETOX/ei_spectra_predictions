@@ -128,12 +128,16 @@ def create_plot(df: pd.DataFrame,
     ax.legend_.remove()
 
     if normalized_matches:
-        ax.set_ylim([0, 100])  # Set y-axis limits
+        ax.set_ylim([-10, 110])  # Set y-axis limits
         ax.set_ylabel('ions matching reference', fontsize=label_fontsize)  # Set y-axis label
-        ax.set_yticklabels([str(f"{x}%") for x in range(0, 101, 20)])
+        ax.set_yticklabels([str(f"{int(x)}%") for x in ax.get_yticks()])
     else:
         ax.set_ylabel('ion matches', fontsize=label_fontsize)
-        ax.set_ylim(0, top=df.loc[df['Number'] == matches_col, 'value'].max())  # Set y-axis limits
+        top = df.loc[df['Number'] == matches_col, 'value'].max()
+        if top <= 6:
+            ax.set_ylim(-0.5, 5.5)
+        else:
+            ax.set_ylim(0 - 0.1 * top, top= 1.1* top)  # Set y-axis limits
 
 
     # Set font size of x-axis tick labels
@@ -151,9 +155,9 @@ def create_plot(df: pd.DataFrame,
     ax2.legend_.remove()
 
     if nist_scale:
-        ax2.set_ylim([0, 1000])
+        ax2.set_ylim([-100, 1100])
     else:
-        ax2.set_ylim([0, 1])  # Set y-axis limits
+        ax2.set_ylim([-0.1, 1.1])  # Set y-axis limits
 
     ax2.set_ylabel('scores', fontsize=label_fontsize)  # Set y-axis label
     # Set font size of y-axis tick labels
