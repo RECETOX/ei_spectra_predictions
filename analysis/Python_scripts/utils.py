@@ -78,7 +78,7 @@ def append_classes(df, left_on):
     Returns:
     - pd.DataFrame: The input DataFrame with additional molecular classes information.
     """
-    molecules = Chem.SDMolSupplier("../../data/recetox_gc-ei-ms_20201028_custom.sdf")
+    molecules = Chem.SDMolSupplier("../../analysis/data/experimental/recetox_gc-ei-ms_20201028_properties.sdf")
     class_names = pd.DataFrame({
         "class" : [m.GetProp("Class") for m in molecules],
         "superclass" : [m.GetProp("Superclass") for m in molecules],
