@@ -1,5 +1,8 @@
 # ei_spectra_predictions
 
+This repository contains the workflow and supporting information for "Quantum chemistry based prediction of electron ionization mass spectra for environmental chemicals".
+
+
 ## Spectra generation steps
 
 ### Handling input files for molecular optimization in the HPC
