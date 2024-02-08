@@ -102,8 +102,8 @@ def create_plot(df: pd.DataFrame,
                 normalized_matches: bool = True,
                 nist_scale: bool = True,
                 hide_labels: bool = False):
-    matches_col = 'CosineHungarian_0.01_0.0_1.0_matches'
-    scores_col = 'CosineHungarian_0.01_0.0_1.0_scores'
+    matches_col = 'matches'
+    scores_col = 'scores'
 
     label_fontsize = 20
     tick_fontsize = 13
@@ -197,8 +197,8 @@ def create_plot(df: pd.DataFrame,
 def scatterplot_matplotlib(df):
     fig = plt.figure(figsize=(18, 6))
     scatter = plt.scatter(
-        df['CosineHungarian_0.01_0.0_1.0_scores'],
-        df['CosineHungarian_0.01_0.0_1.0_matches'],
+        df['scores'],
+        df['matches'],
         # Adjust the size scaling factor as needed
         s=df['FractionQuery'] * 200,
         c=df['FractionReference'] * 100,

@@ -179,8 +179,8 @@ def generate_combinations(df, column_name):
 def preprocess_data(merged_top5_same, cols_to_keep):
     key_cols = ['query', 'reference'] + cols_to_keep
     
-    matches_col = 'CosineHungarian_0.01_0.0_1.0_matches'
-    scores_col = 'CosineHungarian_0.01_0.0_1.0_scores'
+    matches_col = 'matches'
+    scores_col = 'scores'
     
     # Concatenate the DataFrames in df1_list and add a 'value' column with the value 'matches'.
     df1 = merged_top5_same[key_cols + [matches_col]].copy()
@@ -218,13 +218,13 @@ def append_spectrum_metadata(scores: pd.DataFrame):
     merged = merged.merge(reference_spectra_metadata, on="reference", how="inner")
     merged.rename(columns={'num_peaks': 'n_peaks_reference'}, inplace=True)
 
-    numeric_columns = ['CosineHungarian_0.01_0.0_1.0_matches', 'n_peaks_query', 'n_peaks_reference']
+    numeric_columns = ['matches', 'n_peaks_query', 'n_peaks_reference']
     merged[numeric_columns] = merged[numeric_columns].apply(pd.to_numeric, errors='coerce')
     return merged
 
 def normalize_df(df: pd.DataFrame, use_nist: bool = True, matches_norm_col: str = 'n_peaks_reference'):
-    matches_col = 'CosineHungarian_0.01_0.0_1.0_matches'
-    scores_col = 'CosineHungarian_0.01_0.0_1.0_scores'
+    matches_col = 'matches'
+    scores_col = 'scores'
     
     if use_nist:
         df[scores_col] = df[scores_col] * 1000
