@@ -1,5 +1,6 @@
 from rdkit import Chem
 from pathlib import Path
+from typing import List, Tuple
 from write_dirs_files_for_gamess_qcxms import calculate_spin_multiplicity, get_method, get_props
 from write_dirs_files_for_gamess_qcxms import read_file_rdkit, load_template, read_file, write_from_template, read_parameters
 import pandas as pd
@@ -12,61 +13,58 @@ INP_TEMPLATE = load_template("templates", "gamess_input_template.inp")
 XYZ_TEMPLATE = load_template("templates", "structure_input_template.xyz")
 
 
-def coords_as_dataframe(element_symbol, x_coord, y_coord, z_coord):
-    """Convert coordinates DataFrame.
+def coords_as_dataframe(element_symbol: List[str], x_coord: List[str], y_coord: List[str], z_coord: List[str])  -> pd.DataFrame:
+    """Convert coordinates to a formatted DataFrame.
 
     Args:
-        element_symbol (list): List of element symbols.
-        x_coord (list): List of x-coordinates.
-        y_coord (list): List of y-coordinates.
-        z_coord (list): List of z-coordinates.
+        element_symbol (List[str]): List of element symbols.
+        x_coord (List[str]): List of x-coordinates.
+        y_coord (List[str]): List of y-coordinates.
+        z_coord (List[str]): List of z-coordinates.
 
     Returns:
-        Formatted DataFrame.
+        formatted_df (pd.DataFrame): Formatted Dataframe where each element is a string containing the element symbol and its x, y, and z coordinates.
     """
     df = pd.DataFrame([element_symbol, x_coord, y_coord, z_coord]).transpose()
     df[0] = df[0].map("{0:<4s}".format)
     df[1] = pd.to_numeric(df[1], downcast="float").map("{0:>16.10f}".format)
     df[2] = pd.to_numeric(df[2], downcast="float").map("{0:>16.10f}".format)
     df[3] = pd.to_numeric(df[3], downcast="float").map("{0:>16.10f}".format)
-    result = df[0] + df[1] + df[2] + df[3]
+    formatted_df = df[0] + df[1] + df[2] + df[3]
 
-    return result
+    return formatted_df
 
 
-def read_coordinates(n_atoms, gamess_output, line_number):
+def read_coordinates(n_atoms: int, gamess_output: List[str], line_number: int) -> Tuple[List[str], List[str], List[str], List[str]]:
     """Read coordinates from the GAMESS output.
 
     Args:
         n_atoms (int): Number of atoms in the molecule.
-        gamess_output (list): Content of GAMESS output log file.
+        gamess_output (List[str]): Content of GAMESS output log file.
         line_number (int): Line number of the line currently being processed.
 
     Returns:
-        tuple: Tuple containing lists of element symbols, x-coordinates, y-coordinates, and z-coordinates.
+        Tuple[List[str], List[str], List[str], List[str]]: Tuple containing lists of element symbols, x-coordinates, y-coordinates, and z-coordinates.
     """
     start, end = compute_start_end_indices(n_atoms, line_number, 4)
-
     data = [line.split() for line in gamess_output[start:end]]
-
-    element_symbol, atomic_number, x_coord, y_coord, z_coord = zip(*data)
-
+    element_symbol, x_coord, y_coord, z_coord = zip(*data)
     return element_symbol, x_coord, y_coord, z_coord
 
 
-def extract_geometry_to_xzy(project_dirname, n_atoms, molname, mol_xyz_path, gamess_output, line_number):
-    """Extract xyz coordinates from GAMESS output.
+def extract_geometry_to_xzy(project_dirname: str, n_atoms: int, molname: str, mol_xyz_path: str, gamess_output: List[str], line_number: int) -> int:
+    """Extract xyz coordinates from GAMESS output and write them to a file.
 
     Args:
         project_dirname (str): Name of the project directory.
         n_atoms (int): Number of atoms in the molecule.
         molname (str): Identifier for the molecule.
-        mol_xyz_path (str): Path where to write the xzy file
-        gamess_output (list[str]): Content of GAMESS output log file.
-        line_number (int): Line number of the line currently being processed
+        mol_xyz_path (str): Path where to write the xzy file.
+        gamess_output (List[str]): Content of GAMESS output log file.
+        line_number (int): Line number of the line currently being processed.
 
     Returns:
-        _type_: _description_
+        int: 1 if a new file was written, 0 otherwise.
     """
     element_symbol, x_coord, y_coord, z_coord = read_coordinates(n_atoms, gamess_output, line_number)
 
@@ -82,7 +80,7 @@ def extract_geometry_to_xzy(project_dirname, n_atoms, molname, mol_xyz_path, gam
     return 0
 
 
-def compute_start_end_indices(n_atoms, num, offset):
+def compute_start_end_indices(n_atoms: int, num: int, offset: int) -> Tuple[int, int]:
     """Compute start and end indices for coordinates in GAMESS output.
 
     Args:
@@ -91,29 +89,30 @@ def compute_start_end_indices(n_atoms, num, offset):
         offset (int): Offset value.
 
     Returns:
-        tuple: Tuple containing start and end indices.
+        Tuple[int, int]: Tuple containing start and end indices.
     """
     start_coord_index = num + offset
     end_coord_index = start_coord_index + n_atoms
-    
     return start_coord_index, end_coord_index
 
 
-def read_coords_raw(gamess_output, start_coord_index, end_coord_index):
+def read_coords_raw(gamess_output: List[str], start_coord_index: int, end_coord_index: int) -> List[str]:
     """Read raw coordinates from GAMESS output.
 
     Args:
-        gamess_output (list): Content of GAMESS output log file.
+        gamess_output (List[str]): Content of GAMESS output log file.
         start_coord_index (int): Start index for coordinates.
         end_coord_index (int): End index for coordinates.
 
     Returns:
-        list: List of raw coordinates.
+        List[str]: List of raw coordinates.
     """
     return [gamess_output[i] for i in range(start_coord_index, end_coord_index)]
 
 
-def prepare_resubmission(params_filename, inchikey, n_atoms, molname, multiplicity, mol_dir, mol_input_path, message, gamess_output, num, offset):
+def prepare_resubmission(params_filename: str, inchikey: str, n_atoms: int, molname: str, multiplicity: int,
+                         mol_dir: Path, mol_input_path: Path, message: str, gamess_output: List[str],
+                         num: int, offset: int) -> int:
     """Prepare resubmission by updating input files.
 
     Args:
@@ -145,12 +144,21 @@ def prepare_resubmission(params_filename, inchikey, n_atoms, molname, multiplici
     if not Path(start_inp_file).exists():
         Path(mol_input_path).rename(Path(start_inp_file))
 
-    write_from_template({"SCFTYP": get_method(multiplicity), "MULT": multiplicity, **inp_params, "MOLNAME": molname, "COORDINATES": data, "text": message, "NPRT":-2}, INP_TEMPLATE, mol_input_path)
+    template_params = {
+        "SCFTYP": get_method(multiplicity),
+        "MULT": multiplicity,
+        **inp_params,
+        "MOLNAME": molname,
+        "COORDINATES": data,
+        "text": message,
+        "NPRT": -2
+    }
 
+    write_from_template(template_params, INP_TEMPLATE, mol_input_path)
     return 1
 
 
-def write_summary_log(project_dirname, count_abn, count_inp, count_xyz):
+def write_summary_log(project_dirname: str, count_abn: int, count_inp: int, count_xyz: int) -> None:
     """Write a summary log with counts of abnormal, INP, and XYZ molecules.
 
     Args:
@@ -169,7 +177,7 @@ def write_summary_log(project_dirname, count_abn, count_inp, count_xyz):
 
 listarg = argparse.ArgumentParser()
 listarg.add_argument('--sdf_filename', type=str)
-listarg.add_argument('--params_filename', type=str) 
+listarg.add_argument('--params_filename', type=str)
 listarg.add_argument('--project_dirname', type=str)
 args = listarg.parse_args()
 
@@ -201,7 +209,7 @@ if __name__ == "__main__":
         writer.write(mol)
         writer.close()
 
-        #TODO: Move those into global constants in this script
+        # TODO: Move those into global constants in this script
         message_1 = "EXECUTION OF GAMESS TERMINATED -ABNORMALLY-"
         message_2 = "EXECUTION OF GAMESS TERMINATED NORMALLY"
         message_3 = "EQUILIBRIUM GEOMETRY LOCATED"
@@ -212,14 +220,14 @@ if __name__ == "__main__":
             gamess_output = read_file(gamess_log)
 
             for num, line in enumerate(gamess_output):
-                if message_1 in line: #TODO: Each case should be in an individual function which is documented
+                if message_1 in line:  # TODO: Each case should be in an individual function which is documented
                     for num, line in enumerate(gamess_output):
                         if message_5 in line:
                             count_abn += prepare_resubmission(args.params_filename, inchikey, n_atoms, molname, multiplicity, moldir, mol_input_path, message_1, gamess_output, num, 3)
 
                             with open(info_log, 'a') as f:
-                                    f.write(f"Abnormal execution, write INP file  : {Path(gamess_log).parent}")
-                                    f.write(f"{os.linesep}")
+                                f.write(f"Abnormal execution, write INP file  : {Path(gamess_log).parent}")
+                                f.write(f"{os.linesep}")
                             print(f"Abnormal execution, write INP file  : {gamess_log}")
 
                 if message_2 in line:
@@ -239,5 +247,5 @@ if __name__ == "__main__":
                 f.write(f"LOG file does not exist:{Path(gamess_log).parent}")
                 f.write(f"{os.linesep}")
             print(f"LOG file does not exist:{Path(gamess_log).parent}")
-    
+
     write_summary_log(args.project_dirname, count_abn, count_inp, count_xyz)
