@@ -2,30 +2,31 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
+from typing import List, Dict, Tuple
 import os
 import argparse
 
 
-def calculate_spin_multiplicity(molecule):
-    """Calculate spin multiplicity of a molecule. The spin multiplicity is calculated
-    from the number of free radical electrons using Hund's rule of maximum
-    multiplicity defined as 2S + 1 where S is the total electron spin. The
+def calculate_spin_multiplicity(molecule: object) -> int:
+    """Calculate spin multiplicity of a molecule.
+
+    The spin multiplicity is calculated from the number of free radical electrons using Hund's
+    rule of maximum multiplicity defined as 2S + 1 where S is the total electron spin. The
     total spin is 1/2 the number of free radical electrons in a molecule.
 
     Args:
         molecule (object): RDKit molecule object.
 
     Returns:
-        int: Spin multiplicity.
+        spin_multiplicity (int): Spin multiplicity.
     """
     num_radical_electrons = sum(atom.GetNumRadicalElectrons() for atom in molecule.GetAtoms())
     total_electronic_spin = num_radical_electrons / 2
-    spin_multiplicity =  int(2 * total_electronic_spin + 1)
-
+    spin_multiplicity = int(2 * total_electronic_spin + 1)
     return spin_multiplicity
 
 
-def get_method(multiplicity):
+def get_method(multiplicity: int) -> str:
     """Get the quantum chemistry method based on spin multiplicity.
 
     Args:
@@ -37,34 +38,41 @@ def get_method(multiplicity):
     return 'ROHF' if multiplicity % 2 == 0 else 'RHF'
 
 
-def read_file(file_path):
+def read_file(file_path: str) -> List[str]:
     """Read lines from a file.
 
     Args:
         file_path (str): File path.
 
     Returns:
-        list: List of lines.
+        lines (List[str]): List of lines.
     """
     with open(file_path, 'r') as file:
         lines = file.readlines()
-    
     return lines
 
 
-def read_file_rdkit(file_path):
+def read_file_rdkit(file_path: str) -> object:
+    """Read an SDF file using RDKit.
+
+    Args:
+        file_path (str): File path.
+
+    Returns:
+        molfile (object): RDKit molecule object.
+    """
     molfile = Chem.SDMolSupplier(file_path)
     return molfile
 
 
-def get_props(molecule):
+def get_props(molecule: object) -> Tuple[str, str, int, str]:
     """Get molecular properties which include chemical class, inchikey, n_atoms, and molecule name.
 
     Args:
         molecule (object): RDKit molecule object.
 
     Returns:
-        tuple: Tuple of molecular properties.
+        tuple: Tuple of molecular properties (chemical class, InChIKey, n_atoms, molecule name).
     """
     molecule = Chem.AddHs(molecule)
     chem_class = molecule.GetProp("Class").replace(" ", "_")
@@ -74,7 +82,7 @@ def get_props(molecule):
     return chem_class, inchikey, n_atoms, molname
 
 
-def get_rms(molecule, c1, c2):
+def get_rms(molecule: object, c1: int, c2: int) -> float:
     """Get RMS value between two conformers.
 
     Args:
@@ -83,21 +91,28 @@ def get_rms(molecule, c1, c2):
         c2 (int): Conformer index 2.
 
     Returns:
-        float: RMS value.
+        rms (float): RMS value.
     """
     rms = AllChem.GetBestRMS(molecule, molecule, c1, c2)
     return rms
 
 
-def generate_3D_mol(mol):
-    """
+def generate_3D_mol(mol: object) -> object:
+    """ Generate 3D conformers for a molecule.
+
+    Generates 3D conformers for a given RDKit molecule object, performs
+    energy minimization, and filters the conformers to meet certain
+    energy window and RMS constraints.
+
     This script was originally written by David Koes, University of Pittsburgh:
     https://github.com/dkoes/rdkit-scripts/blob/master/rdconf.py
     It is licensed under the MIT licence.
 
-    Given a smiles file, generate 3D conformers.
-    Energy minimizes and filters conformers to meet energy window 
-    and rms constraints.
+    Args:
+        mol (object): RDKit molecule object.
+
+    Returns:
+        new_conf (object): RDKit molecule object with 3D conformers.
     """
     max_confs = 20
     sample = 1
@@ -139,16 +154,20 @@ def generate_3D_mol(mol):
     return new_conf
 
 
-def read_parameters(param_file, keys_to_search):
+def read_parameters(param_file: str, keys_to_search: List[str]) -> Dict[str, str]:
     """
     Read and extract parameter values from a file based on a list of keys.
 
-    Parameters:
-    - param_file (str): The path to the parameter file.
-    - keys_to_search (list): A list of keys to search for in each line of the file.
+    For each key, the function looks for a line in the file that contains the key and
+    extracts the third word in the line as the value for that key. If the key is "ntraj"
+    and the line contains only two words, the value is set to an empty string.
+
+    Args:
+        param_file (str): The path to the parameter file.
+        keys_to_search (list): List of keys to search.
 
     Returns:
-    dict: A dictionary containing the extracted parameter values corresponding to the provided keys.
+        parameters (Dict[str, str]): Dictionary of extracted parameters.
     """
     parameters = {}
     lines = read_file(param_file)
@@ -165,15 +184,15 @@ def read_parameters(param_file, keys_to_search):
     return parameters
 
 
-def load_template(dir, filename):
+# dir function argument is not used in the function
+def load_template(filename: str) -> object:
     """Load a template from a file.
 
     Args:
-        dir (str): Directory path.
         filename (str): Template file name.
 
     Returns:
-        object: Template object.
+        load_template (object): Template object.
     """
     script_directory = os.path.dirname(os.path.abspath(__file__))
     project_directory = os.path.dirname(script_directory)
@@ -186,7 +205,7 @@ def load_template(dir, filename):
     return load_template
 
 
-def write_from_template(parameters, template, file):
+def write_from_template(parameters: dict, template: object, file: str) -> None:
     """Write file from a template.
 
     Args:
@@ -195,13 +214,17 @@ def write_from_template(parameters, template, file):
         file (str): Output file path.
     """
     content = template.render(**parameters)
-    
+
     with open(file, 'w') as message:
         message.write(content)
 
 
-def write_gamess_input(multiplicity, mol, molname, mol_input_path):
-    """Write GAMESS input file.
+def write_gamess_input(multiplicity: int, mol: object, molname: str, mol_input_path: str) -> None:
+    """Write GAMESS input file for a given molecule.
+
+    This function generates a 3D conformation of the molecule, adds Hydrogen atoms,
+    and writes the necessary GAMESS input options. It then iterates over the atoms in
+    the molecule, writing each atom's symbol, atomic number, and x, y, and z coordinates to the file.
 
     Args:
         multiplicity (int): Spin multiplicity.
@@ -225,9 +248,9 @@ def write_gamess_input(multiplicity, mol, molname, mol_input_path):
 
 
 listarg = argparse.ArgumentParser()
-listarg.add_argument('--sdf_filename', type=str) 
-listarg.add_argument('--params_filename', type=str) 
-listarg.add_argument('--project_dirname', type=str) 
+listarg.add_argument('--sdf_filename', type=str)
+listarg.add_argument('--params_filename', type=str)
+listarg.add_argument('--project_dirname', type=str)
 args = listarg.parse_args()
 
 if __name__ == "__main__":
@@ -243,7 +266,7 @@ if __name__ == "__main__":
 
         mol_dir = proj_dir / "classes" / chem_class / inchikey / "Optimization"
         Path.mkdir(mol_dir, parents=True, exist_ok=True)
-        mol_input_path = mol_dir / (inchikey + ".inp")              
+        mol_input_path = mol_dir / (inchikey + ".inp")
 
         spectra_dir = proj_dir / "classes" / chem_class / inchikey / "Spectra"
         Path.mkdir(spectra_dir, parents=True, exist_ok=True)
