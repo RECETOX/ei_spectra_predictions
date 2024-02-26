@@ -137,7 +137,8 @@ def create_plot(df: pd.DataFrame,
                 showlegend: bool = True,
                 normalized_matches: bool = True,
                 nist_scale: bool = True,
-                hide_labels: bool = False) -> plt.Figure:
+                hide_labels: bool = False,
+                order: List[str] = None) -> plt.Figure:
     """ Create a boxplot with two y-axes for the input DataFrame.
 
     Args:
@@ -170,10 +171,14 @@ def create_plot(df: pd.DataFrame,
     plot_width = n_bars * bar_width
     fig = plt.figure(figsize=(plot_width, 5))
 
-    ax = sns.boxplot(x=grouping_column, y="value", hue="Number",
-                     data=df, hue_order=[matches_col, np.nan],
+    ax = sns.boxplot(x=grouping_column,
+                     y="value",
+                     hue="Number",
+                     data=df,
+                     hue_order=[matches_col, np.nan],
                      medianprops={'color': 'darkgreen', 'linewidth': 4.0},
-                     flierprops={'marker': 'o', 'markersize': 10, 'markerfacecolor': 'none'})  # RUN PLOT
+                     flierprops={'marker': 'o', 'markersize': 10, 'markerfacecolor': 'none'},
+                     order=order)  # RUN PLOT
     ax.legend_.remove()
 
     if normalized_matches:
