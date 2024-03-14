@@ -1,0 +1,1657 @@
+Compound 1
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 6 5 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 C 0.0 0.0 0.0 0
+M  V30 2 C -1.31 -0.7368 0.0 0
+M  V30 3 C 1.2895 -0.7368 0.0 0
+M  V30 4 C -2.62 0.0204 0.0 0
+M  V30 5 C 2.579 0.0204 0.0 0
+M  V30 6 C -3.93 -0.7164 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 1 3
+M  V30 3 1 2 4
+M  V30 4 1 3 5
+M  V30 5 1 4 6
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 1
+
+>  <Column 1>
+CCCCCC
+
+>  <Monoisotopic Mass>
+86.10955
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+0
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+3
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+86.1772
+
+>  <Shape Index>
+1
+
+>  <Molecular Flexibility>
+0.4646
+
+>  <Molecular Complexity>
+0
+
+$$$$
+Compound 2
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 7 6 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 F 0.0 0.0 0.0 0
+M  V30 2 C -1.3029 0.7532 0.0 0
+M  V30 3 C -2.6059 0.0203 0.0 0
+M  V30 4 C -3.9089 0.7736 0.0 0
+M  V30 5 C -5.2118 0.0407 0.0 0
+M  V30 6 C -6.5148 0.7939 0.0 0
+M  V30 7 C -7.8178 0.061 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 2 3
+M  V30 3 1 3 4
+M  V30 4 1 4 5
+M  V30 5 1 5 6
+M  V30 6 1 6 7
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 2
+
+>  <Column 1>
+CCCCCCF
+
+>  <Monoisotopic Mass>
+104.100128
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+1
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+4
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+104.167
+
+>  <Shape Index>
+1
+
+>  <Molecular Flexibility>
+0.5683
+
+>  <Molecular Complexity>
+0.23105
+
+$$$$
+Compound 3
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 6 5 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 O 0.0 0.0 0.0 0
+M  V30 2 C -1.3017 0.7505 0.0 0
+M  V30 3 C -2.6034 0.0117 0.0 0
+M  V30 4 C -1.3134 2.2516 0.0 0
+M  V30 5 C -3.9052 0.7622 0.0 0
+M  V30 6 C -5.2069 0.0234 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 2 1 2
+M  V30 2 1 2 3
+M  V30 3 1 2 4
+M  V30 4 1 3 5
+M  V30 5 1 5 6
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 3
+
+>  <Column 1>
+CCCC(=O)C
+
+>  <Monoisotopic Mass>
+86.073165
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+1
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+2
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+86.1334
+
+>  <Shape Index>
+0.83333
+
+>  <Molecular Flexibility>
+0.63119
+
+>  <Molecular Complexity>
+0.34657
+
+$$$$
+Compound 4
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 9 9 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 O 0.0 0.0 0.0 0
+M  V30 2 N -1.3077 0.754 0.0 0 CHG=1
+M  V30 3 O -1.3195 2.2621 0.0 0 CHG=-1
+M  V30 4 C -2.6155 0.0235 0.0 0
+M  V30 5 C -3.9233 0.7776 0.0 0
+M  V30 6 C -2.6273 -1.4609 0.0 0
+M  V30 7 C -5.2311 0.0471 0.0 0
+M  V30 8 C -3.9351 -2.1914 0.0 0
+M  V30 9 C -5.2429 -1.4373 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 2 1 2
+M  V30 2 1 2 3
+M  V30 3 1 2 4
+M  V30 4 2 4 5
+M  V30 5 1 4 6
+M  V30 6 1 5 7
+M  V30 7 2 6 8
+M  V30 8 2 7 9
+M  V30 9 1 8 9
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 4
+
+>  <Column 1>
+C1=CC=C(C=C1)[N+](=O)[O-]
+
+>  <Monoisotopic Mass>
+123.032029
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+3
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+1
+
+>  <Aromatic Atoms>
+6
+
+>  <Aromatic Rings>
+1
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+123.111
+
+>  <Shape Index>
+0.66667
+
+>  <Molecular Flexibility>
+0.36206
+
+>  <Molecular Complexity>
+0.51986
+
+$$$$
+Compound 5
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 7 7 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 I 0.0 0.0 0.0 0
+M  V30 2 C -1.31 -0.7317 0.0 0
+M  V30 3 C -2.62 0.0236 0.0 0
+M  V30 4 C -1.3218 -2.2187 0.0 0
+M  V30 5 C -3.93 -0.7081 0.0 0
+M  V30 6 C -2.6318 -2.9504 0.0 0
+M  V30 7 C -3.9418 -2.1951 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 2 2 3
+M  V30 3 1 2 4
+M  V30 4 1 3 5
+M  V30 5 2 4 6
+M  V30 6 2 5 7
+M  V30 7 1 6 7
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 5
+
+>  <Column 1>
+C1=CC=C(C=C1)I
+
+>  <Monoisotopic Mass>
+203.943598
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+1
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+0
+
+>  <Aromatic Atoms>
+6
+
+>  <Aromatic Rings>
+1
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+204.006
+
+>  <Shape Index>
+0.71429
+
+>  <Molecular Flexibility>
+0
+
+>  <Molecular Complexity>
+0.3662
+
+$$$$
+Compound 6
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 21 24 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 O 0.0 0.0 0.0 0
+M  V30 2 C -0.165 -1.4856 0.0 0
+M  V30 3 C 1.0376 -2.3582 0.0 0
+M  V30 4 C -1.5564 -2.087 0.0 0
+M  V30 5 C 0.8725 -3.8438 0.0 0
+M  V30 6 C -1.7214 -3.5726 0.0 0
+M  V30 7 C -0.5188 -4.4452 0.0 0 CFG=2
+M  V30 8 C 2.0752 -4.7164 0.0 0
+M  V30 9 C -0.6838 -5.9309 0.0 0 CFG=2
+M  V30 10 C -1.9101 -5.0465 0.0 0
+M  V30 11 C 1.9101 -6.2021 0.0 0
+M  V30 12 C 0.5188 -6.8034 0.0 0 CFG=1
+M  V30 13 C -2.0752 -6.5322 0.0 0
+M  V30 14 C 0.3537 -8.2891 0.0 0 CFG=1
+M  V30 15 C -2.2403 -8.0179 0.0 0
+M  V30 16 C -1.0376 -8.8904 0.0 0 CFG=2
+M  V30 17 C 1.3441 -9.3974 0.0 0
+M  V30 18 C -0.8961 -10.3761 0.0 0 CFG=2
+M  V30 19 C -2.3582 -9.6333 0.0 0
+M  V30 20 C 0.5777 -10.6945 0.0 0
+M  V30 21 O -2.028 -11.3666 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 2 1 2
+M  V30 2 1 2 3
+M  V30 3 1 2 4
+M  V30 4 2 3 5
+M  V30 5 1 4 6
+M  V30 6 1 5 7
+M  V30 7 1 5 8
+M  V30 8 1 7 9
+M  V30 9 1 7 10 CFG=3
+M  V30 10 1 8 11
+M  V30 11 1 9 12
+M  V30 12 1 9 13 CFG=3
+M  V30 13 1 12 14
+M  V30 14 1 13 15
+M  V30 15 1 14 16
+M  V30 16 1 14 17 CFG=3
+M  V30 17 1 16 18
+M  V30 18 1 16 19 CFG=3
+M  V30 19 1 17 20
+M  V30 20 1 18 21 CFG=3
+M  V30 21 1 6 7
+M  V30 22 1 12 11 CFG=1
+M  V30 23 1 15 16
+M  V30 24 1 18 20
+M  V30 END BOND
+M  V30 BEGIN COLLECTION
+M  V30 MDLV30/STEABS ATOMS=(6 7 9 12 14 16 18)
+M  V30 END COLLECTION
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 6
+
+>  <Column 1>
+C[C@]12CC[C@H]3[C@H]([C@@H]1CC[C@@H]2O)CCC4=CC(=O)CC[C@]34C
+
+>  <Monoisotopic Mass>
+288.20893
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+2
+
+>  <Stereo Centers>
+6
+
+>  <Rotatable Bonds>
+0
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+288.429
+
+>  <Shape Index>
+0.52381
+
+>  <Molecular Flexibility>
+0.13672
+
+>  <Molecular Complexity>
+0
+
+$$$$
+Compound 7
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 11 10 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Fe 0.0 0.0 0.0 0 CHG=2
+M  V30 2 C -4.8257 0.0 0.0 0
+M  V30 3 C -4.3289 -1.3956 0.0 0
+M  V30 4 C -3.6547 0.9343 0.0 0
+M  V30 5 C -2.8386 -1.3365 0.0 0
+M  V30 6 C -2.4246 0.1064 0.0 0 CHG=-1
+M  V30 7 C 4.6364 0.1892 0.0 0
+M  V30 8 C 4.116 1.6085 0.0 0
+M  V30 9 C 3.4418 -0.7214 0.0 0
+M  V30 10 C 2.6021 1.573 0.0 0
+M  V30 11 C 2.1881 0.1301 0.0 0 CHG=-1
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 2 3
+M  V30 2 2 2 4
+M  V30 3 2 3 5
+M  V30 4 1 4 6
+M  V30 5 1 7 8
+M  V30 6 2 7 9
+M  V30 7 2 8 10
+M  V30 8 1 9 11
+M  V30 9 1 5 6
+M  V30 10 1 10 11
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 7
+
+>  <Column 1>
+[CH-]1C=CC=C1.[CH-]1C=CC=C1.[Fe+2]
+
+>  <Monoisotopic Mass>
+65.039125
+
+>  <Fragments>
+3
+
+>  <Electronegative Atoms>
+0
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+0
+
+>  <Aromatic Atoms>
+5
+
+>  <Aromatic Rings>
+1
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+186.034
+
+>  <Shape Index>
+0.6
+
+>  <Molecular Flexibility>
+0
+
+>  <Molecular Complexity>
+0.54931
+
+$$$$
+Compound 8
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 13 12 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Cr 0.0 0.0 0.0 0
+M  V30 2 C -2.8344 2.7399 0.0 0
+M  V30 3 C -3.5902 4.0508 0.0 0
+M  V30 4 C -3.5902 1.4526 0.0 0
+M  V30 5 C -5.1019 4.0626 0.0 0
+M  V30 6 C -5.1019 1.4644 0.0 0
+M  V30 7 C -5.8577 2.7753 0.0 0
+M  V30 8 C -5.7632 -2.5509 0.0 0
+M  V30 9 C -5.0192 -3.8382 0.0 0
+M  V30 10 C -5.0192 -1.24 0.0 0
+M  V30 11 C -3.5311 -3.8264 0.0 0
+M  V30 12 C -3.5311 -1.2282 0.0 0
+M  V30 13 C -2.7871 -2.5155 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 2 2 3
+M  V30 2 1 2 4
+M  V30 3 1 3 5
+M  V30 4 2 4 6
+M  V30 5 2 5 7
+M  V30 6 2 8 9
+M  V30 7 1 8 10
+M  V30 8 1 9 11
+M  V30 9 2 10 12
+M  V30 10 2 11 13
+M  V30 11 1 6 7
+M  V30 12 1 12 13
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 8
+
+>  <Column 1>
+C1=CC=CC=C1.C1=CC=CC=C1.[Cr]
+
+>  <Monoisotopic Mass>
+78.04695
+
+>  <Fragments>
+3
+
+>  <Electronegative Atoms>
+0
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+0
+
+>  <Aromatic Atoms>
+6
+
+>  <Aromatic Rings>
+1
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+208.223
+
+>  <Shape Index>
+0.66667
+
+>  <Molecular Flexibility>
+0
+
+>  <Molecular Complexity>
+0
+
+$$$$
+Compound 9
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 15 12 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Cu 0.0 0.0 0.0 0 CHG=2
+M  V30 2 O -1.3219 3.3049 0.0 0
+M  V30 3 C -2.4787 2.3488 0.0 0
+M  V30 4 C -2.2308 0.8852 0.0 0 CHG=-1
+M  V30 5 C -3.8951 2.8682 0.0 0
+M  V30 6 C -3.3876 -0.0708 0.0 0
+M  V30 7 O -4.804 0.4485 0.0 0
+M  V30 8 C -3.1397 -1.5344 0.0 0
+M  V30 9 O 2.1718 -2.4551 0.0 0
+M  V30 10 C 2.9154 -1.1449 0.0 0
+M  V30 11 C 2.16 0.1652 0.0 0 CHG=-1
+M  V30 12 C 4.4027 -1.1331 0.0 0
+M  V30 13 C 2.9036 1.4754 0.0 0
+M  V30 14 O 4.3909 1.4872 0.0 0
+M  V30 15 C 2.1482 2.7856 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 2 2 3
+M  V30 2 1 3 4
+M  V30 3 1 3 5
+M  V30 4 1 4 6
+M  V30 5 2 6 7
+M  V30 6 1 6 8
+M  V30 7 2 9 10
+M  V30 8 1 10 11
+M  V30 9 1 10 12
+M  V30 10 1 11 13
+M  V30 11 2 13 14
+M  V30 12 1 13 15
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 9
+
+>  <Column 1>
+CC(=O)[CH-]C(=O)C.CC(=O)[CH-]C(=O)C.[Cu+2]
+
+>  <Monoisotopic Mass>
+99.044605
+
+>  <Fragments>
+3
+
+>  <Electronegative Atoms>
+2
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+2
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+261.763
+
+>  <Shape Index>
+0.71429
+
+>  <Molecular Flexibility>
+0.72146
+
+>  <Molecular Complexity>
+0.3662
+
+$$$$
+Compound 10
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 2 0 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 B 0.0 0.0 0.0 0
+M  V30 2 B 2.4999 0.0198 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 10
+
+>  <Column 1>
+B.B
+
+>  <Monoisotopic Mass>
+14.03278
+
+>  <Fragments>
+2
+
+>  <Electronegative Atoms>
+0
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+0
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+27.6696
+
+>  <Shape Index>
+0
+
+>  <Molecular Flexibility>
+0
+
+>  <Molecular Complexity>
+0
+
+$$$$
+Compound 11
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 5 4 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Cl 0.0 0.0 0.0 0
+M  V30 2 Al -1.3074 -0.742 0.0 0
+M  V30 3 Cl -1.3192 -2.2261 0.0 0
+M  V30 4 C -2.6148 0.0117 0.0 0
+M  V30 5 C -3.9222 -0.7302 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 2 3
+M  V30 3 1 2 4
+M  V30 4 1 4 5
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 11
+
+>  <Column 1>
+CC[Al](Cl)Cl
+
+>  <Monoisotopic Mass>
+125.958359
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+2
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+1
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+126.95
+
+>  <Shape Index>
+0.8
+
+>  <Molecular Flexibility>
+0.69732
+
+>  <Molecular Complexity>
+0.54931
+
+$$$$
+Compound 12
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 5 4 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Si 0.0 0.0 0.0 0
+M  V30 2 C 1.2885 -0.7447 0.0 0
+M  V30 3 C -0.0118 1.5131 0.0 0
+M  V30 4 C -0.0118 -1.4895 0.0 0
+M  V30 5 C -1.3122 -0.7447 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 1 3
+M  V30 3 1 1 4
+M  V30 4 1 1 5
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 12
+
+>  <Column 1>
+C[Si](C)(C)C
+
+>  <Monoisotopic Mass>
+88.070827
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+0
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+0
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+88.2253
+
+>  <Shape Index>
+0.6
+
+>  <Molecular Flexibility>
+0
+
+>  <Molecular Complexity>
+0
+
+$$$$
+Compound 13
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 15 16 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Ge 0.0 0.0 0.0 0
+M  V30 2 Cl 0.745 1.3126 0.0 0
+M  V30 3 Cl -0.7568 1.3126 0.0 0
+M  V30 4 C 1.289 -0.745 0.0 0
+M  V30 5 C -1.3126 -0.745 0.0 0
+M  V30 6 C 1.2772 -2.2351 0.0 0
+M  V30 7 C 2.578 0.0118 0.0 0
+M  V30 8 C -2.6253 0.0118 0.0 0
+M  V30 9 C -1.3245 -2.2351 0.0 0
+M  V30 10 C 2.5662 -2.9801 0.0 0
+M  V30 11 C 3.8671 -0.7332 0.0 0
+M  V30 12 C -3.938 -0.7332 0.0 0
+M  V30 13 C -2.6372 -2.9801 0.0 0
+M  V30 14 C 3.8552 -2.2232 0.0 0
+M  V30 15 C -3.9498 -2.2232 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 1 3
+M  V30 3 1 1 4
+M  V30 4 1 1 5
+M  V30 5 2 4 6
+M  V30 6 1 4 7
+M  V30 7 2 5 8
+M  V30 8 1 5 9
+M  V30 9 1 6 10
+M  V30 10 2 7 11
+M  V30 11 1 8 12
+M  V30 12 2 9 13
+M  V30 13 2 10 14
+M  V30 14 2 12 15
+M  V30 15 1 11 14
+M  V30 16 1 13 15
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 13
+
+>  <Column 1>
+C1=CC=C(C=C1)[Ge](C2=CC=CC=C2)(Cl)Cl
+
+>  <Monoisotopic Mass>
+297.937131
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+2
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+2
+
+>  <Aromatic Atoms>
+12
+
+>  <Aromatic Rings>
+2
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+297.727
+
+>  <Shape Index>
+0.6
+
+>  <Molecular Flexibility>
+0.52525
+
+>  <Molecular Complexity>
+0.48104
+
+$$$$
+Compound 14
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 5 4 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Sn 0.0 0.0 0.0 0
+M  V30 2 C 1.2885 -0.7447 0.0 0
+M  V30 3 C -0.0118 1.5131 0.0 0
+M  V30 4 C -0.0118 -1.4895 0.0 0
+M  V30 5 C -1.3122 -0.7447 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 1 3
+M  V30 3 1 1 4
+M  V30 4 1 1 5
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 14
+
+>  <Column 1>
+C[Sn](C)(C)C
+
+>  <Monoisotopic Mass>
+179.9961
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+0
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+0
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+178.849
+
+>  <Shape Index>
+0.6
+
+>  <Molecular Flexibility>
+0
+
+>  <Molecular Complexity>
+0
+
+$$$$
+Compound 15
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 9 8 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Pb 0.0 0.0 0.0 0
+M  V30 2 C 1.3138 0.7834 0.0 0
+M  V30 3 C -0.012 -1.5187 0.0 0
+M  V30 4 C 1.3138 -0.7593 0.0 0
+M  V30 5 C -1.3379 0.7834 0.0 0
+M  V30 6 C 2.6277 0.4098 0.0 0
+M  V30 7 C -1.35 -2.2781 0.0 0
+M  V30 8 C 2.6277 -0.1687 0.0 0
+M  V30 9 C -2.6759 0.0241 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 1 3
+M  V30 3 1 1 4
+M  V30 4 1 1 5
+M  V30 5 1 2 6
+M  V30 6 1 3 7
+M  V30 7 1 4 8
+M  V30 8 1 5 9
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 15
+
+>  <Column 1>
+CC[Pb](CC)(CC)CC
+
+>  <Monoisotopic Mass>
+324.133127
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+0
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+4
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+323.447
+
+>  <Shape Index>
+0.55556
+
+>  <Molecular Flexibility>
+0.87416
+
+>  <Molecular Complexity>
+0.27465
+
+$$$$
+Compound 16
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 12 11 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 S 0.0 0.0 0.0 0
+M  V30 2 P 1.2901 -0.7456 0.0 0
+M  V30 3 P -0.0236 -1.4913 0.0 0
+M  V30 4 C 1.2783 0.7693 0.0 0
+M  V30 5 C 2.5802 -1.4795 0.0 0
+M  V30 6 S 1.2664 -2.2251 0.0 0
+M  V30 7 C -0.0355 -2.9827 0.0 0
+M  V30 8 C -1.3374 -0.7338 0.0 0
+M  V30 9 C 2.5684 1.5268 0.0 0
+M  V30 10 C 3.8704 -0.722 0.0 0
+M  V30 11 C -1.3493 -3.7165 0.0 0
+M  V30 12 C -2.6512 -1.4795 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 2 1 2
+M  V30 2 1 2 3
+M  V30 3 1 2 4
+M  V30 4 1 2 5
+M  V30 5 2 3 6
+M  V30 6 1 3 7
+M  V30 7 1 3 8
+M  V30 8 1 4 9
+M  V30 9 1 5 10
+M  V30 10 1 7 11
+M  V30 11 1 8 12
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 16
+
+>  <Column 1>
+CCP(=S)(CC)P(=S)(CC)CC
+
+>  <Monoisotopic Mass>
+242.048164
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+4
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+5
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+242.327
+
+>  <Shape Index>
+0.5
+
+>  <Molecular Flexibility>
+0.88602
+
+>  <Molecular Complexity>
+0.54161
+
+$$$$
+Compound 17
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 6 5 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 As 0.0 0.0 0.0 0
+M  V30 2 Cl 1.2827 -0.7414 0.0 0
+M  V30 3 Cl -0.0117 1.5063 0.0 0
+M  V30 4 C -1.3063 -0.7414 0.0 0
+M  V30 5 C -2.6126 0.0117 0.0 0
+M  V30 6 Cl -3.9189 -0.7296 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 1 3
+M  V30 3 1 1 4
+M  V30 4 2 4 5 CFG=2
+M  V30 5 1 5 6
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 17
+
+>  <Column 1>
+C(=C[As](Cl)Cl)Cl
+
+>  <Monoisotopic Mass>
+205.8438
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+4
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+1
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+207.319
+
+>  <Shape Index>
+0.83333
+
+>  <Molecular Flexibility>
+0.57749
+
+>  <Molecular Complexity>
+0.69315
+
+$$$$
+Compound 18
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 19 21 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Sb 0.0 0.0 0.0 0
+M  V30 2 C 1.2889 -0.7331 0.0 0
+M  V30 3 C -0.0118 1.5136 0.0 0
+M  V30 4 C -1.3126 -0.7331 0.0 0
+M  V30 5 C 1.2771 -2.2231 0.0 0
+M  V30 6 C 2.5779 0.0236 0.0 0
+M  V30 7 C 1.2771 2.2704 0.0 0
+M  V30 8 C -1.3244 2.2704 0.0 0
+M  V30 9 C -2.6252 0.0236 0.0 0
+M  V30 10 C -1.3244 -2.2231 0.0 0
+M  V30 11 C 2.5661 -2.9563 0.0 0
+M  V30 12 C 3.8668 -0.7095 0.0 0
+M  V30 13 C 1.2653 3.7841 0.0 0
+M  V30 14 C -1.3362 3.7841 0.0 0
+M  V30 15 C -3.9378 -0.7095 0.0 0
+M  V30 16 C -2.637 -2.9563 0.0 0
+M  V30 17 C 3.855 -2.1995 0.0 0
+M  V30 18 C -0.0473 4.5409 0.0 0
+M  V30 19 C -3.9496 -2.1995 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 1 3
+M  V30 3 1 1 4
+M  V30 4 2 2 5
+M  V30 5 1 2 6
+M  V30 6 2 3 7
+M  V30 7 1 3 8
+M  V30 8 2 4 9
+M  V30 9 1 4 10
+M  V30 10 1 5 11
+M  V30 11 2 6 12
+M  V30 12 1 7 13
+M  V30 13 2 8 14
+M  V30 14 1 9 15
+M  V30 15 2 10 16
+M  V30 16 2 11 17
+M  V30 17 2 13 18
+M  V30 18 2 15 19
+M  V30 19 1 12 17
+M  V30 20 1 14 18
+M  V30 21 1 16 19
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 18
+
+>  <Column 1>
+C1=CC=C(C=C1)[Sb](C2=CC=CC=C2)C3=CC=CC=C3
+
+>  <Monoisotopic Mass>
+352.021196
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+0
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+3
+
+>  <Aromatic Atoms>
+18
+
+>  <Aromatic Rings>
+3
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+353.077
+
+>  <Shape Index>
+0.47368
+
+>  <Molecular Flexibility>
+0.35929
+
+>  <Molecular Complexity>
+0.43493
+
+$$$$
+Compound 20
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 8 8 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 S 0.0 0.0 0.0 0
+M  V30 2 S 1.4965 0.0118 0.0 0
+M  V30 3 S -1.0808 -1.057 0.0 0
+M  V30 4 S 2.5536 -1.0452 0.0 0
+M  V30 5 S -1.0927 -2.5536 0.0 0
+M  V30 6 S 2.5417 -2.5417 0.0 0
+M  V30 7 S -0.0356 -3.6107 0.0 0
+M  V30 8 S 1.4609 -3.5988 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 1 3
+M  V30 3 1 2 4
+M  V30 4 1 3 5
+M  V30 5 1 4 6
+M  V30 6 1 5 7
+M  V30 7 1 6 8
+M  V30 8 1 7 8
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 20
+
+>  <Column 1>
+S1SSSSSSS1
+
+>  <Monoisotopic Mass>
+255.77656
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+8
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+0
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+256.528
+
+>  <Shape Index>
+0.625
+
+>  <Molecular Flexibility>
+0.44173
+
+>  <Molecular Complexity>
+0
+
+$$$$
+Compound 21
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 6 6 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Se 0.0 0.0 0.0 0
+M  V30 2 Se -0.0118 -1.4987 0.0 0
+M  V30 3 Se 1.2965 0.7612 0.0 0
+M  V30 4 Se 1.2846 -2.2481 0.0 0
+M  V30 5 Se 2.5931 0.0237 0.0 0
+M  V30 6 Se 2.5812 -1.4749 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 1 3
+M  V30 3 1 2 4
+M  V30 4 1 3 5
+M  V30 5 1 4 6
+M  V30 6 1 5 6
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 21
+
+>  <Column 1>
+[Se]1[Se][Se][Se][Se][Se]1
+
+>  <Monoisotopic Mass>
+479.49912
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+6
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+0
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+473.76
+
+>  <Shape Index>
+0.66667
+
+>  <Molecular Flexibility>
+0.38954
+
+>  <Molecular Complexity>
+0
+
+$$$$
+Compound 22
+Actelion Java MolfileCreator 2.0
+
+  0  0  0  0  0  0              0 V3000
+M  V30 BEGIN CTAB
+M  V30 COUNTS 5 4 0 0 0
+M  V30 BEGIN ATOM
+M  V30 1 Te 0.0 0.0 0.0 0
+M  V30 2 C 1.2902 0.7577 0.0 0
+M  V30 3 C -1.3106 0.7577 0.0 0
+M  V30 4 C 2.5804 0.0204 0.0 0
+M  V30 5 C -2.6213 0.0204 0.0 0
+M  V30 END ATOM
+M  V30 BEGIN BOND
+M  V30 1 1 1 2
+M  V30 2 1 1 3
+M  V30 3 1 2 4
+M  V30 4 1 3 5
+M  V30 END BOND
+M  V30 END CTAB
+M  END
+>  <Molecule Name>
+Compound 22
+
+>  <Column 1>
+CC[Te]CC
+
+>  <Monoisotopic Mass>
+187.984479
+
+>  <Fragments>
+1
+
+>  <Electronegative Atoms>
+1
+
+>  <Stereo Centers>
+0
+
+>  <Rotatable Bonds>
+2
+
+>  <Aromatic Atoms>
+0
+
+>  <Aromatic Rings>
+0
+
+>  <Amides>
+0
+
+>  <Amines>
+0
+
+>  <Aromatic Nitrogens>
+0
+
+>  <Total Molweight>
+185.723
+
+>  <Shape Index>
+1
+
+>  <Molecular Flexibility>
+0.78535
+
+>  <Molecular Complexity>
+0.34657
+
+$$$$

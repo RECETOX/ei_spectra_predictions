@@ -151,6 +151,26 @@ def append_classes(df: pd.DataFrame, left_on: str) -> pd.DataFrame:
     return merged_df
 
 
+def sdf_to_dataframe(molecules: Chem.SDMolSupplier) -> pd.DataFrame:
+    """Convert an SDF file to a pandas DataFrame.
+
+    Args:
+        sdf (Chem.SDMolSupplier): The SDF file to convert.
+
+    Returns:
+        pd.DataFrame: The converted DataFrame.
+    """
+    df =  pd.DataFrame({
+        "aromatic_nitrogens": [int(m.GetProp("Aromatic Nitrogens")) for m in molecules],
+        "molecular_complexity": [float(m.GetProp("Molecular Complexity")) for m in molecules],
+        "molecular_flexibility": [float(m.GetProp("Molecular Flexibility")) for m in molecules],
+        "rotatable_bonds": [int(m.GetProp("Rotatable Bonds")) for m in molecules],
+        "stereo_centers": [int(m.GetProp("Stereo Centers")) for m in molecules],
+        "electronegative_atoms": [int(m.GetProp("Electronegative Atoms")) for m in molecules]
+    })
+    return df
+
+
 def get_true_names(row, df: pd.DataFrame) -> List[str]:
     """Map true columns to a list of names for a given row.
 
