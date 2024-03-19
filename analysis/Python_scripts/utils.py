@@ -161,12 +161,13 @@ def sdf_to_dataframe(molecules: Chem.SDMolSupplier) -> pd.DataFrame:
         pd.DataFrame: The converted DataFrame.
     """
     df =  pd.DataFrame({
+        "n_atoms": [int(AddHs(m).GetNumAtoms()) for m in molecules],
         "aromatic_nitrogens": [int(m.GetProp("Aromatic Nitrogens")) for m in molecules],
         "molecular_complexity": [float(m.GetProp("Molecular Complexity")) for m in molecules],
         "molecular_flexibility": [float(m.GetProp("Molecular Flexibility")) for m in molecules],
         "rotatable_bonds": [int(m.GetProp("Rotatable Bonds")) for m in molecules],
         "stereo_centers": [int(m.GetProp("Stereo Centers")) for m in molecules],
-        "electronegative_atoms": [int(m.GetProp("Electronegative Atoms")) for m in molecules]
+        "electronegative_atoms": [int(m.GetProp("Electronegative Atoms")) for m in molecules],
     })
     return df
 
