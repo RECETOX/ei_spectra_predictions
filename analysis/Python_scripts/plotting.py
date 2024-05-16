@@ -138,7 +138,9 @@ def create_plot(df: pd.DataFrame,
                 normalized_matches: bool = True,
                 nist_scale: bool = True,
                 hide_labels: bool = False,
-                order: List[str] = None) -> plt.Figure:
+                order: List[str] = None,
+                colors : List[str] = ['yellow', 'deepskyblue'],
+                median_colors : List[str] = ['darkgreen', 'blue']) -> plt.Figure:
     """ Create a boxplot with two y-axes for the input DataFrame.
 
     Args:
@@ -153,22 +155,14 @@ def create_plot(df: pd.DataFrame,
     Returns:
         fig (plt.Figure): The plot.
     """
-    matches_col = 'matches'
-    scores_col = 'scores'
-
-    label_fontsize = 20
-    tick_fontsize = 13
-    text_width = 22
+    matches_col, scores_col, label_fontsize, tick_fontsize, text_width, flierprops = init()
 
     # Set the style
-    colors = ['yellow', 'deepskyblue']
     sns.set_palette(sns.color_palette(colors))
     sns.set_style(style='white')
 
     # Calculate the number of bars and figure size
-    n_bars = df[grouping_column].nunique()
-    bar_width = 2
-    plot_width = n_bars * bar_width
+    plot_width = calc_plot_width(df, grouping_column, 2)
     fig = plt.figure(figsize=(plot_width, 5))
 
     ax = sns.boxplot(x=grouping_column,
@@ -176,11 +170,78 @@ def create_plot(df: pd.DataFrame,
                      hue="Number",
                      data=df,
                      hue_order=[matches_col, np.nan],
-                     medianprops={'color': 'darkgreen', 'linewidth': 4.0},
+                     medianprops={'color': median_colors[0], 'linewidth': 4.0},
                      flierprops={'marker': 'o', 'markersize': 10, 'markerfacecolor': 'none'},
-                     order=order)  # RUN PLOT
+                     order=order)
     ax.legend_.remove()
 
+    rescale_matches_axes(df, normalized_matches, matches_col, label_fontsize, tick_fontsize, ax)
+
+    ax2 = ax.twinx()
+
+    sns.boxplot(ax=ax2, x=grouping_column, y='value', hue='Number',
+                data=df, hue_order=[np.nan, scores_col],
+                medianprops={'color': median_colors[1], 'linewidth': 4.0},
+                flierprops={'marker': 'o', 'markersize': 10, 'markerfacecolor': 'none'})
+
+    ax2.legend_.remove()
+
+    rescale_scores_axes(nist_scale, label_fontsize, tick_fontsize, ax2)
+
+    if xlabel:
+        # Set x-axis label and font size
+        ax.set_xlabel(xlabel, fontsize=label_fontsize)
+    else:
+        ax.set_xlabel("", fontsize=0)
+        ax2.set_xlabel("", fontsize=0)
+
+    # Create a count for each x-axis label
+    count_data = df[grouping_column].value_counts()
+
+    # # Add the count labels to the x-axis
+    make_xticklabels(text_width, ax, count_data)
+
+    # Change the legend labels
+    if showlegend:
+        handles, labels = ax.get_legend_handles_labels()
+        labels[0] = ax.get_ylabel()
+        labels[1] = ax2.get_ylabel()
+        ax.legend(handles, labels, loc='upper right', fontsize=14)
+
+    if hide_labels:
+        ax.set_ylabel("", fontsize=0)
+        ax2.set_ylabel("", fontsize=0)
+
+    return fig
+
+def init():
+    matches_col = 'matches'
+    scores_col = 'scores'
+
+    label_fontsize = 20
+    tick_fontsize = 13
+    text_width = 22
+    flierprops={
+        'marker': 'o',
+        'markersize': 10,
+        'markerfacecolor': 'none'
+    }
+    return matches_col,scores_col,label_fontsize,tick_fontsize,text_width, flierprops
+
+
+def rescale_scores_axes(nist_scale, label_fontsize, tick_fontsize, ax2):
+    if nist_scale:
+        ax2.set_ylim([-100, 1100])
+    else:
+        ax2.set_ylim([-0.1, 1.1])  # Set y-axis limits
+
+    ax2.set_ylabel('scores', fontsize=label_fontsize)  # Set y-axis label
+    # Set font size of y-axis tick labels
+    ax2.tick_params(axis='y', labelsize=tick_fontsize)
+    ax2.tick_params(axis='x', labelsize=tick_fontsize)
+
+
+def rescale_matches_axes(df, normalized_matches, matches_col, label_fontsize, tick_fontsize, ax):
     if normalized_matches:
         ax.set_ylim([-10, 110])  # Set y-axis limits
         ax.set_ylabel('ions matching reference', fontsize=label_fontsize)  # Set y-axis label
@@ -198,52 +259,12 @@ def create_plot(df: pd.DataFrame,
     # Set font size of y-axis tick labels
     ax.tick_params(axis='y', labelsize=tick_fontsize)
 
-    ax2 = ax.twinx()
 
-    sns.boxplot(ax=ax2, x=grouping_column, y='value', hue='Number',
-                data=df, hue_order=[np.nan, scores_col],
-                medianprops={'color': 'b', 'linewidth': 4.0},
-                flierprops={'marker': 'o', 'markersize': 10, 'markerfacecolor': 'none'})
-
-    ax2.legend_.remove()
-
-    if nist_scale:
-        ax2.set_ylim([-100, 1100])
-    else:
-        ax2.set_ylim([-0.1, 1.1])  # Set y-axis limits
-
-    ax2.set_ylabel('scores', fontsize=label_fontsize)  # Set y-axis label
-    # Set font size of y-axis tick labels
-    ax2.tick_params(axis='y', labelsize=tick_fontsize)
-
-    if xlabel:
-        # Set x-axis label and font size
-        ax.set_xlabel(xlabel, fontsize=label_fontsize)
-    else:
-        ax.set_xlabel("", fontsize=0)
-        ax2.set_xlabel("", fontsize=0)
-
-    # Create a count for each x-axis label
-    count_data = df[grouping_column].value_counts()
-
-    # # Add the count labels to the x-axis
+def make_xticklabels(text_width, ax, count_data, ha='right'):
     xlabels = [label.get_text() for label in ax.get_xticklabels()]
     xlabels = ['\n'.join(textwrap.wrap(
         label + ' (' + str((count_data.loc[label] // 2)) + ')', width=text_width)) for label in xlabels]
-    ax.set_xticklabels(xlabels, rotation=45, ha='right')
-
-    # Change the legend labels
-    if showlegend:
-        handles, labels = ax.get_legend_handles_labels()
-        labels[0] = ax.get_ylabel()
-        labels[1] = ax2.get_ylabel()
-        ax.legend(handles, labels, loc='upper right', fontsize=14)
-
-    if hide_labels:
-        ax.set_ylabel("", fontsize=0)
-        ax2.set_ylabel("", fontsize=0)
-
-    return fig
+    ax.set_xticklabels(xlabels, rotation=45, ha=ha)
 
 
 def scatterplot_matplotlib(df: pd.DataFrame) -> plt.Figure:
@@ -277,4 +298,232 @@ def scatterplot_matplotlib(df: pd.DataFrame) -> plt.Figure:
         plt.scatter([], [], c='c', alpha=0.5, s=size * 2, label=str(size))
     plt.legend(scatterpoints=1, title='Query Matched %',
                labelspacing=1, loc='upper left')
+    return fig
+
+def create_dual_plot(df1: pd.DataFrame, df2: pd.DataFrame,
+                     grouping_column: str,
+                     order1: List[str] = None,
+                     order2: List[str] = None
+                     ) -> plt.Figure:
+    """ Create a boxplot with two y-axes for the input DataFrame.
+
+    Args:
+        df1, df2 (pd.DataFrame): The input DataFrames.
+        grouping_column (str): The name of the column to group by.
+        order1, order2 (List[str]): The order of the bars.
+    Returns:
+        fig (plt.Figure): The plot.
+    """
+    medianprops={
+        'linewidth': 2.0
+    }
+
+    # Set the style
+    sns.set_style(style='white')
+    sns.set_palette(sns.color_palette(['salmon', 'crimson']))
+
+    # Calculate the number of bars and figure size
+    plot_width = calc_plot_width(df1, grouping_column, 1.5)
+
+    # Create the figure and axes
+    fig, ax1 = plt.subplots(figsize=(plot_width, 5))
+
+    # Create the boxplot for the first DataFrame
+    ax1, ax1_2 = create_boxplot_subplot(
+        df1,
+        grouping_column,
+        order1,
+        medianprops,
+        ax1,
+        'right',
+    )
+
+    # Create the second axes for the second DataFrame
+    ax2 = ax1.twiny()
+    sns.set_palette(sns.color_palette(['skyblue', 'deepskyblue']))
+
+    # Create the boxplot for the second DataFrame
+    ax2, ax2_2 = create_boxplot_subplot(
+        df2,
+        grouping_column,
+        order2,
+        medianprops,
+        ax2,
+        'left',
+    )
+
+    lines, labels = ax1.get_legend_handles_labels()
+    labels[0] = ax1.get_ylabel() + ' (with N)'
+    labels[1] = ax1_2.get_ylabel() + ' (with N)'
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    labels2[0] = ax2.get_ylabel()
+    labels2[1] = ax2_2.get_ylabel()
+    ax1.legend(lines + lines2, labels + labels2, loc='upper right', ncols=2)
+
+    ax1_2.get_legend().remove()
+    ax2_2.get_legend().remove()
+    ax2.get_legend().remove()
+    
+
+    return fig
+
+def calc_plot_width(df, grouping_column, bar_width):
+    n_bars = df[grouping_column].nunique()
+    plot_width = n_bars * bar_width
+    return plot_width
+
+def create_boxplot_subplot(df,
+                           grouping_column,
+                           order,
+                           medianprops,
+                           ax,
+                           ha):
+    matches_col, scores_col, label_fontsize, tick_fontsize, text_width, flierprops = init()
+
+    sns.boxplot(
+        ax=ax,
+        data=df,
+        order=order,
+        x=grouping_column,
+        y='value',
+        hue="Number",
+        hue_order=[matches_col, np.nan],
+        medianprops=medianprops,
+        flierprops=flierprops,
+        boxprops=dict(alpha=0.5)
+    )
+   
+    rescale_matches_axes(
+        df,
+        True,
+        matches_col,
+        label_fontsize,
+        tick_fontsize,
+        ax
+    )
+
+    ax1_2 = ax.twinx()
+    sns.boxplot(
+        ax=ax1_2,
+        data=df,
+        order=order,
+        x=grouping_column,
+        y='value',
+        hue='Number',
+        hue_order=[np.nan, scores_col],
+        medianprops=medianprops,
+        flierprops=flierprops,
+        boxprops=dict(alpha=0.5)
+    )
+    rescale_scores_axes(
+        True,
+        label_fontsize,
+        tick_fontsize,
+        ax1_2
+    )
+
+    count_data1 = df[grouping_column].value_counts()
+    make_xticklabels(text_width, ax, count_data1, ha=ha)
+
+    ax.set_xlabel("", fontsize=0)
+    ax1_2.set_xlabel("", fontsize=0)
+
+    return ax, ax1_2
+
+
+def boxplot_comparison(df, order, df_N, order_N, col, colors = ['crimson', 'deepskyblue']):
+    matches_col, scores_col, label_fontsize, tick_fontsize, text_width, flierprops = init()
+    medianprops = {
+        'linewidth': 2.0
+    }
+
+    grouping_column = 'composition'	
+    plot_width = calc_plot_width(df, grouping_column, 1)
+    sns.set_style(style='white')
+    sns.set_palette(sns.color_palette(colors))
+
+    scores_df = df[df['Number'] == col]
+    scores_df_N = df_N[df_N['Number'] == col]
+
+
+    fig, ax1 = plt.subplots(figsize=(plot_width, 5))
+    sns.boxplot(
+        ax=ax1,
+        data=scores_df_N,
+        order=order_N,
+        x=grouping_column,
+        y='value',
+        hue="Number",
+        hue_order=[col, np.nan],
+        flierprops=flierprops,
+        boxprops=dict(alpha=0.5),
+        medianprops= {
+            'linewidth': 2.0,
+            'color': colors[0]
+        }
+    )
+    ax1.set_xlabel("", fontsize=0)
+
+    if col == 'scores':
+        rescale_scores_axes(
+            True,
+            label_fontsize,
+            tick_fontsize,
+            ax1
+        )
+    else:
+        rescale_matches_axes(
+            scores_df_N,
+            True,
+            matches_col,
+            label_fontsize,
+            tick_fontsize,
+            ax1
+        )
+
+    count_data1 = df_N[grouping_column].value_counts()
+    make_xticklabels(text_width, ax1, count_data1, ha='right')
+    
+    ax2 = ax1.twiny()
+    sns.boxplot(
+        ax=ax2,
+        data=scores_df,
+        order=order,
+        x=grouping_column,
+        y='value',
+        hue="Number",
+        hue_order=[np.nan, col],
+        flierprops=flierprops,
+        boxprops=dict(alpha=0.5),
+        medianprops= {
+            'linewidth': 2.0,
+            'color': colors[1]
+        }    )
+    ax2.set_xlabel("", fontsize=0)
+
+    if col == 'scores':
+        rescale_scores_axes(
+            True,
+            label_fontsize,
+            tick_fontsize,
+            ax2
+        )
+    else:
+        rescale_matches_axes(
+            scores_df,
+            True,
+            matches_col,
+            label_fontsize,
+            tick_fontsize,
+            ax2
+        )
+
+    count_data2 = df[grouping_column].value_counts()
+    make_xticklabels(text_width, ax2, count_data2, ha='left')
+
+    handles, labels = ax1.get_legend_handles_labels()
+    labels[0] = 'nitrogen'
+    labels[1] = 'baseline'
+    ax1.legend(handles, labels, loc='upper right', fontsize=14)
+    ax2.get_legend().remove()
     return fig
