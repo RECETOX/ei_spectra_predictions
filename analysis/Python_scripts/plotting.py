@@ -276,7 +276,9 @@ def scatterplot_matplotlib(df: pd.DataFrame) -> plt.Figure:
     Returns:
         fig (plt.Figure): The plot.
     """
-    fig = plt.figure(figsize=(18, 6))
+    _, _, label_fontsize, tick_fontsize, _, _ = init()
+
+    fig = plt.figure(figsize=(24, 8))
     scatter = plt.scatter(
         df['scores'],
         df['matches'],
@@ -288,16 +290,22 @@ def scatterplot_matplotlib(df: pd.DataFrame) -> plt.Figure:
         vmin=0,
         vmax=100
     )
-    plt.colorbar(scatter).set_label('Reference Matched %')
-    plt.xlabel('scores')
-    plt.ylabel('ion matches')
+    for ax in fig.get_axes():
+        ax.tick_params(axis='x', labelsize=tick_fontsize)
+        ax.tick_params(axis='y', labelsize=tick_fontsize)
+
+    cbar = plt.colorbar(scatter)
+    cbar.set_label('ions matching reference (%)', size=label_fontsize)
+    cbar.ax.tick_params(labelsize=tick_fontsize)
+    plt.xlabel('scores', fontsize = label_fontsize)
+    plt.ylabel('ion matches', fontsize = label_fontsize)
 
     # Add a legend for the size
     sizes = [1, 50, 100]
     for size in sizes:
         plt.scatter([], [], c='c', alpha=0.5, s=size * 2, label=str(size))
-    plt.legend(scatterpoints=1, title='Query Matched %',
-               labelspacing=1, loc='upper left')
+    plt.legend(scatterpoints=1, title='ions matching query (%)',
+               labelspacing=1, loc='upper left', fontsize = tick_fontsize, ncols=3)
     return fig
 
 def create_dual_plot(df1: pd.DataFrame, df2: pd.DataFrame,
