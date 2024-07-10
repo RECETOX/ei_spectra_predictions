@@ -1,11 +1,8 @@
 from utils import *
 from plotting import boxplot_comparison
 
-all_peaks_same = pd.read_csv("../data/output_matching/matchms/matchms_tol_0.0035_1%I_all_peaks_with_0s_only_matching.tsv", sep='\t')
-all_peaks_same.rename(columns={'CosineHungarian_0.0035_0.0_1.0_scores': 'scores'}, inplace=True)
-all_peaks_same.rename(columns={'CosineHungarian_0.0035_0.0_1.0_matches': 'matches'}, inplace=True)
-all_peaks_same = append_spectrum_metadata(all_peaks_same)
-merged_all_peaks_same = normalize_df(append_classes(all_peaks_same, 'query'))
+matchms_scores = load_matchms_scores()
+merged_all_peaks_same = normalize_df(matchms_scores)
 mdf_comp = preprocess_data(merged_all_peaks_same, ["composition"])
 
 baseline_cols= ['C,H', 'C,H,O', 'C,H,O,S', 'C,Cl,H,O', 'Br,C,H,O', 'C,Cl,H', 'C,Cl,H,O,S', 'C,Cl,F,H,O', 'C,H,O,P', 'C,H,O,P,S']

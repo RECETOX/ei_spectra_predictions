@@ -4,12 +4,9 @@ from matplotlib import pyplot as plt
 from utils import *
 from plotting import *
 
-matchms_scores = pd.read_csv("../data/output_matching/matchms/matchms_tol_0.0035_1%I_all_peaks_with_0s_only_matching.tsv", sep="\t")
-matchms_scores.rename(columns={'CosineHungarian_0.0035_0.0_1.0_scores': 'scores'}, inplace=True)
-matchms_scores.rename(columns={'CosineHungarian_0.0035_0.0_1.0_matches': 'matches'}, inplace=True)
+matchms_scores = load_matchms_scores()
 
-matchms_scores = append_classes(matchms_scores, 'query')
-df = normalize_df(append_spectrum_metadata(matchms_scores), matches_norm_col=None)
+df = normalize_df(matchms_scores, matches_norm_col=None)
 del df['peak_comments']
 
 matches_col = 'matches'
