@@ -332,3 +332,12 @@ def normalize_df(df: pd.DataFrame, use_nist: bool = True, matches_norm_col: str 
     if matches_norm_col:
         df[matches_col] = (df[matches_col] / df[matches_norm_col]) * 100
     return df
+
+
+def load_matchms_scores():
+    matchms_scores = pd.read_csv("../data/output_matching/matchms/matchms_tol_0.0035_1%I_all_peaks_with_0s_only_matching.tsv", sep="\t")
+    matchms_scores.rename(columns={'CosineHungarian_0.0035_0.0_1.0_scores': 'scores'}, inplace=True)
+    matchms_scores.rename(columns={'CosineHungarian_0.0035_0.0_1.0_matches': 'matches'}, inplace=True)
+    matchms_scores = append_classes(matchms_scores, 'query')
+    matchms_scores = append_spectrum_metadata(matchms_scores)
+    return matchms_scores
