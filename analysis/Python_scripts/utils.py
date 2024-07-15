@@ -20,11 +20,24 @@ def is_spectrum_for_compound(compound_name: str, spectrum_name: str) -> bool:
     Returns:
         bool: True if the spectrum is for the compound, False otherwise.
     """
+    options = generate_compound_name_options(compound_name)
+    return spectrum_name in options
+
+def generate_compound_name_options(compound_name: str) -> List[str]:
+    """Generate all possible options for a compound name combination.
+
+    Args:
+        compound_name (str): Compound name to check for.
+
+    Returns:
+        List[str]: possible combinations.
+    """
     options = [
         compound_name + x
         for x in ["", "_isomer1", "_isomer2", " isomer 1", " isomer 2"]
     ]
-    return spectrum_name in options
+    
+    return options
 
 
 def get_matching_rows(df: pd.DataFrame, query_name: str, reference_name: str) -> pd.DataFrame:
