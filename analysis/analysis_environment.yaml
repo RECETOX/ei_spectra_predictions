@@ -7,12 +7,12 @@ dependencies:
 - bioconductor-metaboannotation
 - bioconductor-msbackendmsp
 - ipykernel
-- matchms==0.23.1
+- matchms
 - nbformat
 - numba
 - pandas
 - plotly
-- python==3.10
+- python
 - rdkit
 - seaborn
 - python-kaleido
