@@ -16,4 +16,5 @@ dependencies:
 - rdkit
 - seaborn
 - python-kaleido
+- ms-entropy
 
