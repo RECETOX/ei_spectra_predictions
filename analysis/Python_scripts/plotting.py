@@ -206,7 +206,7 @@ def create_plot(df: pd.DataFrame,
         handles, labels = ax.get_legend_handles_labels()
         labels[0] = ax.get_ylabel()
         labels[1] = ax2.get_ylabel()
-        ax.legend(handles, labels, loc='upper right', fontsize=14)
+        ax.legend(handles, labels, loc='upper right', fontsize=label_fontsize)
 
     if hide_labels:
         ax.set_ylabel("", fontsize=0)
@@ -218,9 +218,9 @@ def init():
     matches_col = 'matches'
     scores_col = 'scores'
 
-    label_fontsize = 20
-    tick_fontsize = 13
-    text_width = 22
+    label_fontsize = 22
+    tick_fontsize = 22
+    text_width = 26
     flierprops={
         'marker': 'o',
         'markersize': 10,
