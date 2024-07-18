@@ -220,7 +220,7 @@ def init():
 
     label_fontsize = 22
     tick_fontsize = 22
-    text_width = 26
+    text_width = 21
     flierprops={
         'marker': 'o',
         'markersize': 10,
@@ -304,7 +304,7 @@ def scatterplot_matplotlib(df: pd.DataFrame) -> plt.Figure:
     sizes = [1, 50, 100]
     for size in sizes:
         plt.scatter([], [], c='c', alpha=0.5, s=size * 2, label=str(size))
-    plt.legend(scatterpoints=1, title='ions matching query (%)',
+    plt.legend(scatterpoints=1, title='ions matching query (%)', title_fontsize=label_fontsize,
                labelspacing=1, loc='upper left', fontsize = tick_fontsize, ncols=3)
     return fig
 
