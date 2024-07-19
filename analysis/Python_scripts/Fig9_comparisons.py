@@ -7,8 +7,8 @@ wang_db = pd.read_csv("../data/reference/13321_2020_470_MOESM1_ESM.csv")
 wang_db_tms = pd.read_csv("../data/reference/wang2022_TMS_annotated.tsv", sep="\t", decimal=",")
 df = normalize_df(load_matchms_scores())
 
-wang_db["study"] = "Wang et al.$^{25}$"
-wang_db_tms["study"] = "Wang et al.$^{26}$"
+wang_db["study"] = "Wang et al.$^{27}$"
+wang_db_tms["study"] = "Wang et al.$^{28}$"
 df["study"] = "This study"
 cols = ["study", "Dot"]
 
