@@ -19,5 +19,5 @@ grouping = "subclass"
 for group in grouped_class.groups:
     grp = grouped_class.get_group(group).groupby(grouping).filter(lambda x: len(x) > 6)
     if len(grp) > 0 and group == "Benzene and substituted derivatives":
-        fig = create_plot(grp, grouping, showlegend=False, hide_labels=True)
+        fig = create_plot(grp, grouping, showlegend=False, hide_labels=False)
         fig.savefig(f"paper_plots/Fig6_benzene_subclasses.png", bbox_inches='tight')

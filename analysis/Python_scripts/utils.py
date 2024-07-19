@@ -184,6 +184,16 @@ def sdf_to_dataframe(molecules: Chem.SDMolSupplier) -> pd.DataFrame:
     })
     return df
 
+def load_sdf_into_df(filepath:str):
+    db = Chem.SDMolSupplier(filepath, sanitize=True)
+    return pd.DataFrame({
+    "n_atoms": [int(AddHs(m).GetNumAtoms()) for m in db],
+    "class": [m.GetProp("Class") for m in db],
+    "superclass": [m.GetProp("Superclass") for m in db],
+    "subclass": [m.GetProp("Subclass") for m in db],
+    "inchikey": [str(m.GetProp("InChIKey")).split("=")[1] for m in db],
+})
+
 
 def get_true_names(row, df: pd.DataFrame) -> List[str]:
     """Map true columns to a list of names for a given row.

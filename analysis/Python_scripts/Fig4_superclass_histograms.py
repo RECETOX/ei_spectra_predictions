@@ -1,14 +1,10 @@
 import pandas as pd
-import os
-import numpy as np
-import math
 from matplotlib import pyplot as plt
-from rdkit import Chem
-import plotly.graph_objs as go
-from plotly.subplots import make_subplots
 
 from utils import *
 from plotting import *
+
+_, _, label_fontsize, tick_fontsize, text_width, _ = init()
 
 matchms_scores = load_matchms_scores()
 
@@ -21,11 +17,13 @@ matches_normalized = matchms_scores['matches'] / matchms_scores['n_peaks_referen
 plt.clf()
 plt.set_cmap('viridis')
 plt.hist2d(matches_normalized * 100, matchms_scores['scores'] * 1000, bins=(5, 5), range=[[0, 100], [0, 1000]])
-plt.colorbar()
+cbar = plt.colorbar()
+cbar.ax.tick_params(labelsize=tick_fontsize)
+
 plt.clim(0, 70)
-plt.xlabel('ions matching reference (%)', fontsize=20)
-plt.ylabel('scores', fontsize=20)
-plt.tick_params(labelsize=13)
+plt.xlabel('ions matching reference (%)', fontsize=label_fontsize)
+plt.ylabel('scores', fontsize=label_fontsize)
+plt.tick_params(labelsize=tick_fontsize)
 plt.gcf().set_size_inches(8, 6)
 plt.savefig("paper_plots/Fig4a_superclasses_histogram.png", bbox_inches='tight')
 
@@ -43,12 +41,13 @@ create_plot(larger_superclasses_top5, "superclass", normalized_matches=False).sa
 
 plt.clf()
 plt.set_cmap('viridis')
-plt.hist2d(matchms_scores_top5['matches'], matchms_scores_top5['scores'] * 1000, bins=([0,1,2,3,4,5], 5))
-plt.colorbar()
+plt.hist2d(matchms_scores_top5['matches'], matchms_scores_top5['scores'] * 1000, bins=([0,1,2,3,4,5], 5), range=[[0, 5], [0, 1000]])
+cbar = plt.colorbar()
+cbar.ax.tick_params(labelsize=tick_fontsize)
 plt.clim(0, 70)
 
-plt.xlabel('ion matches', fontsize=20)
-plt.ylabel('scores', fontsize=20)
-plt.tick_params(labelsize=13)
+plt.xlabel('ion matches', fontsize=label_fontsize)
+plt.ylabel('scores', fontsize=label_fontsize)
+plt.tick_params(labelsize=tick_fontsize)
 plt.gcf().set_size_inches(8, 6)
 plt.savefig("paper_plots/Fig4b_superclasses_histogram.png", bbox_inches='tight')
