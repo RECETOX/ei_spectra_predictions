@@ -260,11 +260,11 @@ def rescale_matches_axes(df, normalized_matches, matches_col, label_fontsize, ti
     ax.tick_params(axis='y', labelsize=tick_fontsize)
 
 
-def make_xticklabels(text_width, ax, count_data, ha='right'):
+def make_xticklabels(text_width, ax, count_data, ha='right', rotation=45):
     xlabels = [label.get_text() for label in ax.get_xticklabels()]
     xlabels = ['\n'.join(textwrap.wrap(
         label + ' (' + str((count_data.loc[label] // 2)) + ')', width=text_width)) for label in xlabels]
-    ax.set_xticklabels(xlabels, rotation=45, ha=ha)
+    ax.set_xticklabels(xlabels, rotation=rotation, ha=ha)
 
 
 def scatterplot_matplotlib(df: pd.DataFrame) -> plt.Figure:
@@ -534,4 +534,33 @@ def boxplot_comparison(df, order, df_N, order_N, col, colors = ['crimson', 'deep
     labels[1] = 'baseline'
     ax1.legend(handles, labels, loc='upper right', fontsize=14)
     ax2.get_legend().remove()
+    return fig
+
+def make_simple_boxplot(df: pd.DataFrame, x: str, y: str, order: List[str] = None, text_width = 21):
+    data = df.groupby(x).filter(lambda x: len(x) > 2)
+    _, _, label_fontsize, tick_fontsize, _, _ = init()
+
+    plot_width = calc_plot_width(data, x, 1.5)
+    fig = plt.figure(figsize=(plot_width, 6))
+    ax = sns.boxplot(
+    x=x,
+    y=y,
+    data=data,
+    order = order,
+    color="deepskyblue",
+    medianprops={'color': "blue", 'linewidth': 4.0},
+    flierprops={'marker': 'o', 'markersize': 10, 'markerfacecolor': 'none'})
+
+    count_data = data[x].value_counts() * 2
+
+    # # Add the count labels to the x-axis
+    make_xticklabels(text_width, ax, count_data, ha="center", rotation=90)
+    plt.ylim([0, 1000])
+    # plt.ylabel('scores', fontsize = label_fontsize)
+    plt.ylabel("", fontsize=0)
+
+    plt.tick_params(axis='y', labelsize=tick_fontsize)
+    plt.tick_params(axis='x', labelsize=tick_fontsize)
+    plt.xlabel("", fontsize=0)
+
     return fig
