@@ -8,9 +8,9 @@ import argparse
 import os
 
 
-PBS_TEMPLATE = load_template("templates", "optimization_gamess_template.pbs")
-INP_TEMPLATE = load_template("templates", "gamess_input_template.inp")
-XYZ_TEMPLATE = load_template("templates", "structure_input_template.xyz")
+PBS_TEMPLATE = load_template("optimization_gamess_template.pbs")
+INP_TEMPLATE = load_template("gamess_input_template.inp")
+XYZ_TEMPLATE = load_template("structure_input_template.xyz")
 
 
 def coords_as_dataframe(element_symbol: List[str], x_coord: List[str], y_coord: List[str], z_coord: List[str])  -> pd.DataFrame:
@@ -48,7 +48,12 @@ def read_coordinates(n_atoms: int, gamess_output: List[str], line_number: int) -
     """
     start, end = compute_start_end_indices(n_atoms, line_number, 4)
     data = [line.split() for line in gamess_output[start:end]]
-    element_symbol, x_coord, y_coord, z_coord = zip(*data)
+    
+    element_symbol = [line[0] for line in data]
+    x_coord = [line[2] for line in data]
+    y_coord = [line[3] for line in data]
+    z_coord = [line[4] for line in data]
+    
     return element_symbol, x_coord, y_coord, z_coord
 
 
