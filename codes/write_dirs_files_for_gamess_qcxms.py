@@ -277,13 +277,13 @@ if __name__ == "__main__":
             write_gamess_input(multiplicity, mol, molname, mol_input_path)
 
         spectrum_input_path = spectra_dir / ("qcxms" + ".in")
-        qcxms_template = load_template("qcxms_input_template.in")
+        template = load_template("qcxms_input_template.in")
         if not Path(spectrum_input_path).exists():
             qcxms_params = read_parameters(args.params_filename, ["QC_Program", "QC_Level", "ntraj", "tmax", "tinit", "ieeatm"])
-            write_from_template(parameters=qcxms_params, template=qcxms_template, file=spectrum_input_path)
+            write_from_template(parameters=qcxms_params, template=template, file=spectrum_input_path)
 
         mol_pbs_path = mol_dir / (inchikey + ".pbs")
-        pbs_template = load_template("optimization_gamess_template.pbs")
+        template = load_template("optimization_gamess_template.pbs")
         if not Path(mol_pbs_path).exists():
             pbs_params = read_parameters(args.params_filename, ["WALLTIME", "NCPUS", "MEM", "SCRATCH_LOCAL", "USER_EMAIL"])
-            write_from_template(parameters={"MOLNAME": inchikey, **pbs_params}, template=pbs_template, file=mol_pbs_path)
+            write_from_template(parameters={"MOLNAME": inchikey, **pbs_params}, template=template, file=mol_pbs_path)
