@@ -279,7 +279,7 @@ if __name__ == "__main__":
         spectrum_input_path = spectra_dir / ("qcxms" + ".in")
         qcxms_template = load_template("qcxms_input_template.in")
         if not Path(spectrum_input_path).exists():
-            qcxms_params = read_parameters(args.params_filename, ["QC_Program", "QC_Level", "ntraj", "tmax", "tinit"])
+            qcxms_params = read_parameters(args.params_filename, ["QC_Program", "QC_Level", "ntraj", "tmax", "tinit", "ieeatm"])
             write_from_template(parameters=qcxms_params, template=qcxms_template, file=spectrum_input_path)
 
         mol_pbs_path = mol_dir / (inchikey + ".pbs")
